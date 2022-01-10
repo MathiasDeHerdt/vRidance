@@ -24,5 +24,16 @@ namespace vRidance
         {
             InitializeComponent();
         }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            grdMain.Background = Brushes.White;
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            var bc = new BrushConverter();
+            grdMain.Background = (Brush)bc.ConvertFrom("#1E1E1E");
+        }
     }
 }

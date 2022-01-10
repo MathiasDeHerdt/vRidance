@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\demuy\\source\\repos\\vRidance\\vRidance\\vRidance.csproj",
+      "projectUniqueName": "C:\\Users\\demuy\\Desktop\\ResearchProject\\ResearchProjectCode\\vRidance\\vRidance\\vRidance.csproj",
       "projectName": "vRidance",
-      "projectPath": "C:\\Users\\demuy\\source\\repos\\vRidance\\vRidance\\vRidance.csproj",
+      "projectPath": "C:\\Users\\demuy\\Desktop\\ResearchProject\\ResearchProjectCode\\vRidance\\vRidance\\vRidance.csproj",
       "packagesPath": "C:\\Users\\demuy\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\demuy\\source\\repos\\vRidance\\vRidance\\obj\\",
+      "outputPath": "C:\\Users\\demuy\\Desktop\\ResearchProject\\ResearchProjectCode\\vRidance\\vRidance\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

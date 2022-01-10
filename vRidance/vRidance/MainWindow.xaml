@@ -1,12 +1,16 @@
-﻿<Window x:Class="vRidance.MainWindow"
+﻿<Window x:Name="wdwVRidance" x:Class="vRidance.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:vRidance"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="vRidance" Height="450" Width="800" BorderBrush="#FF252526" Foreground="White" Visibility="Visible" Background="#FF252526" Opacity="0.99" WindowStyle="SingleBorderWindow" ResizeMode="NoResize">
+    <Window.Effect>
+        <DropShadowEffect/>
+    </Window.Effect>
+    <Grid x:Name="grdMain" Background="#FF252526" Width="800" Height="450">
+        <CheckBox x:Name="chkbxTheme" Content="☼" HorizontalAlignment="Left" Margin="745,10,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" BorderBrush="{x:Null}" Cursor="" Background="#FF525252"/>
 
     </Grid>
 </Window>

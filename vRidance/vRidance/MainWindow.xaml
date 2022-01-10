@@ -11,6 +11,9 @@
     </Window.Effect>
     <Grid x:Name="grdMain" Background="#FF252526" Width="800" Height="450">
         <CheckBox x:Name="chkbxTheme" Content="☼" HorizontalAlignment="Left" Margin="745,10,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" BorderBrush="{x:Null}" Cursor="" Background="#FF525252"/>
+        <Button x:Name="btnUpload" Content="UPLOAD" HorizontalAlignment="Left" Margin="457,361,0,0" VerticalAlignment="Top" Height="42" Width="96" Background="#FF353434" FontSize="20" FontFamily="Bahnschrift SemiBold" BorderBrush="{x:Null}" Click="btnUpload_Click" Foreground="White"/>
+        <ListView x:Name="lstItems" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="124,37,124,163" Background="#FF1E1E1E" BorderBrush="#FF1E1E1E" Foreground="White" HorizontalContentAlignment="Center"/>
+        <Button x:Name="btnNext" Content="NEXT" HorizontalAlignment="Left" Margin="580,361,0,0" VerticalAlignment="Top" Height="42" Width="96" Background="#FF353434" FontSize="20" FontFamily="Bahnschrift SemiBold" BorderBrush="{x:Null}" Foreground="White"/>
 
     </Grid>
 </Window>

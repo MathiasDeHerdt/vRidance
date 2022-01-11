@@ -1,0 +1,11 @@
+C:\Users\Ward\Desktop\vRidanceWinForms\vRidance\vRidance\bin\Debug\vRidance.exe.config
+C:\Users\Ward\Desktop\vRidanceWinForms\vRidance\vRidance\bin\Debug\vRidance.exe
+C:\Users\Ward\Desktop\vRidanceWinForms\vRidance\vRidance\bin\Debug\vRidance.pdb
+C:\Users\Ward\Desktop\vRidanceWinForms\vRidance\vRidance\obj\Debug\vRidance.csproj.AssemblyReference.cache
+C:\Users\Ward\Desktop\vRidanceWinForms\vRidance\vRidance\obj\Debug\vRidance.csproj.SuggestedBindingRedirects.cache
+C:\Users\Ward\Desktop\vRidanceWinForms\vRidance\vRidance\obj\Debug\vRidance.Properties.Resources.resources
+C:\Users\Ward\Desktop\vRidanceWinForms\vRidance\vRidance\obj\Debug\vRidance.csproj.GenerateResource.cache
+C:\Users\Ward\Desktop\vRidanceWinForms\vRidance\vRidance\obj\Debug\vRidance.csproj.CoreCompileInputs.cache
+C:\Users\Ward\Desktop\vRidanceWinForms\vRidance\vRidance\obj\Debug\vRidance.exe
+C:\Users\Ward\Desktop\vRidanceWinForms\vRidance\vRidance\obj\Debug\vRidance.pdb
+C:\Users\Ward\Desktop\vRidanceWinForms\vRidance\vRidance\obj\Debug\vRidance.grdMain.resources

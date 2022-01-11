@@ -20,8 +20,10 @@ namespace vRidance
     /// </summary>
     public partial class MigrateSelection : Window
     {
-        public MigrateSelection()
+        List<String> listOfItems = new List<String>(); //New list for selected files
+        public MigrateSelection(List<String> itemList)
         {
+            listOfItems = itemList; //setting old list from the first page to the new list on this page
             InitializeComponent();
         }
 
@@ -52,6 +54,10 @@ namespace vRidance
                 case 0:
                     //CONVERTEREN GEBEURD HIER (PROXMOX)
                     MessageBox.Show("PROXMOX is checked");
+                    /*foreach (string file in listOfItems)
+                    {
+                        MessageBox.Show($"{file.ToString()}");
+                    }*/
                     break;
 
                 case 1:

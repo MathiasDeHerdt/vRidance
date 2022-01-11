@@ -22,6 +22,7 @@ namespace vRidance
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<String> itemList = new List<String>();
         public MainWindow()
         {
             InitializeComponent();
@@ -59,7 +60,6 @@ namespace vRidance
 
         private void btnUpload_Click(object sender, RoutedEventArgs e)
         {
-            List<String> itemList = new List<String>();
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "All Files (*.*)|*.*";
             openFileDialog.Title = "Select vSphere Files";
@@ -73,7 +73,7 @@ namespace vRidance
                     string[] arrAllFiles = openFileDialog.FileNames;
                     foreach (string file in arrAllFiles)
                     {
-                        itemList.Add(file);
+                       itemList.Add(file);
                     }
                     lstItems.ItemsSource = itemList;
                 }
@@ -94,7 +94,7 @@ namespace vRidance
 
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
-            MigrateSelection win2 = new MigrateSelection();
+            MigrateSelection win2 = new MigrateSelection(itemList);
             this.Content = win2.Content;
             //MigrateSelection win2 = new MigrateSelection();
             //win2.Show();

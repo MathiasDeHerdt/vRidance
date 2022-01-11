@@ -65,25 +65,39 @@ namespace vRidance
             openFileDialog.Title = "Select vSphere Files";
             openFileDialog.FilterIndex = 1;
             openFileDialog.Multiselect = true;
-            if (openFileDialog.ShowDialog() == true)
+            try
             {
-                string sFileName = openFileDialog.FileName;
-                string[] arrAllFiles = openFileDialog.FileNames;
-                foreach (string file in arrAllFiles)
+                if (openFileDialog.ShowDialog() == true)
                 {
-                    itemList.Add(file);
+                    string sFileName = openFileDialog.FileName;
+                    string[] arrAllFiles = openFileDialog.FileNames;
+                    foreach (string file in arrAllFiles)
+                    {
+                        itemList.Add(file);
+                    }
+                    lstItems.ItemsSource = itemList;
                 }
-                lstItems.ItemsSource = itemList;
-            }
 
-            if (lstItems != null)
-            {
-                btnNext.IsEnabled = true;
-                btnNext.Visibility = Visibility.Visible;
+                if (lstItems != null)
+                {
+                    btnNext.IsEnabled = true;
+                    btnNext.Visibility = Visibility.Visible;
+                }
             }
+            catch (Exception)
+            {
+
+                throw;
+            }
+               
+        }
+
+        private void btnNext_Click(object sender, RoutedEventArgs e)
+        {
+            MigrateSelection win2 = new MigrateSelection();
+            this.Content = win2.Content;
+            //MigrateSelection win2 = new MigrateSelection();
+            //win2.Show();
         }
     }
 }
-
-//itemList.Add(openFileDialog.Title.ToString());
-//lstItems.ItemsSource = itemList;

@@ -30,7 +30,8 @@ namespace vRidance
         {
             InitializeComponent();
             btnNext.IsEnabled = false;
-            btnNext.Visibility = Visibility.Hidden;
+            rectDark.Visibility = Visibility.Hidden;
+
         }
 
         private void btnUpload_Click(object sender, RoutedEventArgs e)
@@ -102,6 +103,9 @@ namespace vRidance
                 btnNext.Background = Brushes.White;
                 btnNext.Foreground = Brushes.Black;
                 btnNext.BorderBrush = Brushes.Black;
+
+                rectDark.Visibility = Visibility.Visible;
+                rectMode.Visibility = Visibility.Hidden;
             }
             catch (Exception)
             {
@@ -135,6 +139,9 @@ namespace vRidance
                 btnNext.Background = (Brush)bc.ConvertFrom("#FF353434");
                 btnNext.Foreground = Brushes.White;
                 btnNext.BorderBrush = null;
+
+                rectDark.Visibility = Visibility.Hidden;
+                rectMode.Visibility = Visibility.Visible;
             }
             catch (Exception)
             {

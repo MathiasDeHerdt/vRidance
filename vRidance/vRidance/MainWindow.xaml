@@ -15,15 +15,15 @@
         </Grid.Background>
         <Rectangle x:Name="rctTop" HorizontalAlignment="Center" Height="44" VerticalAlignment="Top" Width="800" Fill="#7F000000" MouseLeftButtonDown="rctTop_MouseLeftButtonDown"/>
 
-        <Button x:Name="btnUpload" Content="UPLOAD" HorizontalAlignment="Left" Margin="457,361,0,0" VerticalAlignment="Top" Height="42" Width="96" Background="#FF353434" FontSize="20" FontFamily="Bahnschrift SemiBold" BorderBrush="{x:Null}" Click="btnUpload_Click" Foreground="White" Cursor="Hand"/>
+        <Button x:Name="btnUpload" Content="UPLOAD" HorizontalAlignment="Left" Margin="272,384,0,0" VerticalAlignment="Top" Height="42" Width="96" Background="#FF353434" FontSize="20" FontFamily="Bahnschrift SemiBold" BorderBrush="{x:Null}" Click="btnUpload_Click" Foreground="White" Cursor="Hand"/>
         <ListView x:Name="lstItems" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="124,71,124,129" Background="#FF1E1E1E" BorderBrush="#FF1E1E1E" Foreground="White" HorizontalContentAlignment="Center" IsTextSearchEnabled="False" IsSynchronizedWithCurrentItem="False" />
-        <Button x:Name="btnNext" Content="NEXT" HorizontalAlignment="Left" Margin="580,361,0,0" VerticalAlignment="Top" Height="42" Width="96" Background="#FF353434" FontSize="20" FontFamily="Bahnschrift SemiBold" BorderBrush="{x:Null}" Foreground="White" Click="btnNext_Click"/>
+        <Button x:Name="btnNext" Content="NEXT" HorizontalAlignment="Left" Margin="432,384,0,0" VerticalAlignment="Top" Height="42" Width="96" Background="#FF353434" FontSize="20" FontFamily="Bahnschrift SemiBold" BorderBrush="{x:Null}" Foreground="White" Click="btnNext_Click"/>
         <Rectangle x:Name="rectClose" HorizontalAlignment="Left" Height="21" Margin="766,10,0,0" VerticalAlignment="Top" Width="21" MouseLeftButtonDown="rectClose_MouseLeftButtonDown" Cursor="Hand" Focusable="True">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/close.png"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle x:Name="rectDark" HorizontalAlignment="Left" Height="21" Margin="712,10,0,0" VerticalAlignment="Top" Width="22" Cursor="Hand" Focusable="True" MouseLeftButtonUp="rectDark_MouseLeftButtonDown">
+        <Rectangle x:Name="rectDark" HorizontalAlignment="Left" Height="21" Margin="738,10,0,0" VerticalAlignment="Top" Width="22" Cursor="Hand" Focusable="True" MouseLeftButtonUp="rectDark_MouseLeftButtonDown">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/moon.png"/>
             </Rectangle.Fill>

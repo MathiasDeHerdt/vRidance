@@ -78,5 +78,11 @@ namespace vRidance
                     break;
             }
         }
+
+        private void rectClose_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+
+        }
     }
 }

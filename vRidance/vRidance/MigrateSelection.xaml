@@ -52,6 +52,11 @@
         <Label x:Name="lblAzureStack" Content="Convert from vSphere to Azure Stack HCI" HorizontalAlignment="Left" Margin="135,242,0,0" VerticalAlignment="Top" Height="59" Width="355" Foreground="White"/>
         <Label x:Name="lblNutanix" Content="Convert from vSphere to Nutanix" HorizontalAlignment="Left" Margin="135,344,0,0" VerticalAlignment="Top" Height="59" Width="355" Foreground="White"/>
         <Button x:Name="btnNext2" Content="NEXT" HorizontalAlignment="Left" Margin="635,354,0,0" VerticalAlignment="Top" Height="49" Width="105" FontSize="20" FontFamily="Bahnschrift SemiBold" Click="btnNext2_Click"/>
+        <Rectangle x:Name="rectClose2" HorizontalAlignment="Left" Height="21" Margin="766,10,0,0" VerticalAlignment="Top" Width="21" MouseLeftButtonDown="rectClose_MouseLeftButtonDown">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/close.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
 
     </Grid>
 </Window>

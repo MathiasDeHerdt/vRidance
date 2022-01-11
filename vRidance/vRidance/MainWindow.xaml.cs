@@ -33,34 +33,6 @@ namespace vRidance
             btnNext.Visibility = Visibility.Hidden;
         }
 
-        /*private void CheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            grdMain.Background = Brushes.White;
-            btnUpload.Background = Brushes.White;
-            btnUpload.Foreground = Brushes.Black;
-            lstItems.Background = Brushes.LightGray;
-            lstItems.Foreground = Brushes.Black;
-            btnUpload.BorderBrush = Brushes.Black;
-            btnNext.Background = Brushes.White;
-            btnNext.Foreground = Brushes.Black;
-            btnNext.BorderBrush = Brushes.Black;
-        }
-
-        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            var bc = new BrushConverter();
-            grdMain.Background = (Brush)bc.ConvertFrom("#FF252526");
-            btnUpload.Background = (Brush)bc.ConvertFrom("#FF353434");
-            btnUpload.Foreground = Brushes.White;
-            lstItems.Background = (Brush)bc.ConvertFrom("#FF1E1E1E");
-            lstItems.Foreground = Brushes.White;
-            btnUpload.BorderBrush = null;
-
-            btnNext.Background = (Brush)bc.ConvertFrom("#FF353434");
-            btnNext.Foreground = Brushes.White;
-            btnNext.BorderBrush = null;
-        }*/
-
         private void btnUpload_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
@@ -105,13 +77,14 @@ namespace vRidance
 
         private void rectClose_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            this.Close();
+            System.Windows.Application.Current.Shutdown();
         }
 
-        private void rectMode_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void rectMode_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             try
             {
+                var bc2 = new BrushConverter();
                 Uri resourceUri2 = new Uri("Assets/bg_light.png", UriKind.Relative);
                 System.Windows.Resources.StreamResourceInfo streamInfo2 = System.Windows.Application.GetResourceStream(resourceUri2);
 
@@ -122,8 +95,9 @@ namespace vRidance
                 grdMain.Background = brush2;
                 btnUpload.Background = Brushes.White;
                 btnUpload.Foreground = Brushes.Black;
-                lstItems.Background = Brushes.LightGray;
+                lstItems.Background = (Brush)bc2.ConvertFrom("#dedede");
                 lstItems.Foreground = Brushes.Black;
+                lstItems.BorderBrush = null;
                 btnUpload.BorderBrush = Brushes.Black;
                 btnNext.Background = Brushes.White;
                 btnNext.Foreground = Brushes.Black;
@@ -138,7 +112,7 @@ namespace vRidance
 
         }
 
-        private void rectDark_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void rectDark_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             try
             {

@@ -10,7 +10,9 @@
 
   <ItemGroup>
     <None Remove="Assets\bg_dark.png" />
+    <None Remove="Assets\bg_light.png" />
     <None Remove="Assets\close.png" />
+    <None Remove="Assets\moon.png" />
     <None Remove="Assets\sun.png" />
     <None Remove="bg_dark.png" />
     <None Remove="close.png" />
@@ -19,10 +21,12 @@
 
   <ItemGroup>
     <Resource Include="Assets\bg_dark.png" />
-    <Content Include="Assets\sun.png">
+    <Resource Include="Assets\sun.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Content>
+    </Resource>
+    <Resource Include="Assets\bg_light.png" />
     <Resource Include="Assets\close.png" />
+    <Resource Include="Assets\moon.png" />
     <Resource Include="bg_dark.png" />
   </ItemGroup>
 

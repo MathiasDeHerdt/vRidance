@@ -30,7 +30,6 @@ C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\bin\Debug\net6.0-window
 C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\MainWindow.g.cs
 C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\MigrateSelection.g.cs
 C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\App.g.cs
-C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\vRidance_Content.g.cs
 C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\vRidance_MarkupCompile.cache
 C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\vRidance_MarkupCompile.lref
 C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\MainWindow.baml

@@ -143,5 +143,15 @@ namespace vRidance
                 System.Windows.MessageBox.Show("Something went wrong");
             }
         }
+
+        //private void grdMain_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        //{
+        //    this.DragMove();
+        //}
+
+        private void rctTop_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
     }
 }

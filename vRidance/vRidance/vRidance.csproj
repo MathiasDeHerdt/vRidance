@@ -5,6 +5,30 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+	<UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\bg_dark.png" />
+    <None Remove="Assets\close.png" />
+    <None Remove="Assets\sun.png" />
+    <None Remove="bg_dark.png" />
+    <None Remove="close.png" />
+    <None Remove="moon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\bg_dark.png" />
+    <Content Include="Assets\sun.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Assets\close.png" />
+    <Resource Include="bg_dark.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="close.png" />
+    <Resource Include="moon.png" />
+  </ItemGroup>
 
 </Project>

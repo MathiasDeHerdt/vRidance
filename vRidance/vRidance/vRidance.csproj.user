@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="CustomTools\ToggleSwitch.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="MigrateSelection.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

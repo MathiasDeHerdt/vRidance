@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using Microsoft.Win32;
+using System.Windows.Forms;
 
 namespace vRidance
 {
@@ -22,6 +23,8 @@ namespace vRidance
     /// </summary>
     public partial class MainWindow : Window
     {
+
+
         List<String> itemList = new List<String>();
         public MainWindow()
         {
@@ -30,7 +33,7 @@ namespace vRidance
             btnNext.Visibility = Visibility.Hidden;
         }
 
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        /*private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             grdMain.Background = Brushes.White;
             btnUpload.Background = Brushes.White;
@@ -56,11 +59,11 @@ namespace vRidance
             btnNext.Background = (Brush)bc.ConvertFrom("#FF353434");
             btnNext.Foreground = Brushes.White;
             btnNext.BorderBrush = null;
-        }
+        }*/
 
         private void btnUpload_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
+            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
             openFileDialog.Filter = "All Files (*.*)|*.*";
             openFileDialog.Title = "Select vSphere Files";
             openFileDialog.FilterIndex = 1;
@@ -98,6 +101,73 @@ namespace vRidance
             this.Content = win2.Content;
             //MigrateSelection win2 = new MigrateSelection();
             //win2.Show();
+        }
+
+        private void rectClose_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void rectMode_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                Uri resourceUri2 = new Uri("Assets/bg_light.png", UriKind.Relative);
+                System.Windows.Resources.StreamResourceInfo streamInfo2 = System.Windows.Application.GetResourceStream(resourceUri2);
+
+                BitmapFrame temp2 = BitmapFrame.Create(streamInfo2.Stream);
+                var brush2 = new ImageBrush();
+                brush2.ImageSource = temp2;
+
+                grdMain.Background = brush2;
+                btnUpload.Background = Brushes.White;
+                btnUpload.Foreground = Brushes.Black;
+                lstItems.Background = Brushes.LightGray;
+                lstItems.Foreground = Brushes.Black;
+                btnUpload.BorderBrush = Brushes.Black;
+                btnNext.Background = Brushes.White;
+                btnNext.Foreground = Brushes.Black;
+                btnNext.BorderBrush = Brushes.Black;
+            }
+            catch (Exception)
+            {
+
+                //throw;
+                System.Windows.MessageBox.Show("Something went wrong.");
+            }
+
+        }
+
+        private void rectDark_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                var bc = new BrushConverter();
+                Uri resourceUri = new Uri("Assets/bg_dark.png", UriKind.Relative);
+                System.Windows.Resources.StreamResourceInfo streamInfo = System.Windows.Application.GetResourceStream(resourceUri);
+
+                BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
+                var brush = new ImageBrush();
+                brush.ImageSource = temp;
+
+                grdMain.Background = brush;
+                ///bg_dark.png
+                btnUpload.Background = (Brush)bc.ConvertFrom("#FF353434");
+                btnUpload.Foreground = Brushes.White;
+                lstItems.Background = (Brush)bc.ConvertFrom("#FF1E1E1E");
+                lstItems.Foreground = Brushes.White;
+                btnUpload.BorderBrush = null;
+
+                btnNext.Background = (Brush)bc.ConvertFrom("#FF353434");
+                btnNext.Foreground = Brushes.White;
+                btnNext.BorderBrush = null;
+            }
+            catch (Exception)
+            {
+
+                //throw;
+                System.Windows.MessageBox.Show("Something went wrong");
+            }
         }
     }
 }

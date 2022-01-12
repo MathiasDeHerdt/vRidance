@@ -162,6 +162,7 @@ namespace vRidance
         public void Dragging()
         {
             this.DragMove();
+
         }
 
         private void rctTop_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

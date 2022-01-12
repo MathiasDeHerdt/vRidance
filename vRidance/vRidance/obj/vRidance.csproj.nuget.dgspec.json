@@ -1,24 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ward\\Desktop\\ResearchProjectCode\\vRidance\\vRidance\\vRidance.csproj": {}
+    "C:\\ResearchProject\\ResearchProjectCode\\vRidance\\vRidance\\vRidance.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ward\\Desktop\\ResearchProjectCode\\vRidance\\vRidance\\vRidance.csproj": {
+    "C:\\ResearchProject\\ResearchProjectCode\\vRidance\\vRidance\\vRidance.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ward\\Desktop\\ResearchProjectCode\\vRidance\\vRidance\\vRidance.csproj",
+        "projectUniqueName": "C:\\ResearchProject\\ResearchProjectCode\\vRidance\\vRidance\\vRidance.csproj",
         "projectName": "vRidance",
-        "projectPath": "C:\\Users\\Ward\\Desktop\\ResearchProjectCode\\vRidance\\vRidance\\vRidance.csproj",
-        "packagesPath": "C:\\Users\\Ward\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ward\\Desktop\\ResearchProjectCode\\vRidance\\vRidance\\obj\\",
+        "projectPath": "C:\\ResearchProject\\ResearchProjectCode\\vRidance\\vRidance\\vRidance.csproj",
+        "packagesPath": "C:\\Users\\demuy\\.nuget\\packages\\",
+        "outputPath": "C:\\ResearchProject\\ResearchProjectCode\\vRidance\\vRidance\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "A:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Ward\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\demuy\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,8 +25,7 @@
           "net6.0-windows7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {}
         },
         "frameworks": {
           "net6.0-windows7.0": {

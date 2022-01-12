@@ -17,6 +17,9 @@
     <None Remove="bg_dark.png" />
     <None Remove="close.png" />
     <None Remove="moon.png" />
+    <None Remove="NextDisabled.png" />
+    <None Remove="NextEnabled.png" />
+    <None Remove="Upload.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +36,9 @@
   <ItemGroup>
     <Resource Include="close.png" />
     <Resource Include="moon.png" />
+    <Resource Include="NextDisabled.png" />
+    <Resource Include="NextEnabled.png" />
+    <Resource Include="Upload.png" />
   </ItemGroup>
 
 </Project>

@@ -184,7 +184,7 @@ namespace vRidance
                     lstItems.ItemsSource = itemList;
                 }
 
-                if (lstItems != null)
+                if (lstItems.HasItems == true)
                 {
                     rectNext.Visibility = Visibility.Visible;
                     rectNextDis.Visibility = Visibility.Hidden;

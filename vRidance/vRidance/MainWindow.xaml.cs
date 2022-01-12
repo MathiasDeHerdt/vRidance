@@ -99,7 +99,7 @@ namespace vRidance
                 grdMain.Background = brush2;
                 //btnUpload.Background = Brushes.White;
                 //btnUpload.Foreground = Brushes.Black;
-                lstItems.Background = (Brush)bc2.ConvertFrom("#dedede");
+                lstItems.Background = (Brush)bc2.ConvertFrom("#66DEDEDE");
                 lstItems.Foreground = Brushes.Black;
                 lstItems.BorderBrush = null;
                 //btnUpload.BorderBrush = Brushes.Black;
@@ -135,7 +135,7 @@ namespace vRidance
                 ///bg_dark.png
                 //btnUpload.Background = (Brush)bc.ConvertFrom("#FF353434");
                 //btnUpload.Foreground = Brushes.White;
-                lstItems.Background = (Brush)bc.ConvertFrom("#FF1E1E1E");
+                lstItems.Background = (Brush)bc.ConvertFrom("#661E1E1E");
                 lstItems.Foreground = Brushes.White;
                 //btnUpload.BorderBrush = null;
 

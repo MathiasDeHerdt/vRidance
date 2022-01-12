@@ -159,9 +159,14 @@ namespace vRidance
         //    this.DragMove();
         //}
 
-        private void rctTop_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        public void Dragging()
         {
             this.DragMove();
+        }
+
+        private void rctTop_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Dragging();
         }
 
         private void rectUpload_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -201,6 +206,8 @@ namespace vRidance
         {
             MigrateSelection win2 = new MigrateSelection(itemList);
             this.Content = win2.Content;
+
+            win2.Owner = this;
         }
     }
 }

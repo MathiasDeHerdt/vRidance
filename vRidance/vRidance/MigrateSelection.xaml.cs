@@ -87,7 +87,7 @@ namespace vRidance
 
         private void rctTop_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            
+            ((MainWindow)this.Owner).Dragging();
         }
 
 

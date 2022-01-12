@@ -53,7 +53,7 @@
         <Label x:Name="lblNutanix" Content="Convert from vSphere to Nutanix" HorizontalAlignment="Left" Margin="136,361,0,0" VerticalAlignment="Top" Height="59" Width="355" Foreground="White"/>
         <Rectangle x:Name="rctTop" HorizontalAlignment="Center" Height="44" VerticalAlignment="Top" Width="800" Fill="#7F000000" MouseLeftButtonDown="rctTop_MouseLeftButtonDown"/>
         <Label x:Name="lblvRidance" Content="vRidance v1.0" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" FontFamily="Cascadia Mono SemiBold" Foreground="White"/>
-        <Rectangle x:Name="rectClose2" HorizontalAlignment="Left" Height="21" Margin="769,10,0,0" VerticalAlignment="Top" Width="21" MouseLeftButtonDown="rectClose_MouseLeftButtonDown">
+        <Rectangle x:Name="rectClose2" HorizontalAlignment="Left" Height="21" Margin="769,10,0,0" VerticalAlignment="Top" Width="21" MouseLeftButtonUp="rectClose_MouseLeftButtonDown">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/close.png"/>
             </Rectangle.Fill>

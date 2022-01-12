@@ -167,6 +167,9 @@ namespace vRidance
         private void rctTop_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Dragging();
+
+
+
         }
 
         private void rectUpload_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)

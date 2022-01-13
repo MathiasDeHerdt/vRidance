@@ -84,10 +84,5 @@ namespace vRidance
         {
             ((MainWindow)this.Owner).Dragging();
         }
-
-        private void wdwSaveFiles_Initialized(object sender, EventArgs e)
-        {
-            Application.Current.MainWindow = Owner;
-        }
     }
 }

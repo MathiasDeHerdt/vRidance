@@ -171,7 +171,10 @@ namespace vRidance
             }
 
             SaveFiles win3 = new SaveFiles(); //HIER MOETEN GECONVERTEERDE FILES MEEGEGEVEN WORDEN
-            Application.Current.MainWindow.Content = win3.Content;
+            //Application.Current.MainWindow.Content = win3.Content;
+            ((MainWindow)this.Owner).Content = win3.Content;
+
+            win3.Owner = ((MainWindow)this.Owner);
         }
 
         private void grdMain2_LayoutUpdated(object sender, EventArgs e)

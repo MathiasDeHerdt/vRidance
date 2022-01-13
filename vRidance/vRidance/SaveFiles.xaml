@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:vRidance"
         mc:Ignorable="d"
-        Title="vRidance" Height="450" Width="800" ResizeMode="NoResize" WindowStyle="None" Initialized="wdwSaveFiles_Initialized">
+        Title="vRidance" Height="450" Width="800" ResizeMode="NoResize" WindowStyle="None">
     <Grid x:Name="grdMain">
         <Grid.Background>
             <ImageBrush ImageSource="/Assets/bg_dark.png"/>

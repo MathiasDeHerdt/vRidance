@@ -69,3 +69,5 @@ C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-win
 C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\vRidance.genruntimeconfig.cache
 C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\SaveFiles.g.cs
 C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\SaveFiles.baml
+C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\SaveFiles.g.cs
+C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\SaveFiles.baml

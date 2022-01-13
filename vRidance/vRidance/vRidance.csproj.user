@@ -13,12 +13,18 @@
     <Compile Update="MigrateSelection.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="SaveFiles.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MigrateSelection.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="SaveFiles.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

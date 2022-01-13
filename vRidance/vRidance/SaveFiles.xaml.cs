@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -22,7 +24,6 @@ namespace vRidance
         public SaveFiles()
         {
             InitializeComponent();
-            rectDark.Visibility = Visibility.Hidden;
         }
 
         private void rectClose_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -83,6 +84,60 @@ namespace vRidance
         private void rctTop_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             ((MainWindow)this.Owner).Dragging();
+        }
+
+
+        private void txtPath_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string systemPath = txtPath.Text;
+            if (Directory.Exists(systemPath) && (systemPath != null || systemPath != ""))
+            {
+                rectSave.Opacity = 1;
+                rectSave.IsEnabled = true;
+            }
+        }
+
+        private void grdMain_Initialized(object sender, EventArgs e)
+        {
+            rectDark.Visibility = Visibility.Hidden;
+            rectSave.Opacity = 0.5;
+            rectSave.IsEnabled = false;
+        }
+
+        private void txtPath_LayoutUpdated(object sender, EventArgs e)
+        {
+            string systemPath = txtPath.Text;
+            if (systemPath == "" || systemPath == null)
+            {
+                rectSave.Opacity = 0.5;
+                rectSave.IsEnabled = false;
+            }
+        }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            using (var fbd = new FolderBrowserDialog())
+            {
+                DialogResult result = fbd.ShowDialog();
+                if (!string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    txtPath.Text = fbd.SelectedPath;
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("ERROR: Filepath empty!");
+                }
+            }
+
+
+        }
+
+        private void rectSave_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            using (System.IO.StreamWriter outfile = new System.IO.StreamWriter(txtPath.Text.ToString()))
+            {
+                outfile.Write(txtPath.Text+@"\GECONVERTEERDE FILE.txt");
+            }
         }
     }
 }

@@ -37,48 +37,6 @@ namespace vRidance
 
         }
 
-        /*private void btnUpload_Click(object sender, RoutedEventArgs e)
-        {
-            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
-            openFileDialog.Filter = "All Files (*.*)|*.*";
-            openFileDialog.Title = "Select vSphere Files";
-            openFileDialog.FilterIndex = 1;
-            openFileDialog.Multiselect = true;
-            try
-            {
-                if (openFileDialog.ShowDialog() == true)
-                {
-                    string sFileName = openFileDialog.FileName;
-                    string[] arrAllFiles = openFileDialog.FileNames;
-                    foreach (string file in arrAllFiles)
-                    {
-                       itemList.Add(file);
-                    }
-                    lstItems.ItemsSource = itemList;
-                }
-
-                if (lstItems != null)
-                {
-                    btnNext.IsEnabled = true;
-                    btnNext.Visibility = Visibility.Visible;
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-               
-        }
-
-        private void btnNext_Click(object sender, RoutedEventArgs e)
-        {
-            MigrateSelection win2 = new MigrateSelection(itemList);
-            this.Content = win2.Content;
-            //MigrateSelection win2 = new MigrateSelection();
-            //win2.Show();
-        }*/
-
         private void rectClose_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             System.Windows.Application.Current.Shutdown();
@@ -162,15 +120,11 @@ namespace vRidance
         public void Dragging()
         {
             this.DragMove();
-
         }
 
         private void rctTop_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Dragging();
-
-
-
         }
 
         private void rectUpload_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)

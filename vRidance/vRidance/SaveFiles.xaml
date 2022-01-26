@@ -27,22 +27,6 @@
             </Rectangle.Fill>
         </Rectangle>
         <Label x:Name="lblvRidance" Content="vRidance v1.0" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" FontFamily="Cascadia Mono SemiBold" Foreground="White"/>
-        <TextBox x:Name="txtPath" HorizontalAlignment="Center" Margin="0,263,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="476" Height="27" Background="#7F000000" BorderBrush="{x:Null}" Foreground="White" SelectionBrush="#FF00C88D" FontFamily="Bahnschrift SemiBold" FontStretch="Normal" TextChanged="txtPath_TextChanged" LayoutUpdated="txtPath_LayoutUpdated"/>
-        <Label x:Name="lblInfo" Content="Converted files save location:" HorizontalAlignment="Left" Margin="158,225,0,0" VerticalAlignment="Top" Height="33" Width="305" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15"/>
-        <Rectangle x:Name="rectSave" HorizontalAlignment="Center" Height="50" Margin="0,342,0,0" VerticalAlignment="Top" Width="150" Cursor="Hand" RenderTransformOrigin="0.5,0.5" MouseLeftButtonUp="rectSave_MouseLeftButtonUp">
-            <Rectangle.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="0"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Rectangle.RenderTransform>
-            <Rectangle.Fill>
-                <ImageBrush ImageSource="/Assets/Download.png"/>
-            </Rectangle.Fill>
-        </Rectangle>
         <Label x:Name="lblAlmostThere" Content="You're almost there!" HorizontalAlignment="Center" Margin="0,94,0,0" VerticalAlignment="Top" Height="44" Width="350" Foreground="White" FontFamily="Bahnschrift SemiBold" FontSize="25" HorizontalContentAlignment="Center"/>
-        <Button x:Name="btnSearch" Content="°°°" HorizontalAlignment="Left" Margin="643,263,0,0" VerticalAlignment="Top" Height="27" Width="31" BorderBrush="{x:Null}" Background="#FF61D4B8" Click="btnSearch_Click"/>
     </Grid>
 </Window>

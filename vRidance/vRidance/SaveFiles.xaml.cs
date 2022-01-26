@@ -47,6 +47,7 @@ namespace vRidance
 
                 rectDark.Visibility = Visibility.Visible;
                 rectMode.Visibility = Visibility.Hidden;
+                lblAlmostThere.Foreground = Brushes.Black;
             }
             catch (Exception)
             {
@@ -72,6 +73,7 @@ namespace vRidance
 
                 rectDark.Visibility = Visibility.Hidden;
                 rectMode.Visibility = Visibility.Visible;
+                lblAlmostThere.Foreground = Brushes.White;
             }
             catch (Exception)
             {
@@ -86,58 +88,9 @@ namespace vRidance
             ((MainWindow)this.Owner).Dragging();
         }
 
-
-        private void txtPath_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            string systemPath = txtPath.Text;
-            if (Directory.Exists(systemPath) && (systemPath != null || systemPath != ""))
-            {
-                rectSave.Opacity = 1;
-                rectSave.IsEnabled = true;
-            }
-        }
-
         private void grdMain_Initialized(object sender, EventArgs e)
         {
-            rectDark.Visibility = Visibility.Hidden;
-            rectSave.Opacity = 0.5;
-            rectSave.IsEnabled = false;
-        }
 
-        private void txtPath_LayoutUpdated(object sender, EventArgs e)
-        {
-            string systemPath = txtPath.Text;
-            if (systemPath == "" || systemPath == null)
-            {
-                rectSave.Opacity = 0.5;
-                rectSave.IsEnabled = false;
-            }
-        }
-
-        private void btnSearch_Click(object sender, RoutedEventArgs e)
-        {
-            using (var fbd = new FolderBrowserDialog())
-            {
-                DialogResult result = fbd.ShowDialog();
-                if (!string.IsNullOrWhiteSpace(fbd.SelectedPath))
-                {
-                    txtPath.Text = fbd.SelectedPath;
-                }
-                else
-                {
-                    System.Windows.MessageBox.Show("ERROR: Filepath empty!");
-                }
-            }
-
-
-        }
-
-        private void rectSave_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            using (System.IO.StreamWriter outfile = new System.IO.StreamWriter(txtPath.Text.ToString()))
-            {
-                outfile.Write(txtPath.Text+@"\GECONVERTEERDE FILE.txt");
-            }
         }
     }
 }

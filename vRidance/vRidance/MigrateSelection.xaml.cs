@@ -21,26 +21,62 @@ namespace vRidance
     public partial class MigrateSelection : Window
     {
         List<String> listOfItems = new List<String>(); //New list for selected files
-        public MigrateSelection(List<String> itemList)
+        public MigrateSelection(List<String> itemList, string theme)
         {
             listOfItems = itemList; //setting old list from the first page to the new list on this page
             InitializeComponent();
 
+            if (theme.ToLower() == "dark")
+            {
+                var bc3 = new BrushConverter();
+                Uri resourceUri3 = new Uri("Assets/bg_dark.png", UriKind.Relative);
+                System.Windows.Resources.StreamResourceInfo streamInfo3 = System.Windows.Application.GetResourceStream(resourceUri3);
 
-            var bc3 = new BrushConverter();
-            Uri resourceUri3 = new Uri("Assets/bg_dark.png", UriKind.Relative);
-            System.Windows.Resources.StreamResourceInfo streamInfo3 = System.Windows.Application.GetResourceStream(resourceUri3);
+                BitmapFrame temp3 = BitmapFrame.Create(streamInfo3.Stream);
+                var brush3 = new ImageBrush();
+                brush3.ImageSource = temp3;
 
-            BitmapFrame temp3 = BitmapFrame.Create(streamInfo3.Stream);
-            var brush3 = new ImageBrush();
-            brush3.ImageSource = temp3;
-
-            grdMain2.Background = brush3;
+                grdMain2.Background = brush3;
 
 
-            rectNext2.Visibility = Visibility.Hidden;
-            rectNextDis2.Visibility = Visibility.Visible;
-            rectNextDis2.IsEnabled = false;
+                rectNext2.Visibility = Visibility.Hidden;
+                rectNextDis2.Visibility = Visibility.Visible;
+                rectNextDis2.IsEnabled = false;
+
+                lblAzureStack.Foreground = Brushes.White;
+                lblCitrix.Foreground = Brushes.White;
+                lblNutanix.Foreground = Brushes.White;
+                lblProxmox.Foreground = Brushes.White;
+
+                rectDark.Visibility = Visibility.Hidden;
+                rectMode.Visibility = Visibility.Visible;
+
+            }
+            else if(theme.ToLower() == "light")
+            {
+                var bc3 = new BrushConverter();
+                Uri resourceUri3 = new Uri("Assets/bg_light.png", UriKind.Relative);
+                System.Windows.Resources.StreamResourceInfo streamInfo3 = System.Windows.Application.GetResourceStream(resourceUri3);
+
+                BitmapFrame temp3 = BitmapFrame.Create(streamInfo3.Stream);
+                var brush3 = new ImageBrush();
+                brush3.ImageSource = temp3;
+
+                grdMain2.Background = brush3;
+
+
+                rectNext2.Visibility = Visibility.Hidden;
+                rectNextDis2.Visibility = Visibility.Visible;
+                rectNextDis2.IsEnabled = false;
+
+                lblAzureStack.Foreground = Brushes.Black;
+                lblCitrix.Foreground = Brushes.Black;
+                lblNutanix.Foreground = Brushes.Black;
+                lblProxmox.Foreground = Brushes.Black;
+
+                rectDark.Visibility = Visibility.Visible;
+                rectMode.Visibility = Visibility.Hidden;
+            }
 
 
         }
@@ -48,16 +84,18 @@ namespace vRidance
 
         public void ConvertToPlatform(int i)
         {
+            string curTheme = "";
+            if (rectDark.Visibility == Visibility.Hidden) curTheme = "dark";
+            else if (rectDark.Visibility == Visibility.Visible) curTheme = "light";
 
             switch (i)
             {
                 case 0:
-                    //CONVERTEREN GEBEURD HIER (PROXMOX)
-                    MessageBox.Show("PROXMOX is checked");
-                    /*foreach (string file in listOfItems)
-                    {
-                        MessageBox.Show($"{file.ToString()}");
-                    }*/
+                    ChooseFolder chooseFolderWindow = new ChooseFolder(curTheme, "proxmox"); //HIER MOETEN GECONVERTEERDE FILES MEEGEGEVEN WORDEN
+                                                      //Application.Current.MainWindow.Content = win3.Content;
+                    ((MainWindow)this.Owner).Content = chooseFolderWindow.Content;
+
+                    chooseFolderWindow.Owner = ((MainWindow)this.Owner);
                     break;
 
                 case 1:
@@ -170,11 +208,11 @@ namespace vRidance
 
             }
 
-            SaveFiles win3 = new SaveFiles(); //HIER MOETEN GECONVERTEERDE FILES MEEGEGEVEN WORDEN
-            //Application.Current.MainWindow.Content = win3.Content;
-            ((MainWindow)this.Owner).Content = win3.Content;
+            //SaveFiles win3 = new SaveFiles(); //HIER MOETEN GECONVERTEERDE FILES MEEGEGEVEN WORDEN
+            ////Application.Current.MainWindow.Content = win3.Content;
+            //((MainWindow)this.Owner).Content = win3.Content;
 
-            win3.Owner = ((MainWindow)this.Owner);
+            //win3.Owner = ((MainWindow)this.Owner);
         }
 
         private void grdMain2_LayoutUpdated(object sender, EventArgs e)

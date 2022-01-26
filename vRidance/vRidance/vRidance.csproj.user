@@ -7,24 +7,36 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="ChooseFolder.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="CustomTools\ToggleSwitch.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Migrate2Prox.xaml.cs">
+      <SubType>Code</SubType>
     </Compile>
     <Compile Update="MigrateSelection.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="SaveFiles.xaml.cs">
+    <Compile Update="ProxMoxLogin.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="ChooseFolder.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Migrate2Prox.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MigrateSelection.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="SaveFiles.xaml">
+    <Page Update="ProxMoxLogin.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

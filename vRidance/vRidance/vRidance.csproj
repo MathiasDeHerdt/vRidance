@@ -14,6 +14,8 @@
     <None Remove="Assets\close.png" />
     <None Remove="Assets\Download.png" />
     <None Remove="Assets\moon.png" />
+    <None Remove="Assets\NextEnabled.png" />
+    <None Remove="Assets\proxmox.png" />
     <None Remove="Assets\sun.png" />
     <None Remove="bg_dark.png" />
     <None Remove="close.png" />
@@ -24,8 +26,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="SSH.NET" Version="2020.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Assets\bg_dark.png" />
     <Resource Include="Assets\Download.png" />
+    <Resource Include="Assets\NextEnabled.png" />
+    <Resource Include="Assets\proxmox.png" />
     <Resource Include="Assets\sun.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

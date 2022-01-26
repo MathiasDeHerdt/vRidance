@@ -162,7 +162,10 @@ namespace vRidance
 
         private void rectNext_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            MigrateSelection win2 = new MigrateSelection(itemList);
+            string curTheme="";
+            if (rectDark.Visibility == Visibility.Hidden) curTheme = "dark";
+            else if (rectDark.Visibility == Visibility.Visible) curTheme = "light";
+            MigrateSelection win2 = new MigrateSelection(itemList, curTheme);
             this.Content = win2.Content;
 
             win2.Owner = this;

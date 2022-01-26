@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "aNxvbWetN16z5d0A4FEEm8+eHoYSz8EvEbH/LNmYwQN9MTK2zVJ3+u80Csw9a8UIRP0n1pFwwg1epB+8oPcakg==",
+  "dgSpecHash": "c320hVgQ7bCUfUMkZWZj89KBAVLbmIujNPwsE5HdJsixyfEGCQBD/zkdfmiy6KwKKuyFBCWExA3HgcJufUDGGQ==",
   "success": true,
-  "projectFilePath": "C:\\ResearchProject\\ResearchProjectCode\\vRidance\\vRidance\\vRidance.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\Ward\\Desktop\\ResearchProjectCode\\vRidance\\vRidance\\vRidance.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Ward\\.nuget\\packages\\ssh.net\\2020.0.1\\ssh.net.2020.0.1.nupkg.sha512",
+    "C:\\Users\\Ward\\.nuget\\packages\\sshnet.security.cryptography\\1.3.0\\sshnet.security.cryptography.1.3.0.nupkg.sha512"
+  ],
   "logs": []
 }

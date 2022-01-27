@@ -59,9 +59,6 @@ namespace vRidance
                 grdMain4.Background = brush3;
 
                 lblPMStart.Foreground = Brushes.White;
-                //pwbPassword.Background = (Brush)bc3.ConvertFrom("#66DEDEDE");
-                //txtUsername.Background = (Brush)bc3.ConvertFrom("#66DEDEDE");
-
                 rectDark.Visibility = Visibility.Hidden;
                 rectMode.Visibility = Visibility.Visible;
 
@@ -76,13 +73,8 @@ namespace vRidance
                 BitmapFrame temp3 = BitmapFrame.Create(streamInfo3.Stream);
                 var brush3 = new ImageBrush();
                 brush3.ImageSource = temp3;
-
                 grdMain4.Background = brush3;
-
                 lblPMStart.Foreground = Brushes.Black;
-                //pwbPassword.Background = (Brush)bc3.ConvertFrom("#661E1E1E");
-                //txtUsername.Background = (Brush)bc3.ConvertFrom("#661E1E1E");
-
                 rectDark.Visibility = Visibility.Visible;
                 rectMode.Visibility = Visibility.Hidden;
             }
@@ -107,8 +99,6 @@ namespace vRidance
                 grdMain4.Background = brush2;
 
                 lblPMStart.Foreground = Brushes.Black;
-                //pwbPassword.Background = (Brush)bc2.ConvertFrom("#661E1E1E");
-                //txtUsername.Background = (Brush)bc2.ConvertFrom("#661E1E1E");
 
                 rectDark.Visibility = Visibility.Visible;
                 rectMode.Visibility = Visibility.Hidden;
@@ -137,8 +127,6 @@ namespace vRidance
                 grdMain4.Background = brush;
 
                 lblPMStart.Foreground = Brushes.White;
-                //pwbPassword.Background = (Brush)bc.ConvertFrom("#66DEDEDE");
-                //txtUsername.Background = (Brush)bc.ConvertFrom("#66DEDEDE");
 
                 rectDark.Visibility = Visibility.Hidden;
                 rectMode.Visibility = Visibility.Visible;
@@ -274,7 +262,7 @@ namespace vRidance
             cbVersion.IsEnabled = false;
         }
 
-        //public void ChangeProgressBarValue(float nextValue)
+        //public void ChangeProgressBarValue(float nextValue) //smooth progressbar?
         //{
         //    float currentValue = pbProgress.Value;
         //    float val = nextValue - currentValue;
@@ -332,7 +320,6 @@ namespace vRidance
                             });
                             nextIsClicked = false;
                             createTheVMS(var_subdirectory.ToString());
-                            //MessageBox.Show($"folderPath: {folderPath}, subdirectoryName: {DirectoryName}, proxHost: {prox_host}, username: {prox_username}, password: {prox_password}, start_vmid: {start_vmid}, os_type: {os_type}, cpu_cores: {cpu_cores}, memory: {memory}");
                             this.Dispatcher.Invoke(() =>
                             {
                                 cbType.ItemsSource = "";
@@ -353,7 +340,6 @@ namespace vRidance
             this.Dispatcher.Invoke(() =>
             {
                 rectClose.Visibility = Visibility.Visible;
-                lblCurrVM.Content = $"Migration Completed!";
                 cbType.IsEnabled = false;
                 cbVersion.IsEnabled = false;
                 this.Dispatcher.Invoke(() => { pbProgress.Value = 0; });
@@ -410,7 +396,6 @@ namespace vRidance
                         string vmdkImport = $"xe vdi-import uuid={vdiUuid} filename=/mnt/VMDKShare/{DirectoryName}/{fileName} format=raw --progress";
                         Debug.WriteLine(vmdkImport); var createImportResult = client.RunCommand(vmdkImport);
                         importResult = createImportResult.Result;
-                        //Debug.WriteLine(importResult);
                         Debug.WriteLine("Importing file, please wait.");
 
                     }
@@ -421,15 +406,12 @@ namespace vRidance
                     string newLine = "";
                     foreach (string character in templateVDI)
                     {
-                        //Debug.WriteLine(character);
                         newLine = newLine.Insert(newLine.Length, character.ToString());
                     }
-                    //Debug.WriteLine(newLine);
                     string removeTemplateDisk = $"xe vdi-destroy uuid={newLine}";
                     this.Dispatcher.Invoke(() => { lblInfo.Content = "Removing template disk"; });
                     this.Dispatcher.Invoke(() => { pbProgress.Value += 9.09; });
                     Debug.WriteLine(removeTemplateDisk); var removedDisk = client.RunCommand(removeTemplateDisk);
-                    //HIER BOVEN BESTAANDE VM DISK VERWIJDEREN
                     string createVdb = $"xe vbd-create vm-uuid={vmUuid} device=0 vdi-uuid={vdiUuid} bootable=true mode=RW type=Disk";
                     this.Dispatcher.Invoke(() => { lblInfo.Content = "Creating VDB"; });
                     this.Dispatcher.Invoke(() => { pbProgress.Value += 9.09; });
@@ -490,7 +472,6 @@ namespace vRidance
                         string vmdkImport = $"xe vdi-import uuid={vdiUuid} filename=/mnt/VMDKShare/{DirectoryName}/{fileName} format=raw --progress";
                         Debug.WriteLine(vmdkImport); var createImportResult = client.RunCommand(vmdkImport);
                         importResult = createImportResult.Result;
-                        //Debug.WriteLine(importResult);
                         Debug.WriteLine("Importing file, please wait.");
 
                     }
@@ -501,14 +482,11 @@ namespace vRidance
                     string newLine = "";
                     foreach (string character in templateVDI)
                     {
-                        //Debug.WriteLine(character);
                         newLine = newLine.Insert(newLine.Length, character.ToString());
                     }
-                    //Debug.WriteLine(newLine);
                     string removeTemplateDisk = $"xe vdi-destroy uuid={newLine}";
                     this.Dispatcher.Invoke(() => { pbProgress.Value += 12.5; });
                     Debug.WriteLine(removeTemplateDisk); var removedDisk = client.RunCommand(removeTemplateDisk);
-                    //HIER BOVEN BESTAANDE VM DISK VERWIJDEREN
                     string createVdb = $"xe vbd-create vm-uuid={vmUuid} device=0 vdi-uuid={vdiUuid} bootable=true mode=RW type=Disk";
                     this.Dispatcher.Invoke(() => { lblInfo.Content = "Creating VDB"; });
                     this.Dispatcher.Invoke(() => { pbProgress.Value += 12.5; });

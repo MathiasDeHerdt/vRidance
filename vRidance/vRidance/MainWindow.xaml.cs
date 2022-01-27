@@ -29,7 +29,6 @@ namespace vRidance
         public MainWindow()
         {
             InitializeComponent();
-            //btnNext.IsEnabled = false;
             rectDark.Visibility = Visibility.Hidden;
 
         }
@@ -55,7 +54,6 @@ namespace vRidance
             catch (Exception)
             {
 
-                //throw;
                 System.Windows.MessageBox.Show("Something went wrong.");
             }
 
@@ -79,11 +77,6 @@ namespace vRidance
                 System.Windows.MessageBox.Show("Something went wrong");
             }
         }
-
-        //private void grdMain_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        //{
-        //    this.DragMove();
-        //}
 
         public void Dragging()
         {

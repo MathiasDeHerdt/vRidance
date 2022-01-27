@@ -194,7 +194,7 @@ namespace vRidance
             string thepath = this.path;
             if (rectDark.Visibility == Visibility.Hidden) curTheme = "dark";
             else if (rectDark.Visibility == Visibility.Visible) curTheme = "light";
-            Migrate2Citrix migration2citrix = new Migrate2Citrix(curTheme, ip, username, password, thepath); //HIER MOETEN GECONVERTEERDE FILES MEEGEGEVEN WORDEN
+            Migrate2Citrix migration2citrix = new Migrate2Citrix(curTheme, ip, username, password, thepath);
             ((MainWindow)this.Owner).Content = migration2citrix.Content;
 
             migration2citrix.Owner = ((MainWindow)this.Owner);

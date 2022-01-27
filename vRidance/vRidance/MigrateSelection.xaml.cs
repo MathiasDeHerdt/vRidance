@@ -45,7 +45,6 @@ namespace vRidance
 
                 lblAzureStack.Foreground = Brushes.White;
                 lblCitrix.Foreground = Brushes.White;
-                lblNutanix.Foreground = Brushes.White;
                 lblProxmox.Foreground = Brushes.White;
 
                 rectDark.Visibility = Visibility.Hidden;
@@ -71,7 +70,6 @@ namespace vRidance
 
                 lblAzureStack.Foreground = Brushes.Black;
                 lblCitrix.Foreground = Brushes.Black;
-                lblNutanix.Foreground = Brushes.Black;
                 lblProxmox.Foreground = Brushes.Black;
 
                 rectDark.Visibility = Visibility.Visible;
@@ -90,28 +88,18 @@ namespace vRidance
             switch (i)
             {
                 case 0:
-                    ChooseFolder chooseFolderWindow = new ChooseFolder(curTheme, "proxmox"); //HIER MOETEN GECONVERTEERDE FILES MEEGEGEVEN WORDEN
-                                                      //Application.Current.MainWindow.Content = win3.Content;
+                    ChooseFolder chooseFolderWindow = new ChooseFolder(curTheme, "proxmox");
                     ((MainWindow)this.Owner).Content = chooseFolderWindow.Content;
 
                     chooseFolderWindow.Owner = ((MainWindow)this.Owner);
                     break;
-
                 case 1:
-                    //CONVERTEREN GEBEURD HIER (NUTANIX)
-                    MessageBox.Show("NUTANIX is checked");
-                    break;
-
-                case 2:
-                    //CONVERTEREN GEBEURD HIER (CITRIX)
-                    ChooseFolder chooseFolderWindowCitrix = new ChooseFolder(curTheme, "citrix"); //HIER MOETEN GECONVERTEERDE FILES MEEGEGEVEN WORDEN
-                                                                                             //Application.Current.MainWindow.Content = win3.Content;
+                    ChooseFolder chooseFolderWindowCitrix = new ChooseFolder(curTheme, "citrix");
                     ((MainWindow)this.Owner).Content = chooseFolderWindowCitrix.Content;
 
                     chooseFolderWindowCitrix.Owner = ((MainWindow)this.Owner);
                     break;
-                case 3:
-                    //CONVERTEREN GEBEURD HIER (AZURESTACKHCI)
+                case 2:
                     MessageBox.Show("AZURESTACKHCI is checked");
                     break;
                 default:
@@ -148,7 +136,6 @@ namespace vRidance
                 grdMain2.Background = brush2;
                 lblAzureStack.Foreground = Brushes.Black;
                 lblCitrix.Foreground = Brushes.Black;
-                lblNutanix.Foreground = Brushes.Black;
                 lblProxmox.Foreground = Brushes.Black;
 
                 rectDark.Visibility = Visibility.Visible;
@@ -157,7 +144,6 @@ namespace vRidance
             catch (Exception)
             {
 
-                //throw;
                 System.Windows.MessageBox.Show("Something went wrong.");
             }
 
@@ -179,7 +165,6 @@ namespace vRidance
                 grdMain2.Background = brush;
                 lblAzureStack.Foreground = Brushes.White;
                 lblCitrix.Foreground = Brushes.White;
-                lblNutanix.Foreground = Brushes.White;
                 lblProxmox.Foreground = Brushes.White;
 
                 rectDark.Visibility = Visibility.Hidden;
@@ -197,9 +182,8 @@ namespace vRidance
         {
             CheckBox[] checkBoxes = new CheckBox[4];
             checkBoxes[0] = chckProxmox;
-            checkBoxes[1] = chckNutanix;
-            checkBoxes[2] = chckCitrix;
-            checkBoxes[3] = chckAzureStack;
+            checkBoxes[1] = chckCitrix;
+            checkBoxes[2] = chckAzureStack;
 
             for (int i = 0; i <= checkBoxes.Count() - 1; i++)
             {
@@ -210,17 +194,11 @@ namespace vRidance
                 }
 
             }
-
-            //SaveFiles win3 = new SaveFiles(); //HIER MOETEN GECONVERTEERDE FILES MEEGEGEVEN WORDEN
-            ////Application.Current.MainWindow.Content = win3.Content;
-            //((MainWindow)this.Owner).Content = win3.Content;
-
-            //win3.Owner = ((MainWindow)this.Owner);
         }
 
         private void grdMain2_LayoutUpdated(object sender, EventArgs e)
         {
-            if (chckAzureStack.IsChecked == true || chckCitrix.IsChecked == true || chckNutanix.IsChecked == true || chckProxmox.IsChecked == true)
+            if (chckAzureStack.IsChecked == true || chckCitrix.IsChecked == true || chckProxmox.IsChecked == true)
             {
                 rectNext2.Visibility = Visibility.Visible;
                 rectNextDis2.Visibility = Visibility.Hidden;

@@ -1,0 +1,7 @@
+C:\Users\Ward\Desktop\TestBuild_vRidance\vRidance.exe
+C:\Users\Ward\Desktop\TestBuild_vRidance\vRidance.dll
+C:\Users\Ward\Desktop\TestBuild_vRidance\vRidance.deps.json
+C:\Users\Ward\Desktop\TestBuild_vRidance\vRidance.runtimeconfig.json
+C:\Users\Ward\Desktop\TestBuild_vRidance\vRidance.pdb
+C:\Users\Ward\Desktop\TestBuild_vRidance\Renci.SshNet.dll
+C:\Users\Ward\Desktop\TestBuild_vRidance\SshNet.Security.Cryptography.dll

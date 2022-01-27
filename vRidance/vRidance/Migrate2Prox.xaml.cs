@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.IO;
 using Renci.SshNet;
+using System.Threading;
 
 namespace vRidance
 {
@@ -25,6 +26,10 @@ namespace vRidance
         int start_vmid;
 
         string os_type, cpu_cores, memory;
+
+        bool nextIsClicked = false;
+
+        Thread changeParamsThread;
         public Migrate2Prox(string theme, string host, string var_username, string var_password, string var_path, int var_start_id)
         {
             this.prox_host = host;
@@ -34,6 +39,8 @@ namespace vRidance
             this.start_vmid = var_start_id;
 
             InitializeComponent();
+
+            rectClose.Visibility = Visibility.Hidden;
 
             if (theme.ToLower() == "dark")
             {
@@ -76,12 +83,10 @@ namespace vRidance
                 rectMode.Visibility = Visibility.Hidden;
             }
 
+            changeParamsThread = new Thread(changeParams);
+            changeParamsThread.Start();
 
-        }
 
-        private void rectClose_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            System.Windows.Application.Current.Shutdown();
         }
 
         private void rectMode_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -123,6 +128,7 @@ namespace vRidance
             {
                 rectNext.Opacity = 1;
                 rectNext.IsEnabled = true;
+
             }
         }
 
@@ -175,6 +181,11 @@ namespace vRidance
             ((MainWindow)this.Owner).Dragging();
         }
 
+        private void rectClose_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
+
 
         private void cbType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -218,6 +229,12 @@ namespace vRidance
                 else if (cbVersion.SelectedIndex == 5) os_type = "w2k3";
                 else if (cbVersion.SelectedIndex == 6) os_type = "w2k";
             }
+
+            cpu_cores = txtCores.Text;
+            memory = txtMemory.Text;
+
+
+            nextIsClicked = true;
         }
 
         private void grdMain_Initialized(object sender, EventArgs e)
@@ -230,96 +247,147 @@ namespace vRidance
 
         public void changeParams()
         {
-
-        }
-
-        public void createTheVMS()
-        {
             if (folderPath != "")
             {
                 string[] subdirectoryEntries = Directory.GetDirectories(folderPath);
 
-                foreach (var subdirectory in subdirectoryEntries)
+                foreach (var var_subdirectory in subdirectoryEntries)
                 {
-                    changeParams();
-                    string[] VMDirectory = Directory.GetFiles(@"" + subdirectory, "*.vmdk");
-
-                    DirectoryInfo di = new DirectoryInfo(@"" + subdirectory);
+                    DirectoryInfo di = new DirectoryInfo(@"" + var_subdirectory);
                     string DirectoryName = di.Name;
+                    this.Dispatcher.Invoke(() => {
 
-                    AuthenticationMethod method_mkdir = new PasswordAuthenticationMethod(prox_username, prox_password);
-                    ConnectionInfo connection_mkdir = new ConnectionInfo(prox_host, prox_username, method_mkdir);
-                    var client_mkdir = new SshClient(connection_mkdir);
-                    client_mkdir.Connect();
-                    client_mkdir.RunCommand($"rm -rf /usr/src/{DirectoryName}");
-                    client_mkdir.RunCommand($"mkdir /usr/src/{DirectoryName}");
-                    client_mkdir.Disconnect();
+                        lblCurrVM.Content = $"Settings for {DirectoryName}";
+                        rectNext.Opacity = 0.5;
+                        rectNext.IsEnabled = false;
+                        cbVersion.IsEnabled = false;
+                        List<string> types = new List<string>();
+                        types.Add("Linux");
+                        types.Add("Microsoft Windows");
+                        cbType.ItemsSource = types;
+                    });
 
-                    using (SftpClient upload = new SftpClient(new PasswordConnectionInfo(prox_host, prox_username, prox_password)))
+                    while (true)
                     {
-                        upload.Connect();
-                        foreach (var file in VMDirectory)
+                        if (nextIsClicked == true)
                         {
-                            FileInfo fi = new FileInfo(@"" + file);
-                            long size = fi.Length;
-                            using (Stream stream = File.OpenRead(file))
+                            this.Dispatcher.Invoke(() =>
                             {
-                                upload.UploadFile(stream, @"/usr/src/" + DirectoryName + "/" + System.IO.Path.GetFileName(file), x => { Console.Clear(); Console.WriteLine($"Uploading {System.IO.Path.GetFileName(file)}"); Console.WriteLine($"{x / 1024 / 1024} / {size / 1024 / 1024}"); });
-                            }
+                                cbType.IsEnabled = false;
+                                cbVersion.IsEnabled = false;
+                                txtCores.IsEnabled = false;
+                                txtMemory.IsEnabled = false;
+                                lblCurrVM.Content = $"Creating VM {DirectoryName}";
+                            });
+                            nextIsClicked = false;
+                            //createTheVMS(var_subdirectory.ToString());
+                            MessageBox.Show($"folderPath: {folderPath}, subdirectoryName: {DirectoryName}, proxHost: {prox_host}, username: {prox_username}, password: {prox_password}, start_vmid: {start_vmid}, os_type: {os_type}, cpu_cores: {cpu_cores}, memory: {memory}");
+                            this.Dispatcher.Invoke(() =>
+                            {
+                                txtCores.Text = "";
+                                txtMemory.Text = "";
+                                cbType.ItemsSource = "";
+                                cbVersion.ItemsSource = "";
+                                cbType.IsEnabled = true;
+                                cbVersion.IsEnabled = true;
+                                txtCores.IsEnabled = true;
+                                txtMemory.IsEnabled = true;
+                            });
+                            break;
                         }
-                        upload.Disconnect();
+                        else { }
                     }
-
-                    if (os_type != null)
-                    {
-                        AuthenticationMethod method_prox = new PasswordAuthenticationMethod(prox_username, prox_password);
-                        ConnectionInfo connection_prox = new ConnectionInfo(prox_host, prox_username, method_prox);
-                        var client = new SshClient(connection_prox);
-
-                        if (os_type.ToLower() == "windows")
-                        {
-
-                            Console.WriteLine($"Creating VM {DirectoryName}, Please Wait...");
-                            string createVM = $"qm create {start_vmid} --balloon 1024 --memory {memory} --sockets 1 --cores {cpu_cores} --onboot yes --name {DirectoryName} --ostype win11 --bootdisk ide0 --net0 e1000,bridge=vmbr0,firewall=1 --scsihw virtio-scsi-pci --bios ovmf";
-                            string importDisk = $"qm importdisk {start_vmid} /usr/src/{DirectoryName}/{DirectoryName}.vmdk VM-Data --format raw";
-                            string useDisk = $"qm set {start_vmid} --ide0 VM-Data:{start_vmid}/vm-{start_vmid}-disk-0.raw";
-                            string changeBootOrder = $"qm set {start_vmid} --boot order='ide0;net0'";
-                            string setUefi = $"qm set {start_vmid} --efidisk0 VM-Data:{start_vmid},format=qcow2,efitype=4m,pre-enrolled-keys=1";
-                            string setTpm = $"qm set {start_vmid} --tpmstate0 VM-Data:{start_vmid},version=v2.0";
-
-                            client.Connect();
-                            var sendCommand = client.RunCommand(createVM);
-                            sendCommand = client.RunCommand(importDisk);
-                            sendCommand = client.RunCommand(useDisk);
-                            sendCommand = client.RunCommand(changeBootOrder);
-                            sendCommand = client.RunCommand(setUefi);
-                            sendCommand = client.RunCommand(setTpm);
-
-                            client.Disconnect();
-
-                        }
-                        else if (os_type.ToLower() == "linux")
-                        {
-                            Console.WriteLine($"Creating VM {DirectoryName}, Please Wait...");
-                            string createVM = $"qm create {start_vmid} --balloon 1024 --memory {memory} --sockets 1 --cores {cpu_cores} --onboot yes --name {DirectoryName} -ostype l26 --bootdisk scsi0 --net0 virtio,bridge=vmbr0,firewall=1 --scsihw virtio-scsi-pci";
-                            string importDisk = $"qm importdisk {start_vmid} /usr/src/{DirectoryName}/{DirectoryName}.vmdk VM-Data --format raw";
-                            string useDisk = $"qm set {start_vmid} --scsi0 VM-Data:{start_vmid}/vm-{start_vmid}-disk-0.raw";
-                            string changeBootOrder = $"qm set {start_vmid} --boot order='scsi0;net0'";
-
-                            client.Connect();
-                            var sendCommand = client.RunCommand(createVM);
-                            sendCommand = client.RunCommand(importDisk);
-                            sendCommand = client.RunCommand(useDisk);
-                            sendCommand = client.RunCommand(changeBootOrder);
-
-                            client.Disconnect();
-
-                        }
-                    }
-
-                    start_vmid++;
                 }
             }
+            
+            this.Dispatcher.Invoke(() =>
+            {
+                rectClose.Visibility = Visibility.Visible;
+                lblCurrVM.Content = $"Migration Completed!";
+                cbType.IsEnabled = false;
+                cbVersion.IsEnabled = false;
+                txtCores.IsEnabled = false;
+                txtMemory.IsEnabled = false;
+            });
+        }
+
+        public void createTheVMS(string subdirectory)
+        {
+            string[] VMDirectory = Directory.GetFiles(@"" + subdirectory, "*.vmdk");
+
+            DirectoryInfo di = new DirectoryInfo(@"" + subdirectory);
+            string DirectoryName = di.Name;
+
+            AuthenticationMethod method_mkdir = new PasswordAuthenticationMethod(prox_username, prox_password);
+            ConnectionInfo connection_mkdir = new ConnectionInfo(prox_host, prox_username, method_mkdir);
+            var client_mkdir = new SshClient(connection_mkdir);
+            client_mkdir.Connect();
+            client_mkdir.RunCommand($"rm -rf /usr/src/{DirectoryName}");
+            client_mkdir.RunCommand($"mkdir /usr/src/{DirectoryName}");
+            client_mkdir.Disconnect();
+
+            using (SftpClient upload = new SftpClient(new PasswordConnectionInfo(prox_host, prox_username, prox_password)))
+            {
+                upload.Connect();
+                foreach (var file in VMDirectory)
+                {
+                    FileInfo fi = new FileInfo(@"" + file);
+                    long size = fi.Length;
+                    using (Stream stream = File.OpenRead(file))
+                    {
+                        upload.UploadFile(stream, @"/usr/src/" + DirectoryName + "/" + System.IO.Path.GetFileName(file), x => { Console.Clear(); Console.WriteLine($"Uploading {System.IO.Path.GetFileName(file)}"); Console.WriteLine($"{x / 1024 / 1024} / {size / 1024 / 1024}"); });
+                    }
+                }
+                upload.Disconnect();
+            }
+
+            if (os_type != null)
+            {
+                AuthenticationMethod method_prox = new PasswordAuthenticationMethod(prox_username, prox_password);
+                ConnectionInfo connection_prox = new ConnectionInfo(prox_host, prox_username, method_prox);
+                var client = new SshClient(connection_prox);
+
+                if (os_type == "win11" || os_type == "win10" || os_type == "win8" || os_type == "win7" || os_type == "w2k8" || os_type == "w2k3" || os_type == "w2k")
+                {
+
+                    Console.WriteLine($"Creating VM {DirectoryName}, Please Wait...");
+                    string createVM = $"qm create {start_vmid} --balloon 1024 --memory {memory} --sockets 1 --cores {cpu_cores} --onboot yes --name {DirectoryName} --ostype {os_type} --bootdisk ide0 --net0 e1000,bridge=vmbr0,firewall=1 --scsihw virtio-scsi-pci --bios ovmf";
+                    string importDisk = $"qm importdisk {start_vmid} /usr/src/{DirectoryName}/{DirectoryName}.vmdk VM-Data --format raw";
+                    string useDisk = $"qm set {start_vmid} --ide0 VM-Data:{start_vmid}/vm-{start_vmid}-disk-0.raw";
+                    string changeBootOrder = $"qm set {start_vmid} --boot order='ide0;net0'";
+                    string setUefi = $"qm set {start_vmid} --efidisk0 VM-Data:{start_vmid},format=qcow2,efitype=4m,pre-enrolled-keys=1";
+                    string setTpm = $"qm set {start_vmid} --tpmstate0 VM-Data:{start_vmid},version=v2.0";
+                    client.Connect();
+                
+                    var sendCommand = client.RunCommand(createVM);
+                    sendCommand = client.RunCommand(importDisk);
+                    sendCommand = client.RunCommand(useDisk);
+                    sendCommand = client.RunCommand(changeBootOrder);
+                    sendCommand = client.RunCommand(setUefi);
+                    sendCommand = client.RunCommand(setTpm);
+
+                    client.Disconnect();
+
+                }
+                else if (os_type == "l26" || os_type == "l24")
+                {
+                    Console.WriteLine($"Creating VM {DirectoryName}, Please Wait...");
+                    string createVM = $"qm create {start_vmid} --balloon 1024 --memory {memory} --sockets 1 --cores {cpu_cores} --onboot yes --name {DirectoryName} -ostype {os_type} --bootdisk scsi0 --net0 virtio,bridge=vmbr0,firewall=1 --scsihw virtio-scsi-pci";
+                    string importDisk = $"qm importdisk {start_vmid} /usr/src/{DirectoryName}/{DirectoryName}.vmdk VM-Data --format raw";
+                    string useDisk = $"qm set {start_vmid} --scsi0 VM-Data:{start_vmid}/vm-{start_vmid}-disk-0.raw";
+                    string changeBootOrder = $"qm set {start_vmid} --boot order='scsi0;net0'";
+
+                    client.Connect();
+                    var sendCommand = client.RunCommand(createVM);
+                    sendCommand = client.RunCommand(importDisk);
+                    sendCommand = client.RunCommand(useDisk);
+                    sendCommand = client.RunCommand(changeBootOrder);
+
+                   client.Disconnect();
+
+                }
+            }
+            start_vmid++;
         }
 
     }

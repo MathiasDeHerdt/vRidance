@@ -42,7 +42,7 @@
             </Rectangle.Fill>
         </Rectangle>
         <Label x:Name="lblCurrVM" Content="Settings for" HorizontalAlignment="Center" Margin="0,143,0,0" VerticalAlignment="Top" Height="44" Width="577" Foreground="White" FontFamily="Bahnschrift SemiBold" FontSize="20" HorizontalContentAlignment="Center" RenderTransformOrigin="0.285,0.399"/>
-        <Label x:Name="lblType" Content="Type of VM" HorizontalAlignment="Left" Margin="263,189,0,0" VerticalAlignment="Top" Height="33" Width="120" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White"/>
+        <Label x:Name="lblType" Content="Type of VM" HorizontalAlignment="Left" Margin="266,190,0,0" VerticalAlignment="Top" Height="22" Width="120" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White" Padding="0,0,5,5"/>
         <ComboBox x:Name="cbType" HorizontalAlignment="Left" Margin="266,0,0,0" VerticalAlignment="Center" Width="120" FontFamily="Bahnschrift SemiBold" FontSize="17" BorderBrush="{x:Null}" SelectionChanged="cbType_SelectionChanged" Foreground="Black">
             <ComboBox.Background>
                 <LinearGradientBrush EndPoint="0,1">
@@ -51,7 +51,7 @@
                 </LinearGradientBrush>
             </ComboBox.Background>
         </ComboBox>
-        <Label x:Name="lblVersion" Content="Version of VM" HorizontalAlignment="Left" Margin="410,187,0,0" VerticalAlignment="Top" Height="33" Width="79" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White"/>
+        <Label x:Name="lblVersion" Content="Version of VM" HorizontalAlignment="Left" Margin="415,190,0,0" VerticalAlignment="Top" Height="22" Width="79" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White" Padding="0,0,5,5"/>
         <ComboBox x:Name="cbVersion" HorizontalAlignment="Left" Margin="414,0,0,0" VerticalAlignment="Center" Width="120" FontFamily="Bahnschrift SemiBold" FontSize="17" BorderBrush="{x:Null}" Foreground="Black">
             <ComboBox.Background>
                 <LinearGradientBrush EndPoint="0,1">
@@ -62,8 +62,8 @@
         </ComboBox>
         <TextBox x:Name="txtDiskSize" HorizontalAlignment="Left" Margin="414,274,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="26" FontFamily="Bahnschrift SemiBold" FontSize="17" Background="#7F000000" BorderBrush="{x:Null}" Foreground="White"/>
         <TextBox x:Name="txtSrUuid" HorizontalAlignment="Left" Margin="266,274,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="26" FontFamily="Bahnschrift SemiBold" FontSize="17" Background="#7F040404" Foreground="White" BorderBrush="{x:Null}"/>
-        <Label x:Name="lblSrUuid" Content="SR UUID" HorizontalAlignment="Left" Margin="261,254,0,0" VerticalAlignment="Top" Height="33" Width="120" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White"/>
-        <Label x:Name="lblDiskSize" Content="Disk Size (Bytes)" HorizontalAlignment="Left" Margin="409,252,0,0" VerticalAlignment="Top" Height="33" Width="120" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White"/>
+        <Label x:Name="lblSrUuid" Content="SR UUID" HorizontalAlignment="Left" Margin="267,254,0,0" VerticalAlignment="Top" Height="20" Width="120" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White" Padding="0,0,5,5"/>
+        <Label x:Name="lblDiskSize" Content="Disk Size (Bytes)" HorizontalAlignment="Left" Margin="415,254,0,0" VerticalAlignment="Top" Height="20" Width="120" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White" Padding="0,0,5,5"/>
         <ProgressBar x:Name="pbProgress" HorizontalAlignment="Center" Height="11" Margin="0,440,0,0" VerticalAlignment="Top" Width="802" Foreground="#FF34ACAB" Background="#7F000000" BorderBrush="{x:Null}"/>
         <Label x:Name="lblInfo" Content="" HorizontalAlignment="Left" Margin="0,409,0,0" VerticalAlignment="Top" Width="245" Foreground="White" Background="#7F000000" FontFamily="Bahnschrift SemiBold Condensed" FontSize="17"/>
     </Grid>

@@ -102,9 +102,6 @@ namespace vRidance
                 case 2:
                     MessageBox.Show("AZURESTACKHCI is checked");
                     break;
-                default:
-                    //error catch (no value)
-                    break;
             }
         }
 
@@ -180,7 +177,7 @@ namespace vRidance
 
         private void rectNext2_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            CheckBox[] checkBoxes = new CheckBox[4];
+            CheckBox[] checkBoxes = new CheckBox[3];
             checkBoxes[0] = chckProxmox;
             checkBoxes[1] = chckCitrix;
             checkBoxes[2] = chckAzureStack;

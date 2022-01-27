@@ -125,3 +125,5 @@ C:\Users\Simon\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-wi
 C:\Users\Simon\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\vRidance.genruntimeconfig.cache
 C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\EndScreen.g.cs
 C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\EndScreen.baml
+C:\Users\Simon\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\EndScreen.g.cs
+C:\Users\Simon\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\EndScreen.baml

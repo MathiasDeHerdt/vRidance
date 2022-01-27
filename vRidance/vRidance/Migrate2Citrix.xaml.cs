@@ -347,9 +347,9 @@ namespace vRidance
                 lblInfo.Visibility = Visibility.Hidden;
 
                 EndScreen endScreen = new EndScreen();
-                this.Content = endScreen.Content;
+                ((MainWindow)this.Owner).Content = endScreen.Content;
 
-                endScreen.Owner = this;
+                endScreen.Owner = ((MainWindow)this.Owner);
             });
         }
 

@@ -27,7 +27,7 @@
             </Rectangle.Fill>
         </Rectangle>
         <Label x:Name="lblvRidance" Content="vRidance v1.0" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" FontFamily="Cascadia Mono SemiBold" Foreground="White"/>
-        <Image Margin="305,3,305,275" Source="/CitrixLogo.png" Stretch="Fill"/>
+        <Image Margin="254,-21,254,218" Source="/CitrixLogo.png" Stretch="Fill"/>
         <Rectangle x:Name="rectNext" HorizontalAlignment="Center" Height="50" Margin="0,342,0,0" VerticalAlignment="Top" Width="150" Cursor="Hand" RenderTransformOrigin="0.5,0.5" MouseLeftButtonUp="rectNext_MouseLeftButtonUp">
             <Rectangle.RenderTransform>
                 <TransformGroup>
@@ -41,11 +41,11 @@
                 <ImageBrush ImageSource="/Assets/NextEnabled.png"/>
             </Rectangle.Fill>
         </Rectangle>
-        <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Margin="266,258,0,0" TextWrapping="Wrap" Text="root" VerticalAlignment="Top" Width="120" TextAlignment="Left" FontFamily="Bahnschrift SemiBold" FontSize="20" Background="#66E1E1E1" BorderBrush="{x:Null}" AutoWordSelection="True" Foreground="White"/>
-        <Label x:Name="lblUsername" Content="Hypervisor Username" HorizontalAlignment="Left" Margin="266,234,0,0" VerticalAlignment="Top" Height="32" Width="120" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White"/>
-        <Label x:Name="lblPassword" Content="Hypervisor Password" HorizontalAlignment="Left" Margin="414,234,0,0" VerticalAlignment="Top" Height="32" Width="120" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White" HorizontalContentAlignment="Right"/>
-        <PasswordBox x:Name="pwbPassword" HorizontalAlignment="Left" Margin="414,258,0,0" VerticalAlignment="Top" Width="120" FontFamily="Bahnschrift SemiBold" FontSize="20" Foreground="White" Background="#66E1E1E1" BorderBrush="{x:Null}"/>
-        <TextBox x:Name="txtIP" HorizontalAlignment="Center" Margin="0,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Left" FontFamily="Bahnschrift SemiBold" FontSize="20" Background="#66E1E1E1" BorderBrush="{x:Null}" AutoWordSelection="True" Foreground="White" />
-        <Label x:Name="lblIP" Content="Citrix Hypervisor IP" HorizontalAlignment="Center" Margin="0,185,0,0" VerticalAlignment="Top" Height="36" Width="120" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White" HorizontalContentAlignment="Center"/>
+        <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Margin="266,269,0,0" TextWrapping="Wrap" Text="root" VerticalAlignment="Top" Width="120" TextAlignment="Left" FontFamily="Bahnschrift SemiBold" Background="#7F000000" BorderBrush="{x:Null}" AutoWordSelection="True" Foreground="White" FontSize="17" Height="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Label x:Name="lblUsername" Content="Hypervisor Username" HorizontalAlignment="Left" Margin="268,245,0,0" VerticalAlignment="Top" Height="24" Width="120" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White" Padding="5,5,5,0"/>
+        <Label x:Name="lblPassword" Content="Hypervisor Password" HorizontalAlignment="Left" Margin="415,245,0,0" VerticalAlignment="Top" Height="24" Width="120" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Padding="0,5,5,0"/>
+        <PasswordBox x:Name="pwbPassword" HorizontalAlignment="Left" Margin="414,269,0,0" VerticalAlignment="Top" Width="120" FontFamily="Bahnschrift SemiBold" FontSize="15" Foreground="White" Background="#7F000000" BorderBrush="{x:Null}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="26"/>
+        <TextBox x:Name="txtIP" HorizontalAlignment="Center" Margin="0,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Left" FontFamily="Bahnschrift SemiBold" FontSize="15" Background="#7F000000" BorderBrush="{x:Null}" AutoWordSelection="True" Foreground="White" Height="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+        <Label x:Name="lblIP" Content="Citrix Hypervisor IP" HorizontalAlignment="Center" Margin="0,185,0,0" VerticalAlignment="Top" Height="23" Width="120" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White" HorizontalContentAlignment="Center" Padding="5,0,5,5"/>
     </Grid>
 </Window>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,8 @@ namespace vRidance
         string os_type;
 
         bool nextIsClicked = false;
+        string SrUuid = "";
+        string DiskSize = "";
 
         Thread changeParamsThread;
         public Migrate2Citrix(string theme, string host, string var_username, string var_password, string var_path)
@@ -244,7 +247,9 @@ namespace vRidance
                 else if (cbVersion.SelectedIndex == 7) os_type = "Windows Server 2019 (64-bit)";
             }
 
-
+            SrUuid = txtSrUuid.Text;
+            DiskSize = txtDiskSize.Text;
+            lblCurrVM.Visibility = Visibility.Visible;
 
             nextIsClicked = true;
 
@@ -280,6 +285,7 @@ namespace vRidance
                     this.Dispatcher.Invoke(() =>
                     {
 
+                        this.Dispatcher.Invoke(() => { pbProgress.Value = 0; });
                         lblCurrVM.Content = $"Settings for {DirectoryName}";
                         rectNext.Opacity = 0.5;
                         rectNext.IsEnabled = false;
@@ -327,10 +333,11 @@ namespace vRidance
                 lblCurrVM.Content = $"Migration Completed!";
                 cbType.IsEnabled = false;
                 cbVersion.IsEnabled = false;
+                this.Dispatcher.Invoke(() => { pbProgress.Value = 0; });
             });
         }
 
-        public void createTheVMS(string subdirectory)
+        public void createTheVMS(string subdirectory) 
         {
             string[] VMDirectory = Directory.GetFiles(@"" + subdirectory, "*-flat.vmdk");
 
@@ -345,116 +352,132 @@ namespace vRidance
 
                 if (os_type.Contains("Windows"))
                 {
-                    Console.WriteLine("Connecting to host...");
+                    this.Dispatcher.Invoke(() => { pbProgress.Value = 0; });
+                    Debug.WriteLine("Connecting to host...");
                     client.Connect();
-                    Console.WriteLine("Connected!");
-                    Console.WriteLine($"Creating VM {DirectoryName}, Please Wait...");
-                    string createVM = $"xe vm-install template=\"Windows 10 (64-bit)\" new-name-label=\"{DirectoryName}\" {txtSrUuid.Text}";
-                    Console.WriteLine(createVM); var createVMResult = client.RunCommand(createVM);
+                    Debug.WriteLine("Connected!");
+                    Debug.WriteLine($"Creating VM {DirectoryName}, Please Wait...");
+                    string createVM = $"xe vm-install template=\"{os_type}\" new-name-label=\"{DirectoryName}\" {SrUuid}";
+                    this.Dispatcher.Invoke(() => { pbProgress.Value = 9.09; });
+                    Debug.WriteLine(createVM); var createVMResult = client.RunCommand(createVM);
                     string vmUuid = createVMResult.Result.TrimEnd();
-                    string createVdi = $"xe vdi-create sr-uuid=\"{txtSrUuid.Text}\" name-label=\"{DirectoryName + "_Disk"}\" virtual-size={txtDiskSize.Text}";
-                    Console.WriteLine(createVdi); var createVdiResult = client.RunCommand(createVdi);
+                    string createVdi = $"xe vdi-create sr-uuid=\"{SrUuid}\" name-label=\"{DirectoryName + "_Disk"}\" virtual-size={DiskSize}";
+                    this.Dispatcher.Invoke(() => { pbProgress.Value += 9.09; });
+                    Debug.WriteLine(createVdi); var createVdiResult = client.RunCommand(createVdi);
                     string vdiUuid = createVdiResult.Result.TrimEnd();
-                    Console.WriteLine(vdiUuid);
+                    Debug.WriteLine(vdiUuid);
                     string importResult = "";
                     foreach (var file in VMDirectory)
                     {
                         FileInfo fi = new FileInfo(@"" + file);
                         string fileName = fi.Name;
+                        this.Dispatcher.Invoke(() => { pbProgress.Value += 9.09; });
                         string vmdkImport = $"xe vdi-import uuid={vdiUuid} filename=/mnt/VMDKShare/{DirectoryName}/{fileName} format=raw --progress";
-                        Console.WriteLine(vmdkImport); var createImportResult = client.RunCommand(vmdkImport);
+                        Debug.WriteLine(vmdkImport); var createImportResult = client.RunCommand(vmdkImport);
                         importResult = createImportResult.Result;
-                        //Console.WriteLine(importResult);
-                        Console.WriteLine("Importing file, please wait.");
+                        //Debug.WriteLine(importResult);
+                        Debug.WriteLine("Importing file, please wait.");
 
                     }
                     string getVmVDI = $"xe vm-disk-list vm={vmUuid} | grep 'uuid ( RO)             :' | sed 's/^.*: //' | sed -n 2p";
-                    Console.WriteLine(getVmVDI); var createExistingVDIResult = client.RunCommand(getVmVDI);
+                    this.Dispatcher.Invoke(() => { pbProgress.Value += 9.09; });
+                    Debug.WriteLine(getVmVDI); var createExistingVDIResult = client.RunCommand(getVmVDI);
                     List<string> templateVDI = createExistingVDIResult.Result.ToCharArray().Select(c => c.ToString()).ToList();
                     string newLine = "";
                     foreach (string character in templateVDI)
                     {
-                        //Console.WriteLine(character);
+                        //Debug.WriteLine(character);
                         newLine = newLine.Insert(newLine.Length, character.ToString());
                     }
-                    //Console.WriteLine(newLine);
+                    //Debug.WriteLine(newLine);
                     string removeTemplateDisk = $"xe vdi-destroy uuid={newLine}";
-                    Console.WriteLine(removeTemplateDisk); var removedDisk = client.RunCommand(removeTemplateDisk);
+                    this.Dispatcher.Invoke(() => { pbProgress.Value += 9.09; });
+                    Debug.WriteLine(removeTemplateDisk); var removedDisk = client.RunCommand(removeTemplateDisk);
                     //HIER BOVEN BESTAANDE VM DISK VERWIJDEREN
                     string createVdb = $"xe vbd-create vm-uuid={vmUuid} device=0 vdi-uuid={vdiUuid} bootable=true mode=RW type=Disk";
-                    Console.WriteLine(createVdb); var createVdbResult = client.RunCommand(createVdb);
+                    this.Dispatcher.Invoke(() => { pbProgress.Value += 9.09; });
+                    Debug.WriteLine(createVdb); var createVdbResult = client.RunCommand(createVdb);
                     string vdbUuid = createVdbResult.Result.TrimEnd();
-                    Console.WriteLine(vdbUuid);
+                    Debug.WriteLine(vdbUuid);
                     string startVm = $"xe vm-start uuid={vmUuid}";
-                    Console.WriteLine(startVm); var vmStartedResult = client.RunCommand(startVm);
+                    this.Dispatcher.Invoke(() => { pbProgress.Value += 9.09; });
+                    Debug.WriteLine(startVm); var vmStartedResult = client.RunCommand(startVm);
                     string attachDisk = $"xe vbd-plug uuid={vdbUuid} device=0 vdi-uuid={vdiUuid}";
-                    Console.WriteLine(attachDisk); var attachDiskResult = client.RunCommand(attachDisk);
+                    this.Dispatcher.Invoke(() => { pbProgress.Value += 9.09; });
+                    Debug.WriteLine(attachDisk); var attachDiskResult = client.RunCommand(attachDisk);
                     string stopVm = $"xe vm-shutdown uuid={vmUuid}";
-                    Console.WriteLine(stopVm); var stopVmResult = client.RunCommand(stopVm);
+                    this.Dispatcher.Invoke(() => { pbProgress.Value += 9.09; });
+                    Debug.WriteLine(stopVm); var stopVmResult = client.RunCommand(stopVm);
                     string changeBootOption = $"xe vm-param-set uuid={vmUuid} HVM-boot-params:firmware=uefi";
-                    Console.WriteLine(changeBootOption); var changeBootOptionResult = client.RunCommand(changeBootOption);
+                    this.Dispatcher.Invoke(() => { pbProgress.Value += 9.09; });
+                    Debug.WriteLine(changeBootOption); var changeBootOptionResult = client.RunCommand(changeBootOption);
                     string changeSecureBoot = $"xe vm-param-set uuid={vmUuid} platform:secureboot=false ";
-                    Console.WriteLine(changeSecureBoot); var changeSecureBootResult = client.RunCommand(changeSecureBoot);
-                    Console.WriteLine(startVm); client.RunCommand(startVm);
+                    this.Dispatcher.Invoke(() => { pbProgress.Value += 9.09; });
+                    Debug.WriteLine(changeSecureBoot); var changeSecureBootResult = client.RunCommand(changeSecureBoot);
+                    Debug.WriteLine(startVm); client.RunCommand(startVm);
 
                     client.Disconnect();
-                    Console.Clear();
 
                 }
                 else if (os_type.Contains("CentOS") || os_type.Contains("CoreOS") || os_type.Contains("Debian") || os_type.Contains("Linux") || os_type.Contains("Red Hat") || os_type.Contains("Ubuntu") || os_type.Contains("SUSE"))
                 {
-                    Console.WriteLine("Connecting to host...");
+                    this.Dispatcher.Invoke(() => { pbProgress.Value = 0; });
+                    Debug.WriteLine("Connecting to host...");
                     client.Connect();
-                    Console.WriteLine("Connected!");
-                    Console.WriteLine($"Creating VM {DirectoryName}, Please Wait...");
-                    string createVM = $"xe vm-install template=\"Ubuntu Bionic Beaver 18.04\" new-name-label=\"{DirectoryName}\" {txtSrUuid.Text}";
-                    Console.WriteLine(createVM); var createVMResult = client.RunCommand(createVM);
+                    Debug.WriteLine("Connected!");
+                    Debug.WriteLine($"Creating VM {DirectoryName}, Please Wait...");
+                    string createVM = $"xe vm-install template=\"{os_type}\" new-name-label=\"{DirectoryName}\" {SrUuid}";
+                    this.Dispatcher.Invoke(() => { pbProgress.Value = 12.5; });
+                    Debug.WriteLine(createVM); var createVMResult = client.RunCommand(createVM);
                     string vmUuid = createVMResult.Result.TrimEnd();
-                    string createVdi = $"xe vdi-create sr-uuid=\"{txtSrUuid.Text}\" name-label=\"{DirectoryName + "_Disk"}\" virtual-size={txtDiskSize.Text}";
-                    Console.WriteLine(createVdi); var createVdiResult = client.RunCommand(createVdi);
+                    string createVdi = $"xe vdi-create sr-uuid=\"{SrUuid}\" name-label=\"{DirectoryName + "_Disk"}\" virtual-size={DiskSize}";
+                    this.Dispatcher.Invoke(() => { pbProgress.Value += 12.5; });
+                    Debug.WriteLine(createVdi); var createVdiResult = client.RunCommand(createVdi);
                     string vdiUuid = createVdiResult.Result.TrimEnd();
-                    Console.WriteLine(vdiUuid);
+                    Debug.WriteLine(vdiUuid);
                     string importResult = "";
                     foreach (var file in VMDirectory)
                     {
                         FileInfo fi = new FileInfo(@"" + file);
                         string fileName = fi.Name;
+                        this.Dispatcher.Invoke(() => { pbProgress.Value += 12.5; });
                         string vmdkImport = $"xe vdi-import uuid={vdiUuid} filename=/mnt/VMDKShare/{DirectoryName}/{fileName} format=raw --progress";
-                        Console.WriteLine(vmdkImport); var createImportResult = client.RunCommand(vmdkImport);
+                        Debug.WriteLine(vmdkImport); var createImportResult = client.RunCommand(vmdkImport);
                         importResult = createImportResult.Result;
-                        //Console.WriteLine(importResult);
-                        Console.WriteLine("Importing file, please wait.");
+                        //Debug.WriteLine(importResult);
+                        Debug.WriteLine("Importing file, please wait.");
 
                     }
                     string getVmVDI = $"xe vm-disk-list vm={vmUuid} | grep 'uuid ( RO)             :' | sed 's/^.*: //' | sed -n 2p";
-                    Console.WriteLine(getVmVDI); var createExistingVDIResult = client.RunCommand(getVmVDI);
+                    this.Dispatcher.Invoke(() => { pbProgress.Value += 12.5; });
+                    Debug.WriteLine(getVmVDI); var createExistingVDIResult = client.RunCommand(getVmVDI);
                     List<string> templateVDI = createExistingVDIResult.Result.ToCharArray().Select(c => c.ToString()).ToList();
                     string newLine = "";
                     foreach (string character in templateVDI)
                     {
-                        //Console.WriteLine(character);
+                        //Debug.WriteLine(character);
                         newLine = newLine.Insert(newLine.Length, character.ToString());
                     }
-                    //Console.WriteLine(newLine);
+                    //Debug.WriteLine(newLine);
                     string removeTemplateDisk = $"xe vdi-destroy uuid={newLine}";
-                    Console.WriteLine(removeTemplateDisk); var removedDisk = client.RunCommand(removeTemplateDisk);
+                    this.Dispatcher.Invoke(() => { pbProgress.Value += 12.5; });
+                    Debug.WriteLine(removeTemplateDisk); var removedDisk = client.RunCommand(removeTemplateDisk);
                     //HIER BOVEN BESTAANDE VM DISK VERWIJDEREN
                     string createVdb = $"xe vbd-create vm-uuid={vmUuid} device=0 vdi-uuid={vdiUuid} bootable=true mode=RW type=Disk";
-                    Console.WriteLine(createVdb); var createVdbResult = client.RunCommand(createVdb);
+                    this.Dispatcher.Invoke(() => { pbProgress.Value += 12.5; });
+                    Debug.WriteLine(createVdb); var createVdbResult = client.RunCommand(createVdb);
                     string vdbUuid = createVdbResult.Result.TrimEnd();
-                    Console.WriteLine(vdbUuid);
+                    Debug.WriteLine(vdbUuid);
                     string startVm = $"xe vm-start uuid={vmUuid}";
-                    Console.WriteLine(startVm); var vmStartedResult = client.RunCommand(startVm);
+                    Debug.WriteLine(startVm); var vmStartedResult = client.RunCommand(startVm);
                     string attachDisk = $"xe vbd-plug uuid={vdbUuid} device=0 vdi-uuid={vdiUuid}";
-                    Console.WriteLine(attachDisk); var attachDiskResult = client.RunCommand(attachDisk);
+                    this.Dispatcher.Invoke(() => { pbProgress.Value = +12.5; });
+                    Debug.WriteLine(attachDisk); var attachDiskResult = client.RunCommand(attachDisk);
 
                     client.Disconnect();
-                    Console.Clear();
 
                 }
             }
-
-
 
         }
 

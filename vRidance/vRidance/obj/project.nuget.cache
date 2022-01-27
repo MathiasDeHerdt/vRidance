@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "LyXnovtkS1gnL1XpG/cZI9ALA09XYR2fn5Qk6xT/BHITz28xCbwXSxQj2uorlKut3U7bWpU0wJiIlBfJQZjAHQ==",
+  "dgSpecHash": "H9rG4O3WRQv+ilU4b2LRGqpqhSC1IbmDalC2oDrZVtbkVwsQwk7b9SCq64WiI7dzmkaDSorNcUi7hLdnvZWC/A==",
   "success": true,
   "projectFilePath": "C:\\Users\\Ward\\Desktop\\ResearchProjectCode\\vRidance\\vRidance\\vRidance.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ward\\.nuget\\packages\\ssh.net\\2020.0.1\\ssh.net.2020.0.1.nupkg.sha512",
-    "C:\\Users\\Ward\\.nuget\\packages\\sshnet.security.cryptography\\1.3.0\\sshnet.security.cryptography.1.3.0.nupkg.sha512"
+    "C:\\Users\\Ward\\.nuget\\packages\\sshnet.security.cryptography\\1.3.0\\sshnet.security.cryptography.1.3.0.nupkg.sha512",
+    "C:\\Users\\Ward\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\6.0.1\\microsoft.netcore.app.runtime.win-x64.6.0.1.nupkg.sha512",
+    "C:\\Users\\Ward\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\6.0.1\\microsoft.windowsdesktop.app.runtime.win-x64.6.0.1.nupkg.sha512",
+    "C:\\Users\\Ward\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\6.0.1\\microsoft.aspnetcore.app.runtime.win-x64.6.0.1.nupkg.sha512"
   ],
   "logs": []
 }

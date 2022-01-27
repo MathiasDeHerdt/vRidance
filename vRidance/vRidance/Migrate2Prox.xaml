@@ -27,7 +27,7 @@
             </Rectangle.Fill>
         </Rectangle>
         <Label x:Name="lblvRidance" Content="vRidance v1.0" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" FontFamily="Cascadia Mono SemiBold" Foreground="White"/>
-        <Label x:Name="lblPMStart" Content="Mirgating VMs" HorizontalAlignment="Center" Margin="0,94,0,0" VerticalAlignment="Top" Height="44" Width="516" Foreground="White" FontFamily="Bahnschrift SemiBold" FontSize="25" HorizontalContentAlignment="Center" RenderTransformOrigin="0.285,0.399"/>
+        <Label x:Name="lblPMStart" Content="Migrating VMs" HorizontalAlignment="Center" Margin="0,94,0,0" VerticalAlignment="Top" Height="44" Width="516" Foreground="White" FontFamily="Bahnschrift SemiBold" FontSize="25" HorizontalContentAlignment="Center" RenderTransformOrigin="0.285,0.399"/>
         <Rectangle x:Name="rectNext" HorizontalAlignment="Center" Height="50" Margin="0,342,0,0" VerticalAlignment="Top" Width="150" Cursor="Hand" RenderTransformOrigin="0.5,0.5" MouseLeftButtonUp="rectNext_MouseLeftButtonUp">
             <Rectangle.RenderTransform>
                 <TransformGroup>

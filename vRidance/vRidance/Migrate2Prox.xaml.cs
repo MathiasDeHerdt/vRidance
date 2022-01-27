@@ -274,6 +274,9 @@ namespace vRidance
                         {
                             this.Dispatcher.Invoke(() =>
                             {
+                                rectDark.IsEnabled = false;
+                                rectMode.IsEnabled = false;
+                                rctTop.IsEnabled = false;
                                 cbType.IsEnabled = false;
                                 cbVersion.IsEnabled = false;
                                 txtCores.IsEnabled = false;
@@ -306,6 +309,9 @@ namespace vRidance
             
             this.Dispatcher.Invoke(() =>
             {
+                rectDark.IsEnabled = true;
+                rctTop.IsEnabled = true;
+                rectMode.IsEnabled = true;
                 rectClose.Visibility = Visibility.Visible;
                 lblCurrVM.Content = $"Migration Completed!";
                 cbType.IsEnabled = false;

@@ -86,4 +86,3 @@ C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-window
 C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\vRidance.genruntimeconfig.cache
 C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\ChooseFolderCitrix.g.cs
 C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\ChooseFolderCitrix.baml
-C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\vRidance.csproj.AssemblyReference.cache

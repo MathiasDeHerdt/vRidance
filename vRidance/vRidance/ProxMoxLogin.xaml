@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:vRidance"
         mc:Ignorable="d"
         Title="vRidance" Height="450" Width="800" ResizeMode="NoResize" WindowStyle="None">
-    <Grid x:Name="grdMain4" Initialized="grdMain_Initialized">
+    <Grid x:Name="grdMain4" Initialized="grdMain_Initialized" LayoutUpdated="grdMain4_LayoutUpdated">
         <Grid.Background>
             <ImageBrush ImageSource="/Assets/bg_dark.png"/>
         </Grid.Background>
@@ -42,13 +42,13 @@
                 <ImageBrush ImageSource="/Assets/NextEnabled.png"/>
             </Rectangle.Fill>
         </Rectangle>
-        <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Margin="266,225,0,0" TextWrapping="Wrap" Text="root" VerticalAlignment="Top" Width="120" TextAlignment="Left" FontFamily="Bahnschrift SemiBold" FontSize="20" Background="#66E1E1E1" BorderBrush="{x:Null}" AutoWordSelection="True" Foreground="White" TextChanged="txtUsername_TextChanged"/>
+        <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Margin="266,225,0,0" TextWrapping="Wrap" Text="root" VerticalAlignment="Top" Width="120" TextAlignment="Left" FontFamily="Bahnschrift SemiBold" FontSize="20" Background="#66E1E1E1" BorderBrush="{x:Null}" AutoWordSelection="True" Foreground="White"/>
         <Label x:Name="lblUsername" Content="Username" HorizontalAlignment="Left" Margin="266,202,0,0" VerticalAlignment="Top" Height="33" Width="120" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White"/>
         <Label x:Name="lblPassword" Content="Password" HorizontalAlignment="Left" Margin="414,202,0,0" VerticalAlignment="Top" Height="33" Width="120" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White" HorizontalContentAlignment="Right"/>
-        <PasswordBox x:Name="pwbPassword" HorizontalAlignment="Left" Margin="414,225,0,0" VerticalAlignment="Top" Width="120" FontFamily="Bahnschrift SemiBold" FontSize="20" Foreground="White" Background="#66E1E1E1" BorderBrush="{x:Null}" PasswordChanged="pwbPassword_PasswordChanged"/>
+        <PasswordBox x:Name="pwbPassword" HorizontalAlignment="Left" Margin="414,225,0,0" VerticalAlignment="Top" Width="120" FontFamily="Bahnschrift SemiBold" FontSize="20" Foreground="White" Background="#66E1E1E1" BorderBrush="{x:Null}"/>
         <Label x:Name="lblvmId" Content="Provide first VM ID" HorizontalAlignment="Center" Margin="0,268,0,0" VerticalAlignment="Top" Height="28" Width="350" Foreground="White" FontFamily="Bahnschrift SemiBold" FontSize="18" HorizontalContentAlignment="Center"/>
-        <TextBox x:Name="txtVMID" HorizontalAlignment="Center" Margin="0,301,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Center" FontFamily="Bahnschrift SemiBold" FontSize="20" Background="#66E1E1E1" BorderBrush="{x:Null}" AutoWordSelection="True" Foreground="White" TextChanged="txtVMID_TextChanged"/>
-        <TextBox x:Name="txtIP" HorizontalAlignment="Center" Margin="0,175,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Left" FontFamily="Bahnschrift SemiBold" FontSize="20" Background="#66E1E1E1" BorderBrush="{x:Null}" AutoWordSelection="True" Foreground="White" TextChanged="txtIP_TextChanged"/>
+        <TextBox x:Name="txtVMID" HorizontalAlignment="Center" Margin="0,301,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Center" FontFamily="Bahnschrift SemiBold" FontSize="20" Background="#66E1E1E1" BorderBrush="{x:Null}" AutoWordSelection="True" Foreground="White"/>
+        <TextBox x:Name="txtIP" HorizontalAlignment="Center" Margin="0,175,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Left" FontFamily="Bahnschrift SemiBold" FontSize="20" Background="#66E1E1E1" BorderBrush="{x:Null}" AutoWordSelection="True" Foreground="White"/>
         <Label x:Name="lblIP" Content="Proxmox VE IP" HorizontalAlignment="Center" Margin="0,152,0,0" VerticalAlignment="Top" Height="33" Width="120" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White" HorizontalContentAlignment="Center"/>
     </Grid>
 </Window>

@@ -31,8 +31,8 @@ namespace vRidance
             InitializeComponent();
             //btnNext.IsEnabled = false;
             rectDark.Visibility = Visibility.Hidden;
-            rectNext.Visibility = Visibility.Hidden;
-            rectNextDis.Visibility = Visibility.Visible;
+            rectNext.Visibility = Visibility.Visible;
+            rectNextDis.Visibility = Visibility.Hidden;
             rectNextDis.IsEnabled = false;
 
         }

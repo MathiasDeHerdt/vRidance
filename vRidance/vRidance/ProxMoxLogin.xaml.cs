@@ -26,9 +26,18 @@ namespace vRidance
 
             this.path = path2vmdk;
 
+            changeTheme(theme);
+        }
+        private void rectClose_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
+
+        private void changeTheme(string theme)
+        {
             if (theme.ToLower() == "dark")
             {
-                var bc3 = new BrushConverter();
+                var bc = new BrushConverter();
                 Uri resourceUri3 = new Uri("Assets/bg_dark.png", UriKind.Relative);
                 System.Windows.Resources.StreamResourceInfo streamInfo3 = System.Windows.Application.GetResourceStream(resourceUri3);
 
@@ -41,10 +50,18 @@ namespace vRidance
                 lblPMLogin.Foreground = Brushes.White;
                 lblUsername.Foreground = Brushes.White;
                 lblPassword.Foreground = Brushes.White;
+                lblIP.Foreground = Brushes.White;
+                lblvmId.Foreground = Brushes.White;
+
                 pwbPassword.Foreground = Brushes.White;
                 txtUsername.Foreground = Brushes.White;
-                pwbPassword.Background = (Brush)bc3.ConvertFrom("#66DEDEDE");
-                txtUsername.Background = (Brush)bc3.ConvertFrom("#66DEDEDE");
+                txtIP.Foreground = Brushes.White;
+                txtVMID.Foreground = Brushes.White;
+
+                pwbPassword.Background = (Brush)bc.ConvertFrom("#661E1E1E");
+                txtUsername.Background = (Brush)bc.ConvertFrom("#661E1E1E");
+                txtIP.Background = (Brush)bc.ConvertFrom("#661E1E1E");
+                txtVMID.Background = (Brush)bc.ConvertFrom("#661E1E1E");
 
                 rectDark.Visibility = Visibility.Hidden;
                 rectMode.Visibility = Visibility.Visible;
@@ -53,7 +70,7 @@ namespace vRidance
             }
             else if (theme.ToLower() == "light")
             {
-                var bc3 = new BrushConverter();
+                var bc = new BrushConverter();
                 Uri resourceUri3 = new Uri("Assets/bg_light.png", UriKind.Relative);
                 System.Windows.Resources.StreamResourceInfo streamInfo3 = System.Windows.Application.GetResourceStream(resourceUri3);
 
@@ -66,10 +83,18 @@ namespace vRidance
                 lblPMLogin.Foreground = Brushes.Black;
                 lblUsername.Foreground = Brushes.Black;
                 lblPassword.Foreground = Brushes.Black;
+                lblIP.Foreground = Brushes.Black;
+                lblvmId.Foreground = Brushes.Black;
+
                 pwbPassword.Foreground = Brushes.Black;
                 txtUsername.Foreground = Brushes.Black;
-                pwbPassword.Background = (Brush)bc3.ConvertFrom("#661E1E1E");
-                txtUsername.Background = (Brush)bc3.ConvertFrom("#661E1E1E");
+                txtIP.Foreground = Brushes.Black;
+                txtVMID.Foreground = Brushes.Black;
+
+                pwbPassword.Background = (Brush)bc.ConvertFrom("#66DEDEDE");
+                txtUsername.Background = (Brush)bc.ConvertFrom("#66DEDEDE");
+                txtIP.Background = (Brush)bc.ConvertFrom("#66DEDEDE");
+                txtVMID.Background = (Brush)bc.ConvertFrom("#66DEDEDE");
 
                 rectDark.Visibility = Visibility.Visible;
                 rectMode.Visibility = Visibility.Hidden;
@@ -77,35 +102,12 @@ namespace vRidance
 
             }
         }
-        private void rectClose_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            System.Windows.Application.Current.Shutdown();
-        }
 
         private void rectMode_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             try
             {
-                var bc2 = new BrushConverter();
-                Uri resourceUri2 = new Uri("Assets/bg_light.png", UriKind.Relative);
-                System.Windows.Resources.StreamResourceInfo streamInfo2 = System.Windows.Application.GetResourceStream(resourceUri2);
-
-                BitmapFrame temp2 = BitmapFrame.Create(streamInfo2.Stream);
-                var brush2 = new ImageBrush();
-                brush2.ImageSource = temp2;
-
-                grdMain4.Background = brush2;
-
-                lblPMLogin.Foreground = Brushes.Black;
-                lblUsername.Foreground = Brushes.Black;
-                lblPassword.Foreground = Brushes.Black;
-                pwbPassword.Foreground = Brushes.Black;
-                txtUsername.Foreground = Brushes.Black;
-                pwbPassword.Background = (Brush)bc2.ConvertFrom("#661E1E1E");
-                txtUsername.Background = (Brush)bc2.ConvertFrom("#661E1E1E");
-
-                rectDark.Visibility = Visibility.Visible;
-                rectMode.Visibility = Visibility.Hidden;
+                changeTheme("light");
             }
             catch (Exception)
             {
@@ -119,27 +121,7 @@ namespace vRidance
         {
             try
             {
-                var bc = new BrushConverter();
-                Uri resourceUri = new Uri("Assets/bg_dark.png", UriKind.Relative);
-                System.Windows.Resources.StreamResourceInfo streamInfo = System.Windows.Application.GetResourceStream(resourceUri);
-
-                BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
-                var brush = new ImageBrush();
-                brush.ImageSource = temp;
-
-                grdMain4.Background = brush;
-
-                lblPMLogin.Foreground = Brushes.White;
-                lblUsername.Foreground = Brushes.White;
-                lblPassword.Foreground = Brushes.White;
-                pwbPassword.Foreground = Brushes.White;
-                txtUsername.Foreground = Brushes.White;
-                pwbPassword.Background = (Brush)bc.ConvertFrom("#66DEDEDE");
-                txtUsername.Background = (Brush)bc.ConvertFrom("#66DEDEDE");
-
-                rectDark.Visibility = Visibility.Hidden;
-                rectMode.Visibility = Visibility.Visible;
-
+                changeTheme("dark");
             }
             catch (Exception)
             {
@@ -161,33 +143,23 @@ namespace vRidance
             rectNext.IsEnabled = false;
         }
 
-        private void txtUsername_TextChanged(object sender, TextChangedEventArgs e)
+        private void rectNext_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            if (txtUsername.Text == "" && txtUsername == null)
-            {
-                rectNext.Opacity = 0.5;
-                rectNext.IsEnabled = false;
-            }
+            string ip = txtIP.Text;
+            string username = txtUsername.Text;
+            string password = pwbPassword.Password.ToString();
+            int first_vmid = int.Parse(txtVMID.Text);
+            string curTheme = "";
+            string thepath = this.path;
+            if (rectDark.Visibility == Visibility.Hidden) curTheme = "dark";
+            else if (rectDark.Visibility == Visibility.Visible) curTheme = "light";
+            Migrate2Prox migration2proxmox = new Migrate2Prox(curTheme, ip, username, password, thepath, first_vmid); //HIER MOETEN GECONVERTEERDE FILES MEEGEGEVEN WORDEN
+            ((MainWindow)this.Owner).Content = migration2proxmox.Content;
+
+            migration2proxmox.Owner = ((MainWindow)this.Owner);
         }
 
-        private void pwbPassword_PasswordChanged(object sender, RoutedEventArgs e)
-        {
-            if (pwbPassword.Password.ToString() == "" && pwbPassword == null)
-            {
-                rectNext.Opacity = 0.5;
-                rectNext.IsEnabled = false;
-            }
-        }
-        private void txtIP_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            System.Net.IPAddress ipAddress;
-            if (!System.Net.IPAddress.TryParse(txtIP.Text, out ipAddress))
-            {
-                rectNext.Opacity = 0.5;
-                rectNext.IsEnabled = false;
-            }
-        }
-        private void txtVMID_TextChanged(object sender, TextChangedEventArgs e)
+        private void grdMain4_LayoutUpdated(object sender, EventArgs e)
         {
             System.Net.IPAddress ipAddress;
             if (txtUsername.Text != "" && txtUsername != null && pwbPassword.Password != "" && txtVMID.Text != "" && txtVMID != null && System.Net.IPAddress.TryParse(txtIP.Text, out ipAddress))
@@ -201,22 +173,5 @@ namespace vRidance
                 rectNext.IsEnabled = false;
             }
         }
-
-        private void rectNext_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            string ip = txtIP.Text;
-            string username = txtUsername.Text;
-            string password = pwbPassword.Password.ToString();
-            string curTheme = "";
-            string thepath = this.path;
-            int first_vmid = int.Parse(txtVMID.Text);
-            if (rectDark.Visibility == Visibility.Hidden) curTheme = "dark";
-            else if (rectDark.Visibility == Visibility.Visible) curTheme = "light";
-            Migrate2Prox migration2proxmox = new Migrate2Prox(curTheme, ip, username, password, thepath, first_vmid); //HIER MOETEN GECONVERTEERDE FILES MEEGEGEVEN WORDEN
-            ((MainWindow)this.Owner).Content = migration2proxmox.Content;
-
-            migration2proxmox.Owner = ((MainWindow)this.Owner);
-        }
-
     }
 }

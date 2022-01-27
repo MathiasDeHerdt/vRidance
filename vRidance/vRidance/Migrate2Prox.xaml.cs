@@ -44,9 +44,19 @@ namespace vRidance
 
             rectClose.Visibility = Visibility.Hidden;
 
+            changeTheme(theme);
+
+            changeParamsThread = new Thread(changeParams);
+            changeParamsThread.Start();
+
+
+        }
+
+        private void changeTheme(string theme)
+        {
             if (theme.ToLower() == "dark")
             {
-                var bc3 = new BrushConverter();
+                var bc = new BrushConverter();
                 Uri resourceUri3 = new Uri("Assets/bg_dark.png", UriKind.Relative);
                 System.Windows.Resources.StreamResourceInfo streamInfo3 = System.Windows.Application.GetResourceStream(resourceUri3);
 
@@ -57,8 +67,17 @@ namespace vRidance
                 grdMain4.Background = brush3;
 
                 lblPMStart.Foreground = Brushes.White;
-                //pwbPassword.Background = (Brush)bc3.ConvertFrom("#66DEDEDE");
-                //txtUsername.Background = (Brush)bc3.ConvertFrom("#66DEDEDE");
+                lblCores.Foreground = Brushes.White;
+                lblCurrVM.Foreground = Brushes.White;
+                lblMemory.Foreground = Brushes.White;
+                lblType.Foreground = Brushes.White;
+                lblVersion.Foreground = Brushes.White;
+
+                txtCores.Foreground = Brushes.White;
+                txtMemory.Foreground = Brushes.White;
+
+                txtCores.Background = (Brush)bc.ConvertFrom("#661E1E1E");
+                txtMemory.Background = (Brush)bc.ConvertFrom("#661E1E1E");
 
                 rectDark.Visibility = Visibility.Hidden;
                 rectMode.Visibility = Visibility.Visible;
@@ -67,7 +86,7 @@ namespace vRidance
             }
             else if (theme.ToLower() == "light")
             {
-                var bc3 = new BrushConverter();
+                var bc = new BrushConverter();
                 Uri resourceUri3 = new Uri("Assets/bg_light.png", UriKind.Relative);
                 System.Windows.Resources.StreamResourceInfo streamInfo3 = System.Windows.Application.GetResourceStream(resourceUri3);
 
@@ -78,45 +97,47 @@ namespace vRidance
                 grdMain4.Background = brush3;
 
                 lblPMStart.Foreground = Brushes.Black;
-                //pwbPassword.Background = (Brush)bc3.ConvertFrom("#661E1E1E");
-                //txtUsername.Background = (Brush)bc3.ConvertFrom("#661E1E1E");
+                lblCores.Foreground = Brushes.Black;
+                lblCurrVM.Foreground = Brushes.Black;
+                lblMemory.Foreground = Brushes.Black;
+                lblType.Foreground = Brushes.Black;
+                lblVersion.Foreground = Brushes.Black;
+
+                txtCores.Foreground = Brushes.Black;
+                txtMemory.Foreground = Brushes.Black;
+
+                txtCores.Background = (Brush)bc.ConvertFrom("#66DEDEDE");
+                txtMemory.Background = (Brush)bc.ConvertFrom("#66DEDEDE");
 
                 rectDark.Visibility = Visibility.Visible;
                 rectMode.Visibility = Visibility.Hidden;
             }
-
-            changeParamsThread = new Thread(changeParams);
-            changeParamsThread.Start();
-
-
         }
 
         private void rectMode_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             try
             {
-                var bc2 = new BrushConverter();
-                Uri resourceUri2 = new Uri("Assets/bg_light.png", UriKind.Relative);
-                System.Windows.Resources.StreamResourceInfo streamInfo2 = System.Windows.Application.GetResourceStream(resourceUri2);
-
-                BitmapFrame temp2 = BitmapFrame.Create(streamInfo2.Stream);
-                var brush2 = new ImageBrush();
-                brush2.ImageSource = temp2;
-
-                grdMain4.Background = brush2;
-
-                lblPMStart.Foreground = Brushes.Black;
-                //pwbPassword.Background = (Brush)bc2.ConvertFrom("#661E1E1E");
-                //txtUsername.Background = (Brush)bc2.ConvertFrom("#661E1E1E");
-
-                rectDark.Visibility = Visibility.Visible;
-                rectMode.Visibility = Visibility.Hidden;
+                changeTheme("light");
             }
             catch (Exception)
             {
 
                 //throw;
                 System.Windows.MessageBox.Show("Something went wrong.");
+            }
+        }
+        private void rectDark_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                changeTheme("dark");
+            }
+            catch (Exception)
+            {
+
+                //throw;
+                System.Windows.MessageBox.Show("Something went wrong");
             }
         }
 
@@ -147,35 +168,6 @@ namespace vRidance
             }
         }
 
-        private void rectDark_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            try
-            {
-                var bc = new BrushConverter();
-                Uri resourceUri = new Uri("Assets/bg_dark.png", UriKind.Relative);
-                System.Windows.Resources.StreamResourceInfo streamInfo = System.Windows.Application.GetResourceStream(resourceUri);
-
-                BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
-                var brush = new ImageBrush();
-                brush.ImageSource = temp;
-
-                grdMain4.Background = brush;
-
-                lblPMStart.Foreground = Brushes.White;
-                //pwbPassword.Background = (Brush)bc.ConvertFrom("#66DEDEDE");
-                //txtUsername.Background = (Brush)bc.ConvertFrom("#66DEDEDE");
-
-                rectDark.Visibility = Visibility.Hidden;
-                rectMode.Visibility = Visibility.Visible;
-
-            }
-            catch (Exception)
-            {
-
-                //throw;
-                System.Windows.MessageBox.Show("Something went wrong");
-            }
-        }
 
         private void rctTop_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -341,7 +333,13 @@ namespace vRidance
                     long size = fi.Length;
                     using (Stream stream = File.OpenRead(file))
                     {
-                        upload.UploadFile(stream, @"/usr/src/" + DirectoryName + "/" + System.IO.Path.GetFileName(file), x => { /*Console.WriteLine($"Uploading {System.IO.Path.GetFileName(file)}"); Console.WriteLine($"{x / 1024 / 1024} / {size / 1024 / 1024}");*/ });
+                        upload.UploadFile(stream, @"/usr/src/" + DirectoryName + "/" + System.IO.Path.GetFileName(file), x => {
+                            /*Console.WriteLine($"Uploading {System.IO.Path.GetFileName(file)}"); Console.WriteLine($"{x / 1024 / 1024} / {size / 1024 / 1024}");*/
+                            long current = long.Parse(x.ToString());
+                            float progress = (current / size) * 100;
+
+                            this.Dispatcher.Invoke(() => { pgbProgress.Value = progress; });
+                        });
                     }
                 }
                 upload.Disconnect();

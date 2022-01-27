@@ -64,5 +64,6 @@
         <Label x:Name="lblCores" Content="Number of cores" HorizontalAlignment="Left" Margin="266,250,0,0" VerticalAlignment="Top" Height="33" Width="120" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White"/>
         <Label x:Name="lblMemory" Content="Amount of RAM (MB)" HorizontalAlignment="Left" Margin="426,250,0,0" VerticalAlignment="Top" Height="33" Width="111" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White"/>
         <TextBox x:Name="txtMemory" HorizontalAlignment="Left" Margin="414,273,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Center" FontFamily="Bahnschrift SemiBold" FontSize="20" Background="#66E1E1E1" BorderBrush="{x:Null}" AutoWordSelection="True" Foreground="White" TextChanged="txtMemory_TextChanged"/>
+        <ProgressBar x:Name="pgbProgress" HorizontalAlignment="Center" Height="21" Margin="0,310,0,0" VerticalAlignment="Top" Width="268"/>
     </Grid>
 </Window>

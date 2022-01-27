@@ -359,6 +359,11 @@ namespace vRidance
                 this.Dispatcher.Invoke(() => { pbProgress.Value = 0; });
                 this.Dispatcher.Invoke(() => { lblInfo.Content = ""; });
                 lblInfo.Visibility = Visibility.Hidden;
+
+                EndScreen endScreen = new EndScreen();
+                this.Content = endScreen.Content;
+
+                endScreen.Owner = this;
             });
         }
 

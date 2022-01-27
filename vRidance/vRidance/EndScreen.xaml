@@ -1,4 +1,4 @@
-﻿<Window x:Name="wdwVRidance" x:Class="vRidance.MainWindow"
+﻿<Window x:Name="wdwVRidance" x:Class="vRidance.EndScreen"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -29,14 +29,9 @@
                 <ImageBrush ImageSource="/Assets/sun.png"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle x:Name="rectNext" HorizontalAlignment="Center" Height="50" Margin="0,331,0,0" VerticalAlignment="Top" Width="150" MouseLeftButtonUp="rectNext_MouseLeftButtonUp" Cursor="Hand">
-            <Rectangle.Fill>
-                <ImageBrush ImageSource="/NextEnabled.png"/>
-            </Rectangle.Fill>
-        </Rectangle>
         <Label x:Name="lblvRidance" Content="vRidance v1.0" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" FontFamily="Cascadia Mono SemiBold" Foreground="White"/>
-        <Label x:Name="lblTitle" Content="Welcome to vRidance!" HorizontalAlignment="Center" Margin="0,63,0,0" VerticalAlignment="Top" Height="70" Width="402" Foreground="White" FontFamily="Bahnschrift SemiBold Condensed" FontSize="50"/>
-        <Label x:Name="lblExplanation" Content="vRidance is a tool ,created by HOWEST students, that ensures an easy and &#xD;&#xA;straightforward process of Virtual Machine migrations to multiple platforms.&#xD;&#xA;Supported platforms for vRidance are:&#xD;&#xA;  1. Proxmox&#xD;&#xA;  2. Citrix&#xD;&#xA;  3. Azure Stack HCI" HorizontalAlignment="Center" VerticalAlignment="Center" Height="140" Width="606" Foreground="White" FontFamily="Bahnschrift SemiBold" FontSize="17" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+        <Label x:Name="lblTitle" Content="Migration Complete!" HorizontalAlignment="Center" Margin="0,63,0,0" VerticalAlignment="Top" Height="70" Width="402" Foreground="White" FontFamily="Bahnschrift SemiBold Condensed" FontSize="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label x:Name="lblExplanation" Content="Your VM's have been migrated successfully!&#xD;&#xA;You can now close this window.&#xD;&#xA;&#xD;&#xA;Happy virtualizing!&#xD;&#xA;&#xD;&#xA;~ vRidance Developers" HorizontalAlignment="Center" VerticalAlignment="Center" Height="140" Width="606" Foreground="White" FontFamily="Bahnschrift SemiBold" FontSize="17" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
         <Rectangle HorizontalAlignment="Left" Height="100" Margin="636,340,0,0" VerticalAlignment="Top" Width="164">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/mctlogo.png"/>

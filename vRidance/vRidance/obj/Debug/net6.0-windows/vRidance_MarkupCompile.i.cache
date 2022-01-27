@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Simon\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\
+C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\
 vRidance
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\Users\Simon\Desktop\ResearchProjectCode\vRidance\vRidance\App.xaml
-7833840369
+C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\App.xaml
+8-1066789484
 
-12-1442471774
-205-1944035086
-ChooseFolder.xaml;CitrixLogin.xaml;MainWindow.xaml;Migrate2Citrix.xaml;Migrate2Prox.xaml;MigrateSelection.xaml;ProxMoxLogin.xaml;
+13172366402
+2051955331933
+ChooseFolder.xaml;CitrixLogin.xaml;EndScreen.xaml;MainWindow.xaml;Migrate2Citrix.xaml;Migrate2Prox.xaml;MigrateSelection.xaml;ProxMoxLogin.xaml;
 
-True
+False
 

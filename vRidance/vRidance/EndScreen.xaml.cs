@@ -10,34 +10,35 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.IO;
-using Microsoft.Win32;
-using System.Windows.Forms;
 
 namespace vRidance
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for EndScreen.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class EndScreen : Window
     {
-
-
-        List<String> itemList = new List<String>();
-        public MainWindow()
+        public EndScreen()
         {
             InitializeComponent();
-            //btnNext.IsEnabled = false;
-            rectDark.Visibility = Visibility.Hidden;
+        }
 
+        public void Dragging()
+        {
+            this.DragMove();
+        }
+
+        private void rctTop_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Dragging();
         }
 
         private void rectClose_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             System.Windows.Application.Current.Shutdown();
         }
+
 
         private void rectMode_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -50,6 +51,8 @@ namespace vRidance
                 BitmapFrame temp2 = BitmapFrame.Create(streamInfo2.Stream);
                 var brush2 = new ImageBrush();
                 brush2.ImageSource = temp2;
+                lblTitle.Foreground = Brushes.Black;
+                lblExplanation.Foreground = Brushes.Black;
 
             }
             catch (Exception)
@@ -72,39 +75,13 @@ namespace vRidance
                 BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
                 var brush = new ImageBrush();
                 brush.ImageSource = temp;
-
+                lblTitle.Foreground = Brushes.White;
+                lblExplanation.Foreground = Brushes.White;
             }
             catch (Exception)
             {
                 System.Windows.MessageBox.Show("Something went wrong");
             }
-        }
-
-        //private void grdMain_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        //{
-        //    this.DragMove();
-        //}
-
-        public void Dragging()
-        {
-            this.DragMove();
-        }
-
-        private void rctTop_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            Dragging();
-        }
-
-
-        private void rectNext_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            string curTheme="";
-            if (rectDark.Visibility == Visibility.Hidden) curTheme = "dark";
-            else if (rectDark.Visibility == Visibility.Visible) curTheme = "light";
-            MigrateSelection win2 = new MigrateSelection(itemList, curTheme);
-            this.Content = win2.Content;
-
-            win2.Owner = this;
         }
     }
 }

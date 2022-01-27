@@ -198,9 +198,10 @@ namespace vRidance
                     break;
 
                 case "citrix":
-                    System.Windows.MessageBox.Show("Login To Your Citrix: Username: [username]; Password: [password]");
+                    CitrixLogin citrixLogin = new CitrixLogin(curTheme, path2vmdk); //HIER MOETEN GECONVERTEERDE FILES MEEGEGEVEN WORDEN
+                    ((MainWindow)this.Owner).Content = citrixLogin.Content;
 
-                    System.Windows.MessageBox.Show("Login Success!");
+                    citrixLogin.Owner = ((MainWindow)this.Owner);
                     break;
             }
         }

@@ -87,7 +87,6 @@ namespace vRidance
             string curTheme = "";
             if (rectDark.Visibility == Visibility.Hidden) curTheme = "dark";
             else if (rectDark.Visibility == Visibility.Visible) curTheme = "light";
-
             switch (i)
             {
                 case 0:
@@ -105,7 +104,11 @@ namespace vRidance
 
                 case 2:
                     //CONVERTEREN GEBEURD HIER (CITRIX)
-                    MessageBox.Show("CITRIX is checked");
+                    ChooseFolder chooseFolderWindowCitrix = new ChooseFolder(curTheme, "citrix"); //HIER MOETEN GECONVERTEERDE FILES MEEGEGEVEN WORDEN
+                                                                                             //Application.Current.MainWindow.Content = win3.Content;
+                    ((MainWindow)this.Owner).Content = chooseFolderWindowCitrix.Content;
+
+                    chooseFolderWindowCitrix.Owner = ((MainWindow)this.Owner);
                     break;
                 case 3:
                     //CONVERTEREN GEBEURD HIER (AZURESTACKHCI)

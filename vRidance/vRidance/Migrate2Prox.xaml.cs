@@ -38,6 +38,8 @@ namespace vRidance
             this.folderPath = var_path;
             this.start_vmid = var_start_id;
 
+            this.nextIsClicked = false;
+
             InitializeComponent();
 
             rectClose.Visibility = Visibility.Hidden;
@@ -235,6 +237,7 @@ namespace vRidance
 
 
             nextIsClicked = true;
+
         }
 
         private void grdMain_Initialized(object sender, EventArgs e)
@@ -267,8 +270,9 @@ namespace vRidance
                         cbType.ItemsSource = types;
                     });
 
-                    while (true)
+                    while(true)
                     {
+                        Thread.Sleep(100);
                         if (nextIsClicked == true)
                         {
                             this.Dispatcher.Invoke(() =>
@@ -277,11 +281,13 @@ namespace vRidance
                                 cbVersion.IsEnabled = false;
                                 txtCores.IsEnabled = false;
                                 txtMemory.IsEnabled = false;
+                                rectNext.IsEnabled = false;
+                                rectNext.Opacity = 0.5;
                                 lblCurrVM.Content = $"Creating VM {DirectoryName}";
                             });
                             nextIsClicked = false;
-                            //createTheVMS(var_subdirectory.ToString());
-                            MessageBox.Show($"folderPath: {folderPath}, subdirectoryName: {DirectoryName}, proxHost: {prox_host}, username: {prox_username}, password: {prox_password}, start_vmid: {start_vmid}, os_type: {os_type}, cpu_cores: {cpu_cores}, memory: {memory}");
+                            createTheVMS(var_subdirectory.ToString());
+                            //MessageBox.Show($"folderPath: {folderPath}, subdirectoryName: {DirectoryName}, proxHost: {prox_host}, username: {prox_username}, password: {prox_password}, start_vmid: {start_vmid}, os_type: {os_type}, cpu_cores: {cpu_cores}, memory: {memory}");
                             this.Dispatcher.Invoke(() =>
                             {
                                 txtCores.Text = "";
@@ -292,10 +298,11 @@ namespace vRidance
                                 cbVersion.IsEnabled = true;
                                 txtCores.IsEnabled = true;
                                 txtMemory.IsEnabled = true;
+                                rectNext.IsEnabled = true;
+                                rectNext.Opacity = 1;
                             });
                             break;
                         }
-                        else { }
                     }
                 }
             }
@@ -335,7 +342,7 @@ namespace vRidance
                     long size = fi.Length;
                     using (Stream stream = File.OpenRead(file))
                     {
-                        upload.UploadFile(stream, @"/usr/src/" + DirectoryName + "/" + System.IO.Path.GetFileName(file), x => { Console.Clear(); Console.WriteLine($"Uploading {System.IO.Path.GetFileName(file)}"); Console.WriteLine($"{x / 1024 / 1024} / {size / 1024 / 1024}"); });
+                        upload.UploadFile(stream, @"/usr/src/" + DirectoryName + "/" + System.IO.Path.GetFileName(file), x => { /*Console.WriteLine($"Uploading {System.IO.Path.GetFileName(file)}"); Console.WriteLine($"{x / 1024 / 1024} / {size / 1024 / 1024}");*/ });
                     }
                 }
                 upload.Disconnect();
@@ -350,7 +357,7 @@ namespace vRidance
                 if (os_type == "win11" || os_type == "win10" || os_type == "win8" || os_type == "win7" || os_type == "w2k8" || os_type == "w2k3" || os_type == "w2k")
                 {
 
-                    Console.WriteLine($"Creating VM {DirectoryName}, Please Wait...");
+                    //Console.WriteLine($"Creating VM {DirectoryName}, Please Wait...");
                     string createVM = $"qm create {start_vmid} --balloon 1024 --memory {memory} --sockets 1 --cores {cpu_cores} --onboot yes --name {DirectoryName} --ostype {os_type} --bootdisk ide0 --net0 e1000,bridge=vmbr0,firewall=1 --scsihw virtio-scsi-pci --bios ovmf";
                     string importDisk = $"qm importdisk {start_vmid} /usr/src/{DirectoryName}/{DirectoryName}.vmdk VM-Data --format raw";
                     string useDisk = $"qm set {start_vmid} --ide0 VM-Data:{start_vmid}/vm-{start_vmid}-disk-0.raw";
@@ -371,7 +378,7 @@ namespace vRidance
                 }
                 else if (os_type == "l26" || os_type == "l24")
                 {
-                    Console.WriteLine($"Creating VM {DirectoryName}, Please Wait...");
+                    //Console.WriteLine($"Creating VM {DirectoryName}, Please Wait...");
                     string createVM = $"qm create {start_vmid} --balloon 1024 --memory {memory} --sockets 1 --cores {cpu_cores} --onboot yes --name {DirectoryName} -ostype {os_type} --bootdisk scsi0 --net0 virtio,bridge=vmbr0,firewall=1 --scsihw virtio-scsi-pci";
                     string importDisk = $"qm importdisk {start_vmid} /usr/src/{DirectoryName}/{DirectoryName}.vmdk VM-Data --format raw";
                     string useDisk = $"qm set {start_vmid} --scsi0 VM-Data:{start_vmid}/vm-{start_vmid}-disk-0.raw";

@@ -130,7 +130,6 @@ namespace vRidance
             {
                 rectNext.Opacity = 1;
                 rectNext.IsEnabled = true;
-
             }
         }
 

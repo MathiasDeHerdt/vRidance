@@ -21,9 +21,12 @@ namespace vRidance
     /// </summary>
     public partial class ChooseFolder : Window
     {
-        public ChooseFolder(string theme, string platform)
+        string platform;
+        public ChooseFolder(string theme, string var_platform)
         {
             InitializeComponent();
+
+            this.platform = var_platform;
 
             if (theme.ToLower() == "dark")
             {
@@ -184,10 +187,22 @@ namespace vRidance
             string path2vmdk = txtPath.Text;
             if (rectDark.Visibility == Visibility.Hidden) curTheme = "dark";
             else if (rectDark.Visibility == Visibility.Visible) curTheme = "light";
-            ProxMoxLogin proxmoxLogin = new ProxMoxLogin(curTheme, path2vmdk); //HIER MOETEN GECONVERTEERDE FILES MEEGEGEVEN WORDEN
-            ((MainWindow)this.Owner).Content = proxmoxLogin.Content;
 
-            proxmoxLogin.Owner = ((MainWindow)this.Owner);
+            switch (platform)
+            {
+                case "proxmox":
+                    ProxMoxLogin proxmoxLogin = new ProxMoxLogin(curTheme, path2vmdk); //HIER MOETEN GECONVERTEERDE FILES MEEGEGEVEN WORDEN
+                    ((MainWindow)this.Owner).Content = proxmoxLogin.Content;
+
+                    proxmoxLogin.Owner = ((MainWindow)this.Owner);
+                    break;
+
+                case "citrix":
+                    System.Windows.MessageBox.Show("Login To Your Citrix: Username: [username]; Password: [password]");
+
+                    System.Windows.MessageBox.Show("Login Success!");
+                    break;
+            }
         }
     }
 }

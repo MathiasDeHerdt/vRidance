@@ -12,9 +12,6 @@
     <Compile Update="ChooseFolder.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="ChooseFolderCitrix.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="CustomTools\ToggleSwitch.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -30,9 +27,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="ChooseFolder.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="ChooseFolderCitrix.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">

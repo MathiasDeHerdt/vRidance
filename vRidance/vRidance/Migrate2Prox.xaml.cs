@@ -29,6 +29,8 @@ namespace vRidance
 
         bool nextIsClicked = false;
 
+        double progress;
+
         Thread changeParamsThread;
         public Migrate2Prox(string theme, string host, string var_username, string var_password, string var_path, int var_start_id)
         {
@@ -43,7 +45,7 @@ namespace vRidance
             InitializeComponent();
 
             rectClose.Visibility = Visibility.Hidden;
-
+            txbProgress.Foreground = Brushes.Black;
             changeTheme(theme);
 
             changeParamsThread = new Thread(changeParams);
@@ -72,6 +74,7 @@ namespace vRidance
                 lblMemory.Foreground = Brushes.White;
                 lblType.Foreground = Brushes.White;
                 lblVersion.Foreground = Brushes.White;
+                lblProgressUpdate.Foreground = Brushes.White;
 
                 txtCores.Foreground = Brushes.White;
                 txtMemory.Foreground = Brushes.White;
@@ -102,6 +105,7 @@ namespace vRidance
                 lblMemory.Foreground = Brushes.Black;
                 lblType.Foreground = Brushes.Black;
                 lblVersion.Foreground = Brushes.Black;
+                lblProgressUpdate.Foreground = Brushes.Black;
 
                 txtCores.Foreground = Brushes.Black;
                 txtMemory.Foreground = Brushes.Black;
@@ -259,6 +263,8 @@ namespace vRidance
                         types.Add("Linux");
                         types.Add("Microsoft Windows");
                         cbType.ItemsSource = types;
+                        pgbProgress.Value = 0;
+                        lblProgressUpdate.Content = "";
                     });
 
                     while(true)
@@ -330,13 +336,15 @@ namespace vRidance
                 foreach (var file in VMDirectory)
                 {
                     FileInfo fi = new FileInfo(@"" + file);
+                    this.Dispatcher.Invoke(() => { lblProgressUpdate.Content = $"Uploading {System.IO.Path.GetFileName(file)}"; });
                     long size = fi.Length;
                     using (Stream stream = File.OpenRead(file))
                     {
                         upload.UploadFile(stream, @"/usr/src/" + DirectoryName + "/" + System.IO.Path.GetFileName(file), x => {
                             /*Console.WriteLine($"Uploading {System.IO.Path.GetFileName(file)}"); Console.WriteLine($"{x / 1024 / 1024} / {size / 1024 / 1024}");*/
                             long current = long.Parse(x.ToString());
-                            float progress = (current / size) * 100;
+                            progress = ((double)current / size) * 100;
+                            progress = Math.Round((progress / 100) * 70, 2);
 
                             this.Dispatcher.Invoke(() => { pgbProgress.Value = progress; });
                         });
@@ -361,14 +369,33 @@ namespace vRidance
                     string changeBootOrder = $"qm set {start_vmid} --boot order='ide0;net0'";
                     string setUefi = $"qm set {start_vmid} --efidisk0 VM-Data:{start_vmid},format=qcow2,efitype=4m,pre-enrolled-keys=1";
                     string setTpm = $"qm set {start_vmid} --tpmstate0 VM-Data:{start_vmid},version=v2.0";
+
                     client.Connect();
                 
+
+                    this.Dispatcher.Invoke(() => { lblProgressUpdate.Content = $"Creating VM {DirectoryName}"; });
                     var sendCommand = client.RunCommand(createVM);
+                    this.Dispatcher.Invoke(() => { progress = progress + 5.0; pgbProgress.Value = progress; });
+
+                    this.Dispatcher.Invoke(() => { lblProgressUpdate.Content = $"Importing VMDK {DirectoryName}.vmdk to VM"; });                    
                     sendCommand = client.RunCommand(importDisk);
+                    this.Dispatcher.Invoke(() => { progress = progress + 15.0; pgbProgress.Value = progress; });
+
+                    this.Dispatcher.Invoke(() => { lblProgressUpdate.Content = $"Using Disk vm-{start_vmid}-disk-0.raw"; });                    
                     sendCommand = client.RunCommand(useDisk);
+                    this.Dispatcher.Invoke(() => { progress = progress + 2.5; pgbProgress.Value = progress; });
+
+                    this.Dispatcher.Invoke(() => { lblProgressUpdate.Content = $"Changing boot order"; });                    
                     sendCommand = client.RunCommand(changeBootOrder);
+                    this.Dispatcher.Invoke(() => { progress = progress + 2.5; pgbProgress.Value = progress; });
+
+                    this.Dispatcher.Invoke(() => { lblProgressUpdate.Content = $"Creating EFI Disk"; });                    
                     sendCommand = client.RunCommand(setUefi);
+                    this.Dispatcher.Invoke(() => { progress = progress + 2.5; pgbProgress.Value = progress; });
+
+                    this.Dispatcher.Invoke(() => { lblProgressUpdate.Content = $"Creating TPM State"; });                    
                     sendCommand = client.RunCommand(setTpm);
+                    this.Dispatcher.Invoke(() => { progress = progress + 2.5; pgbProgress.Value = progress; });
 
                     client.Disconnect();
 
@@ -382,12 +409,24 @@ namespace vRidance
                     string changeBootOrder = $"qm set {start_vmid} --boot order='scsi0;net0'";
 
                     client.Connect();
-                    var sendCommand = client.RunCommand(createVM);
-                    sendCommand = client.RunCommand(importDisk);
-                    sendCommand = client.RunCommand(useDisk);
-                    sendCommand = client.RunCommand(changeBootOrder);
 
-                   client.Disconnect();
+                    this.Dispatcher.Invoke(() => { lblProgressUpdate.Content = $"Creating VM {DirectoryName}"; });
+                    var sendCommand = client.RunCommand(createVM);
+                    this.Dispatcher.Invoke(() => { progress = progress + 5.0; pgbProgress.Value = progress; });
+
+                    this.Dispatcher.Invoke(() => { lblProgressUpdate.Content = $"Importing VMDK {DirectoryName}.vmdk to VM"; });
+                    sendCommand = client.RunCommand(importDisk);
+                    this.Dispatcher.Invoke(() => { progress = progress + 20.0; pgbProgress.Value = progress; });
+
+                    this.Dispatcher.Invoke(() => { lblProgressUpdate.Content = $"Using Disk vm-{start_vmid}-disk-0.raw"; });
+                    sendCommand = client.RunCommand(useDisk);
+                    this.Dispatcher.Invoke(() => { progress = progress + 2.5; pgbProgress.Value = progress; });
+
+                    this.Dispatcher.Invoke(() => { lblProgressUpdate.Content = $"Changing boot order"; });
+                    sendCommand = client.RunCommand(changeBootOrder);
+                    this.Dispatcher.Invoke(() => { progress = progress + 2.5; pgbProgress.Value = progress; });
+
+                    client.Disconnect();
 
                 }
             }

@@ -42,8 +42,8 @@
             </Rectangle.Fill>
         </Rectangle>
         <Label x:Name="lblCurrVM" Content="Settings for" HorizontalAlignment="Center" Margin="0,143,0,0" VerticalAlignment="Top" Height="44" Width="577" Foreground="White" FontFamily="Bahnschrift SemiBold" FontSize="20" HorizontalContentAlignment="Center" RenderTransformOrigin="0.285,0.399"/>
-        <Label x:Name="lblType" Content="Type of VM" HorizontalAlignment="Left" Margin="266,189,0,0" VerticalAlignment="Top" Height="33" Width="120" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White"/>
-        <ComboBox x:Name="cbType" HorizontalAlignment="Left" Margin="266,0,0,0" VerticalAlignment="Center" Width="120" FontFamily="Bahnschrift SemiBold" FontSize="17" BorderBrush="{x:Null}" SelectionChanged="cbType_SelectionChanged">
+        <Label x:Name="lblType" Content="Type of VM" HorizontalAlignment="Left" Margin="266,174,0,0" VerticalAlignment="Top" Height="32" Width="120" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White"/>
+        <ComboBox x:Name="cbType" HorizontalAlignment="Left" Margin="266,196,0,0" VerticalAlignment="Top" Width="120" FontFamily="Bahnschrift SemiBold" FontSize="17" BorderBrush="{x:Null}" SelectionChanged="cbType_SelectionChanged">
             <ComboBox.Background>
                 <LinearGradientBrush EndPoint="0,1">
                     <GradientStop Color="#FFF0F0F0"/>
@@ -51,8 +51,8 @@
                 </LinearGradientBrush>
             </ComboBox.Background>
         </ComboBox>
-        <Label x:Name="lblVersion" Content="Version of VM" HorizontalAlignment="Left" Margin="459,187,0,0" VerticalAlignment="Top" Height="33" Width="79" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White"/>
-        <ComboBox x:Name="cbVersion" HorizontalAlignment="Left" Margin="414,0,0,0" VerticalAlignment="Center" Width="120" FontFamily="Bahnschrift SemiBold" FontSize="17" BorderBrush="{x:Null}">
+        <Label x:Name="lblVersion" Content="Version of VM" HorizontalAlignment="Left" Margin="459,172,0,0" VerticalAlignment="Top" Height="32" Width="79" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White"/>
+        <ComboBox x:Name="cbVersion" HorizontalAlignment="Left" Margin="414,196,0,0" VerticalAlignment="Top" Width="120" FontFamily="Bahnschrift SemiBold" FontSize="17" BorderBrush="{x:Null}">
             <ComboBox.Background>
                 <LinearGradientBrush EndPoint="0,1">
                     <GradientStop Color="#FFF0F0F0"/>
@@ -60,10 +60,12 @@
                 </LinearGradientBrush>
             </ComboBox.Background>
         </ComboBox>
-        <TextBox x:Name="txtCores" HorizontalAlignment="Left" Margin="266,273,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Center" FontFamily="Bahnschrift SemiBold" FontSize="20" Background="#66E1E1E1" BorderBrush="{x:Null}" AutoWordSelection="True" Foreground="White" TextChanged="txtCores_TextChanged"/>
-        <Label x:Name="lblCores" Content="Number of cores" HorizontalAlignment="Left" Margin="266,250,0,0" VerticalAlignment="Top" Height="33" Width="120" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White"/>
-        <Label x:Name="lblMemory" Content="Amount of RAM (MB)" HorizontalAlignment="Left" Margin="426,250,0,0" VerticalAlignment="Top" Height="33" Width="111" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White"/>
-        <TextBox x:Name="txtMemory" HorizontalAlignment="Left" Margin="414,273,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Center" FontFamily="Bahnschrift SemiBold" FontSize="20" Background="#66E1E1E1" BorderBrush="{x:Null}" AutoWordSelection="True" Foreground="White" TextChanged="txtMemory_TextChanged"/>
-        <ProgressBar x:Name="pgbProgress" HorizontalAlignment="Center" Height="21" Margin="0,310,0,0" VerticalAlignment="Top" Width="268"/>
+        <TextBox x:Name="txtCores" HorizontalAlignment="Left" Margin="266,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Center" FontFamily="Bahnschrift SemiBold" FontSize="20" Background="#66E1E1E1" BorderBrush="{x:Null}" AutoWordSelection="True" Foreground="White" TextChanged="txtCores_TextChanged"/>
+        <Label x:Name="lblCores" Content="Number of cores" HorizontalAlignment="Left" Margin="266,234,0,0" VerticalAlignment="Top" Height="34" Width="120" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White"/>
+        <Label x:Name="lblMemory" Content="Amount of RAM (MB)" HorizontalAlignment="Left" Margin="426,234,0,0" VerticalAlignment="Top" Height="34" Width="111" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White"/>
+        <TextBox x:Name="txtMemory" HorizontalAlignment="Left" Margin="414,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Center" FontFamily="Bahnschrift SemiBold" FontSize="20" Background="#66E1E1E1" BorderBrush="{x:Null}" AutoWordSelection="True" Foreground="White" TextChanged="txtMemory_TextChanged"/>
+        <ProgressBar x:Name="pgbProgress" HorizontalAlignment="Center" Height="22" Margin="0,294,0,0" VerticalAlignment="Top" Width="268"/>
+        <TextBlock x:Name="txbProgress" Text="{Binding ElementName=pgbProgress, Path=Value, StringFormat={}{0:0}%}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,298,0,0" Foreground="Black" />
+        <Label x:Name="lblProgressUpdate" Content="" HorizontalAlignment="Center" Margin="0,314,0,0" VerticalAlignment="Top" Height="23" Width="268" Foreground="White" FontFamily="Bahnschrift SemiBold Condensed" HorizontalContentAlignment="Center" RenderTransformOrigin="0.285,0.399" FontSize="10"/>
     </Grid>
 </Window>

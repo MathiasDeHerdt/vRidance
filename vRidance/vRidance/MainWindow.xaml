@@ -14,7 +14,6 @@
             <ImageBrush ImageSource="/bg_dark.png"/>
         </Grid.Background>
         <Rectangle x:Name="rctTop" HorizontalAlignment="Center" Height="44" VerticalAlignment="Top" Width="800" Fill="#7F000000" MouseLeftButtonDown="rctTop_MouseLeftButtonDown"/>
-        <ListView x:Name="lstItems" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="124,71,124,129" Background="#661E1E1E" BorderBrush="#661E1E1E" Foreground="White" HorizontalContentAlignment="Center" IsTextSearchEnabled="False" IsSynchronizedWithCurrentItem="False" />
         <Rectangle x:Name="rectClose" HorizontalAlignment="Left" Height="21" Margin="766,10,0,0" VerticalAlignment="Top" Width="21" Cursor="Hand" Focusable="True" MouseLeftButtonUp="rectClose_MouseLeftButtonDown">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/close.png"/>
@@ -30,22 +29,19 @@
                 <ImageBrush ImageSource="/Assets/sun.png"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle x:Name="rectUpload" HorizontalAlignment="Left" Height="50" Margin="238,345,0,0" VerticalAlignment="Top" Width="150" MouseLeftButtonUp="rectUpload_MouseLeftButtonUp" Cursor="Hand">
-            <Rectangle.Fill>
-                <ImageBrush ImageSource="/Upload.png"/>
-            </Rectangle.Fill>
-        </Rectangle>
-        <Rectangle x:Name="rectNext" HorizontalAlignment="Left" Height="50" Margin="412,345,0,0" VerticalAlignment="Top" Width="150" MouseLeftButtonUp="rectNext_MouseLeftButtonUp" Cursor="Hand">
+        <Rectangle x:Name="rectNext" HorizontalAlignment="Center" Height="50" Margin="0,331,0,0" VerticalAlignment="Top" Width="150" MouseLeftButtonUp="rectNext_MouseLeftButtonUp" Cursor="Hand">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/NextEnabled.png"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle x:Name="rectNextDis" HorizontalAlignment="Left" Height="50" Margin="412,345,0,0" VerticalAlignment="Top" Width="150">
+        <Label x:Name="lblvRidance" Content="vRidance v1.0" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" FontFamily="Cascadia Mono SemiBold" Foreground="White"/>
+        <Label x:Name="lblTitle" Content="Welcome to vRidance!" HorizontalAlignment="Center" Margin="0,63,0,0" VerticalAlignment="Top" Height="70" Width="402" Foreground="White" FontFamily="Bahnschrift SemiBold Condensed" FontSize="50"/>
+        <Label x:Name="lblExplanation" Content="vRidance is a tool ,created by HOWEST students, that ensures an easy and &#xD;&#xA;straightforward process of Virtual Machine migrations to multiple platforms.&#xD;&#xA;Supported platforms for vRidance are:&#xD;&#xA;  1. Proxmox&#xD;&#xA;  2. Citrix&#xD;&#xA;  3. Azure Stack HCI" HorizontalAlignment="Center" VerticalAlignment="Center" Height="140" Width="606" Foreground="White" FontFamily="Bahnschrift SemiBold" FontSize="17" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+        <Rectangle HorizontalAlignment="Left" Height="100" Margin="636,340,0,0" VerticalAlignment="Top" Width="164">
             <Rectangle.Fill>
-                <ImageBrush ImageSource="/NextDisabled.png"/>
+                <ImageBrush ImageSource="/mctlogo.png"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Label x:Name="lblvRidance" Content="vRidance v1.0" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" FontFamily="Cascadia Mono SemiBold" Foreground="White"/>
 
     </Grid>
 </Window>

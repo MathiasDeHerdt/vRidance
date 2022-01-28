@@ -29,11 +29,7 @@ namespace vRidance
         public MainWindow()
         {
             InitializeComponent();
-            //btnNext.IsEnabled = false;
             rectDark.Visibility = Visibility.Hidden;
-            rectNext.Visibility = Visibility.Visible;
-            rectNextDis.Visibility = Visibility.Hidden;
-            rectNextDis.IsEnabled = false;
 
         }
 
@@ -54,24 +50,10 @@ namespace vRidance
                 var brush2 = new ImageBrush();
                 brush2.ImageSource = temp2;
 
-                grdMain.Background = brush2;
-                //btnUpload.Background = Brushes.White;
-                //btnUpload.Foreground = Brushes.Black;
-                lstItems.Background = (Brush)bc2.ConvertFrom("#66DEDEDE");
-                lstItems.Foreground = Brushes.Black;
-                lstItems.BorderBrush = null;
-                //btnUpload.BorderBrush = Brushes.Black;
-                //btnNext.Background = Brushes.White;
-                //btnNext.Foreground = Brushes.Black;
-                //btnNext.BorderBrush = Brushes.Black;
-
-                rectDark.Visibility = Visibility.Visible;
-                rectMode.Visibility = Visibility.Hidden;
             }
             catch (Exception)
             {
 
-                //throw;
                 System.Windows.MessageBox.Show("Something went wrong.");
             }
 
@@ -89,33 +71,12 @@ namespace vRidance
                 var brush = new ImageBrush();
                 brush.ImageSource = temp;
 
-                grdMain.Background = brush;
-                ///bg_dark.png
-                //btnUpload.Background = (Brush)bc.ConvertFrom("#FF353434");
-                //btnUpload.Foreground = Brushes.White;
-                lstItems.Background = (Brush)bc.ConvertFrom("#661E1E1E");
-                lstItems.Foreground = Brushes.White;
-                //btnUpload.BorderBrush = null;
-
-                //btnNext.Background = (Brush)bc.ConvertFrom("#FF353434");
-                //btnNext.Foreground = Brushes.White;
-                //btnNext.BorderBrush = null;
-
-                rectDark.Visibility = Visibility.Hidden;
-                rectMode.Visibility = Visibility.Visible;
             }
             catch (Exception)
             {
-
-                //throw;
                 System.Windows.MessageBox.Show("Something went wrong");
             }
         }
-
-        //private void grdMain_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        //{
-        //    this.DragMove();
-        //}
 
         public void Dragging()
         {
@@ -127,38 +88,6 @@ namespace vRidance
             Dragging();
         }
 
-        private void rectUpload_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
-            openFileDialog.Filter = "All Files (*.*)|*.*";
-            openFileDialog.Title = "Select vSphere Files";
-            openFileDialog.FilterIndex = 1;
-            openFileDialog.Multiselect = true;
-            try
-            {
-                if (openFileDialog.ShowDialog() == true)
-                {
-                    string sFileName = openFileDialog.FileName;
-                    string[] arrAllFiles = openFileDialog.FileNames;
-                    foreach (string file in arrAllFiles)
-                    {
-                        itemList.Add(file);
-                    }
-                    lstItems.ItemsSource = itemList;
-                }
-
-                if (lstItems.HasItems == true)
-                {
-                    rectNext.Visibility = Visibility.Visible;
-                    rectNextDis.Visibility = Visibility.Hidden;
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
 
         private void rectNext_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {

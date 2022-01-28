@@ -11,14 +11,18 @@
   <ItemGroup>
     <None Remove="Assets\bg_dark.png" />
     <None Remove="Assets\bg_light.png" />
+    <None Remove="Assets\CitrixLogo.png" />
     <None Remove="Assets\close.png" />
     <None Remove="Assets\Download.png" />
+    <None Remove="Assets\mctlogo.png" />
     <None Remove="Assets\moon.png" />
     <None Remove="Assets\NextEnabled.png" />
     <None Remove="Assets\proxmox.png" />
     <None Remove="Assets\sun.png" />
     <None Remove="bg_dark.png" />
+    <None Remove="CitrixLogo.png" />
     <None Remove="close.png" />
+    <None Remove="mctlogo.png" />
     <None Remove="moon.png" />
     <None Remove="NextDisabled.png" />
     <None Remove="NextEnabled.png" />
@@ -31,7 +35,9 @@
 
   <ItemGroup>
     <Resource Include="Assets\bg_dark.png" />
+    <Resource Include="Assets\CitrixLogo.png" />
     <Resource Include="Assets\Download.png" />
+    <Resource Include="Assets\mctlogo.png" />
     <Resource Include="Assets\NextEnabled.png" />
     <Resource Include="Assets\proxmox.png" />
     <Resource Include="Assets\sun.png">
@@ -41,10 +47,12 @@
     <Resource Include="Assets\close.png" />
     <Resource Include="Assets\moon.png" />
     <Resource Include="bg_dark.png" />
+    <Resource Include="CitrixLogo.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="close.png" />
+    <Resource Include="mctlogo.png" />
     <Resource Include="moon.png" />
     <Resource Include="NextDisabled.png" />
     <Resource Include="NextEnabled.png" />

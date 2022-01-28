@@ -318,6 +318,11 @@ namespace vRidance
                 cbVersion.IsEnabled = false;
                 txtCores.IsEnabled = false;
                 txtMemory.IsEnabled = false;
+
+                EndScreen endScreen = new EndScreen();
+                this.Content = endScreen.Content;
+
+                endScreen.Owner = this;
             });
         }
 

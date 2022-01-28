@@ -155,18 +155,9 @@ namespace vRidance
             ConnectionInfo connection_checkCon = new ConnectionInfo(ip, username, method_checkCon);
             var client_checkCon= new SshClient(connection_checkCon);
 
-            try
+            try 
             {
                 client_checkCon.Connect();
-
-            }
-            catch (Exception)
-            {
-                MessageBox.Show($"Unable to make a connection to {ip}");
-            }
-
-            if (client_checkCon.IsConnected)
-            {
                 string curTheme = "";
                 string thepath = this.path;
                 if (rectDark.Visibility == Visibility.Hidden) curTheme = "dark";
@@ -177,22 +168,27 @@ namespace vRidance
                 client_checkCon.Disconnect();
 
                 migration2proxmox.Owner = ((MainWindow)this.Owner);
-            }
+
+            } catch (Exception) { MessageBox.Show($"Unable to make a connection to {ip}"); }
         }
 
         private void grdMain4_LayoutUpdated(object sender, EventArgs e)
         {
             System.Net.IPAddress ipAddress;
-            if (txtUsername.Text != "" && txtUsername != null && pwbPassword.Password != "" && txtVMID.Text != "" && txtVMID != null && System.Net.IPAddress.TryParse(txtIP.Text, out ipAddress))
+            try
             {
-                rectNext.Opacity = 1;
-                rectNext.IsEnabled = true;
+                if (txtUsername.Text != "" && txtUsername != null && pwbPassword.Password != "" && txtVMID.Text != "" && txtVMID != null && System.Net.IPAddress.TryParse(txtIP.Text, out ipAddress) && int.Parse(txtVMID.Text) % 1 == 0)
+                {
+                    rectNext.Opacity = 1;
+                    rectNext.IsEnabled = true;
+                }
+                else
+                {
+                    rectNext.Opacity = 0.5;
+                    rectNext.IsEnabled = false;
+                }
             }
-            else
-            {
-                rectNext.Opacity = 0.5;
-                rectNext.IsEnabled = false;
-            }
+            catch (Exception) { }
         }
     }
 }

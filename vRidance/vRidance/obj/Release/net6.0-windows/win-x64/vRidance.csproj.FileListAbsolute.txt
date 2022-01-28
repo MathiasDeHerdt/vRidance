@@ -527,3 +527,9 @@ C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Release\net6.0-w
 C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Release\net6.0-windows\win-x64\ref\vRidance.dll
 C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Release\net6.0-windows\win-x64\vRidance.pdb
 C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Release\net6.0-windows\win-x64\vRidance.genruntimeconfig.cache
+C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Release\net6.0-windows\win-x64\CitrixLogin.g.cs
+C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Release\net6.0-windows\win-x64\EndScreen.g.cs
+C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Release\net6.0-windows\win-x64\Migrate2Citrix.g.cs
+C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Release\net6.0-windows\win-x64\CitrixLogin.baml
+C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Release\net6.0-windows\win-x64\EndScreen.baml
+C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Release\net6.0-windows\win-x64\Migrate2Citrix.baml

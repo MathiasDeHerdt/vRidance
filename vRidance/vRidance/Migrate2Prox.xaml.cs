@@ -23,11 +23,11 @@ namespace vRidance
     public partial class Migrate2Prox : Window
     {
         string prox_host, prox_username, prox_password, folderPath;
-        int start_vmid;
+        int start_vmid, cpu_cores, memory;
 
-        string os_type, cpu_cores, memory;
+        string os_type;
 
-        bool nextIsClicked = false, toEndScreen = false;
+        bool nextIsClicked = false;
 
         double progress;
 
@@ -145,28 +145,56 @@ namespace vRidance
 
         private void txtCores_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if(txtCores.Text == "" && txtCores == null)
+            if(txtCores.Text == "" && txtCores.Text == null)
             {
                 rectNext.Opacity = 0.5;
                 rectNext.IsEnabled = false;
-            }else if (txtCores.Text != "" && txtCores != null && txtMemory.Text != "" && txtMemory != null && cbVersion.SelectedIndex >= 0)
+            }
+            else if (txtCores.Text != "" && txtCores != null && txtMemory.Text != "" && txtMemory != null && cbVersion.SelectedIndex >= 0)
             {
-                rectNext.Opacity = 1;
-                rectNext.IsEnabled = true;
+                try
+                {
+                    int tmpCores = int.Parse(txtCores.Text.ToString());
+                    int tmpMem = int.Parse(txtMemory.Text);
+                    if ((tmpCores % 2 == 0 || tmpCores == 1) && tmpCores != 0 && tmpMem % 512 == 0 && tmpMem != 0)
+                    {
+                        rectNext.Opacity = 1;
+                        rectNext.IsEnabled = true;
+                    }
+                    else
+                    {
+                        rectNext.Opacity = 0.5;
+                        rectNext.IsEnabled = false;
+                    }
+                } catch (Exception) { }
             }
         }
 
         private void txtMemory_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (txtMemory.Text == "" && txtMemory == null)
+            if (txtMemory.Text == "" && txtMemory.Text == null)
             {
                 rectNext.Opacity = 0.5;
                 rectNext.IsEnabled = false;
             }
             else if (txtMemory.Text != "" && txtMemory != null && txtCores.Text != "" && txtCores != null && cbVersion.SelectedIndex >= 0)
             {
-                rectNext.Opacity = 1;
-                rectNext.IsEnabled = true;
+                try
+                {
+                    int tmpMem = int.Parse(txtMemory.Text);
+                    int tmpCores = int.Parse(txtCores.Text);
+                    if ((tmpCores % 2 == 0 || tmpCores == 1) && tmpCores != 0 && tmpMem % 512 == 0 && tmpMem != 0)
+                    {
+                        rectNext.Opacity = 1;
+                        rectNext.IsEnabled = true;
+                    }
+                    else
+                    {
+                        rectNext.Opacity = 0.5;
+                        rectNext.IsEnabled = false;
+                    }
+                }
+                catch (Exception) { }
             }
         }
 
@@ -224,8 +252,10 @@ namespace vRidance
                 else if (cbVersion.SelectedIndex == 6) os_type = "w2k";
             }
 
-            cpu_cores = txtCores.Text;
-            memory = txtMemory.Text;
+            
+
+            cpu_cores = int.Parse(txtCores.Text);
+            memory = int.Parse(txtMemory.Text);
 
 
             nextIsClicked = true;

@@ -127,3 +127,10 @@ C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-window
 C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\EndScreen.baml
 C:\Users\Simon\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\EndScreen.g.cs
 C:\Users\Simon\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\EndScreen.baml
+C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\vRidance.csproj.AssemblyReference.cache
+C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\CitrixLogin.g.cs
+C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\EndScreen.g.cs
+C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\Migrate2Citrix.g.cs
+C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\CitrixLogin.baml
+C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\EndScreen.baml
+C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\Migrate2Citrix.baml

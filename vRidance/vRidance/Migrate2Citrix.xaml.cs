@@ -346,7 +346,10 @@ namespace vRidance
                 this.Dispatcher.Invoke(() => { lblInfo.Content = ""; });
                 lblInfo.Visibility = Visibility.Hidden;
 
-                EndScreen endScreen = new EndScreen();
+                string curTheme = "";
+                if (rectDark.Visibility == Visibility.Hidden) curTheme = "dark";
+                else if (rectDark.Visibility == Visibility.Visible) curTheme = "light";
+                EndScreen endScreen = new EndScreen(curTheme);
                 ((MainWindow)this.Owner).Content = endScreen.Content;
 
                 endScreen.Owner = ((MainWindow)this.Owner);

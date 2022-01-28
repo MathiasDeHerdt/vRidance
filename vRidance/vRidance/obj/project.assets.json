@@ -98,7 +98,8 @@
   },
   "packageFolders": {
     "C:\\Users\\Ward\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "A:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
@@ -110,7 +111,8 @@
       "outputPath": "C:\\Users\\Ward\\Desktop\\ResearchProjectCode\\vRidance\\vRidance\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "A:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
         "C:\\Users\\Ward\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -122,6 +124,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Users\\Ward\\Desktop\\MouseBlinkerFluid\\MouseBlinkerFluid\\MouseBlinkerFluid\\bin\\Debug\\net6.0-windows\\IDN": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

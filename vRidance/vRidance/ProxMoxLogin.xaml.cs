@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Renci.SshNet;
 
 namespace vRidance
 {
@@ -149,14 +150,34 @@ namespace vRidance
             string username = txtUsername.Text;
             string password = pwbPassword.Password.ToString();
             int first_vmid = int.Parse(txtVMID.Text);
-            string curTheme = "";
-            string thepath = this.path;
-            if (rectDark.Visibility == Visibility.Hidden) curTheme = "dark";
-            else if (rectDark.Visibility == Visibility.Visible) curTheme = "light";
-            Migrate2Prox migration2proxmox = new Migrate2Prox(curTheme, ip, username, password, thepath, first_vmid); //HIER MOETEN GECONVERTEERDE FILES MEEGEGEVEN WORDEN
-            ((MainWindow)this.Owner).Content = migration2proxmox.Content;
 
-            migration2proxmox.Owner = ((MainWindow)this.Owner);
+            AuthenticationMethod method_checkCon = new PasswordAuthenticationMethod(username, password);
+            ConnectionInfo connection_checkCon = new ConnectionInfo(ip, username, method_checkCon);
+            var client_checkCon= new SshClient(connection_checkCon);
+
+            try
+            {
+                client_checkCon.Connect();
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show($"Unable to make a connection to {ip}");
+            }
+
+            if (client_checkCon.IsConnected)
+            {
+                string curTheme = "";
+                string thepath = this.path;
+                if (rectDark.Visibility == Visibility.Hidden) curTheme = "dark";
+                else if (rectDark.Visibility == Visibility.Visible) curTheme = "light";
+                Migrate2Prox migration2proxmox = new Migrate2Prox(curTheme, ip, username, password, thepath, first_vmid); //HIER MOETEN GECONVERTEERDE FILES MEEGEGEVEN WORDEN
+                ((MainWindow)this.Owner).Content = migration2proxmox.Content;
+
+                client_checkCon.Disconnect();
+
+                migration2proxmox.Owner = ((MainWindow)this.Owner);
+            }
         }
 
         private void grdMain4_LayoutUpdated(object sender, EventArgs e)

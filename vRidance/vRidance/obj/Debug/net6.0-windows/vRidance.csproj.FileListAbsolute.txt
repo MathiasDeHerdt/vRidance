@@ -134,3 +134,4 @@ C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-win
 C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\CitrixLogin.baml
 C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\EndScreen.baml
 C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\Migrate2Citrix.baml
+C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\vRidance.csproj.AssemblyReference.cache

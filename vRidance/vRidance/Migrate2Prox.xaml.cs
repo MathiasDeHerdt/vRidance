@@ -27,7 +27,7 @@ namespace vRidance
 
         string os_type, cpu_cores, memory;
 
-        bool nextIsClicked = false, toEndScreen = false;
+        bool nextIsClicked = false, toEndScreen = false, vmCreated = false;
 
         double progress;
 
@@ -78,8 +78,8 @@ namespace vRidance
                 txtCores.Foreground = Brushes.White;
                 txtMemory.Foreground = Brushes.White;
 
-                txtCores.Background = (Brush)bc.ConvertFrom("#661E1E1E");
-                txtMemory.Background = (Brush)bc.ConvertFrom("#661E1E1E");
+                txtCores.Background = (Brush)bc.ConvertFrom("#66DEDEDE");
+                txtMemory.Background = (Brush)bc.ConvertFrom("#66DEDEDE");
 
                 rectDark.Visibility = Visibility.Hidden;
                 rectMode.Visibility = Visibility.Visible;
@@ -108,8 +108,8 @@ namespace vRidance
                 txtCores.Foreground = Brushes.Black;
                 txtMemory.Foreground = Brushes.Black;
 
-                txtCores.Background = (Brush)bc.ConvertFrom("#66DEDEDE");
-                txtMemory.Background = (Brush)bc.ConvertFrom("#66DEDEDE");
+                txtCores.Background = (Brush)bc.ConvertFrom("#661E1E1E");
+                txtMemory.Background = (Brush)bc.ConvertFrom("#661E1E1E");
 
                 rectDark.Visibility = Visibility.Visible;
                 rectMode.Visibility = Visibility.Hidden;
@@ -151,23 +151,43 @@ namespace vRidance
                 rectNext.IsEnabled = false;
             }else if (txtCores.Text != "" && txtCores != null && txtMemory.Text != "" && txtMemory != null && cbVersion.SelectedIndex >= 0)
             {
-                rectNext.Opacity = 1;
-                rectNext.IsEnabled = true;
+                if (((int.Parse(txtCores.Text) % 2 == 0 || int.Parse(txtCores.Text) == 1) && int.Parse(txtCores.Text) > 0) && (int.Parse(txtMemory.Text) % 256 == 0 && int.Parse(txtMemory.Text) > 0))
+                {
+                    rectNext.Opacity = 1;
+                    rectNext.IsEnabled = true;
+                }
+                else
+                {
+                    rectNext.Opacity = 0.5;
+                    rectNext.IsEnabled = false;
+                }
             }
         }
 
         private void txtMemory_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (txtMemory.Text == "" && txtMemory == null)
+            try
             {
-                rectNext.Opacity = 0.5;
-                rectNext.IsEnabled = false;
+                if (txtMemory.Text == "" && txtMemory == null)
+                {
+                    rectNext.Opacity = 0.5;
+                    rectNext.IsEnabled = false;
+                }
+                else if (txtMemory.Text != "" && txtMemory != null && txtCores.Text != "" && txtCores != null && cbVersion.SelectedIndex >= 0)
+                {
+                    if ((int.Parse(txtMemory.Text) % 256 == 0 && int.Parse(txtMemory.Text) > 0) && ((int.Parse(txtCores.Text) % 2 == 0 || int.Parse(txtCores.Text) == 1) && int.Parse(txtCores.Text) > 0))
+                    {
+                        rectNext.Opacity = 1;
+                        rectNext.IsEnabled = true;
+                    }
+                    else
+                    {
+                        rectNext.Opacity = 0.5;
+                        rectNext.IsEnabled = false;
+                    }
+                }
             }
-            else if (txtMemory.Text != "" && txtMemory != null && txtCores.Text != "" && txtCores != null && cbVersion.SelectedIndex >= 0)
-            {
-                rectNext.Opacity = 1;
-                rectNext.IsEnabled = true;
-            }
+            catch (Exception) { }
         }
 
 
@@ -248,6 +268,7 @@ namespace vRidance
 
                 foreach (var var_subdirectory in subdirectoryEntries)
                 {
+                    vmCreated = false;
                     DirectoryInfo di = new DirectoryInfo(@"" + var_subdirectory);
                     string DirectoryName = di.Name;
                     this.Dispatcher.Invoke(() => {
@@ -283,6 +304,9 @@ namespace vRidance
                             nextIsClicked = false;
                             createTheVMS(var_subdirectory.ToString());
                             //MessageBox.Show($"folderPath: {folderPath}, subdirectoryName: {DirectoryName}, proxHost: {prox_host}, username: {prox_username}, password: {prox_password}, start_vmid: {start_vmid}, os_type: {os_type}, cpu_cores: {cpu_cores}, memory: {memory}");
+                            while (true) {
+                                if (vmCreated == true) break;
+                            }
                             this.Dispatcher.Invoke(() =>
                             {
                                 txtCores.Text = "";
@@ -296,6 +320,7 @@ namespace vRidance
                                 rectNext.IsEnabled = true;
                                 rectNext.Opacity = 1;
                             });
+                            start_vmid++;
                             break;
                         }
                     }
@@ -410,9 +435,13 @@ namespace vRidance
                     sendCommand = client.RunCommand(setTpm);
                     for (int i = 95; i <= 100; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
 
-                    sendCommand = client.RunCommand(start);
-
+                    sendCommand = client.RunCommand(start);;
                     client.Disconnect();
+                    int y = 100;
+                    lblInfo.Content = "";
+                    sendCommand = client.RunCommand(changeBootOrder);
+                    for (int i = 0; i <= 101; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = y; y--; }); await Task.Delay(1); }
+                    vmCreated = true;
 
                 }
                 else if (os_type == "l26" || os_type == "l24")
@@ -427,30 +456,33 @@ namespace vRidance
 
                     this.Dispatcher.Invoke(() => { lblInfo.Content = $"Creating VM {DirectoryName}"; });
                     var sendCommand = client.RunCommand(createVM);
-                    for (int i = 70; i <= 77; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(100); }
+                    for (int i = 70; i <= 77; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
 
                     this.Dispatcher.Invoke(() => { lblInfo.Content = $"Importing VMDK {DirectoryName}.vmdk to VM"; });
                     sendCommand = client.RunCommand(importDisk);
-                    for (int i = 77; i <= 86; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(100); }
+                    for (int i = 77; i <= 86; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
 
                     this.Dispatcher.Invoke(() => { lblInfo.Content = $"Using Disk vm-{start_vmid}-disk-0.raw"; });
                     sendCommand = client.RunCommand(useDisk);
-                    for (int i = 86; i <= 93; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(100); }
+                    for (int i = 86; i <= 93; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
 
                     this.Dispatcher.Invoke(() => { lblInfo.Content = $"Changing boot order"; });
                     sendCommand = client.RunCommand(changeBootOrder);
-                    for (int i = 93; i <= 100; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(100); }
+                    for (int i = 93; i <= 101; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
 
                     sendCommand = client.RunCommand(start);
-
                     client.Disconnect();
+                    int y = 100;
+                    lblInfo.Content = "";
+                    sendCommand = client.RunCommand(changeBootOrder);
+                    for (int i = 0; i <= 101; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = y; y--; }); await Task.Delay(1); }
+                    vmCreated = true;
 
                 }
             }
             lblInfo.Content = "";
             pbProgress.Value = 0;
             progress = 0;
-            start_vmid++;
         }
 
     }

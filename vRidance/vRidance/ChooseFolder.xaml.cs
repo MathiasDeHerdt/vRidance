@@ -189,10 +189,32 @@ namespace vRidance
             switch (platform)
             {
                 case "proxmox":
-                    ProxMoxLogin proxmoxLogin = new ProxMoxLogin(curTheme, path2vmdk);
-                    ((MainWindow)this.Owner).Content = proxmoxLogin.Content;
+                    string[] subdirectoryEntries = Directory.GetDirectories(path2vmdk);
 
-                    proxmoxLogin.Owner = ((MainWindow)this.Owner);
+                    if (subdirectoryEntries.Length == 0)
+                    {
+                        System.Windows.MessageBox.Show($"{path2vmdk} doesn't contain any subdirectories with VMDKs");
+
+                    }
+                    else
+                    {
+                        foreach (var var_subdirectory in subdirectoryEntries)
+                        {
+                            string[] VMDirectory = Directory.GetFiles(@"" + var_subdirectory, "*.vmdk");
+                            if(VMDirectory.Length == 0)
+                            {
+                                System.Windows.MessageBox.Show($"The folder {var_subdirectory} doesn't have any .vmdk files");
+                                break;
+                            }
+                            else
+                            {
+                                ProxMoxLogin proxmoxLogin = new ProxMoxLogin(curTheme, path2vmdk);
+                                ((MainWindow)this.Owner).Content = proxmoxLogin.Content;
+
+                                proxmoxLogin.Owner = ((MainWindow)this.Owner);
+                            }
+                        }
+                    }
                     break;
 
                 case "citrix":

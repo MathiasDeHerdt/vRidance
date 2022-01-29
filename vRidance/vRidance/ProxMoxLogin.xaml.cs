@@ -59,10 +59,10 @@ namespace vRidance
                 txtIP.Foreground = Brushes.White;
                 txtVMID.Foreground = Brushes.White;
 
-                pwbPassword.Background = (Brush)bc.ConvertFrom("#661E1E1E");
-                txtUsername.Background = (Brush)bc.ConvertFrom("#661E1E1E");
-                txtIP.Background = (Brush)bc.ConvertFrom("#661E1E1E");
-                txtVMID.Background = (Brush)bc.ConvertFrom("#661E1E1E");
+                pwbPassword.Background = (Brush)bc.ConvertFrom("#66DEDEDE");
+                txtUsername.Background = (Brush)bc.ConvertFrom("#66DEDEDE");
+                txtIP.Background = (Brush)bc.ConvertFrom("#66DEDEDE");
+                txtVMID.Background = (Brush)bc.ConvertFrom("#66DEDEDE");
 
                 rectDark.Visibility = Visibility.Hidden;
                 rectMode.Visibility = Visibility.Visible;
@@ -92,10 +92,10 @@ namespace vRidance
                 txtIP.Foreground = Brushes.Black;
                 txtVMID.Foreground = Brushes.Black;
 
-                pwbPassword.Background = (Brush)bc.ConvertFrom("#66DEDEDE");
-                txtUsername.Background = (Brush)bc.ConvertFrom("#66DEDEDE");
-                txtIP.Background = (Brush)bc.ConvertFrom("#66DEDEDE");
-                txtVMID.Background = (Brush)bc.ConvertFrom("#66DEDEDE");
+                pwbPassword.Background = (Brush)bc.ConvertFrom("#661E1E1E");
+                txtUsername.Background = (Brush)bc.ConvertFrom("#661E1E1E");
+                txtIP.Background = (Brush)bc.ConvertFrom("#661E1E1E");
+                txtVMID.Background = (Brush)bc.ConvertFrom("#661E1E1E");
 
                 rectDark.Visibility = Visibility.Visible;
                 rectMode.Visibility = Visibility.Hidden;
@@ -159,14 +159,6 @@ namespace vRidance
             {
                 client_checkCon.Connect();
 
-            }
-            catch (Exception)
-            {
-                MessageBox.Show($"Unable to make a connection to {ip}");
-            }
-
-            if (client_checkCon.IsConnected)
-            {
                 string curTheme = "";
                 string thepath = this.path;
                 if (rectDark.Visibility == Visibility.Hidden) curTheme = "dark";
@@ -178,21 +170,29 @@ namespace vRidance
 
                 migration2proxmox.Owner = ((MainWindow)this.Owner);
             }
+            catch (Exception)
+            {
+                MessageBox.Show($"Unable to make a connection to {ip}");
+            }
         }
 
         private void grdMain4_LayoutUpdated(object sender, EventArgs e)
         {
-            System.Net.IPAddress ipAddress;
-            if (txtUsername.Text != "" && txtUsername != null && pwbPassword.Password != "" && txtVMID.Text != "" && txtVMID != null && System.Net.IPAddress.TryParse(txtIP.Text, out ipAddress))
+            try
             {
-                rectNext.Opacity = 1;
-                rectNext.IsEnabled = true;
+                System.Net.IPAddress ipAddress;
+                if (txtUsername.Text != "" && txtUsername != null && pwbPassword.Password != "" && txtVMID.Text != "" && txtVMID != null && System.Net.IPAddress.TryParse(txtIP.Text, out ipAddress) && int.Parse(txtVMID.Text) % 1 == 0)
+                {
+                    rectNext.Opacity = 1;
+                    rectNext.IsEnabled = true;
+                }
+                else
+                {
+                    rectNext.Opacity = 0.5;
+                    rectNext.IsEnabled = false;
+                }
             }
-            else
-            {
-                rectNext.Opacity = 0.5;
-                rectNext.IsEnabled = false;
-            }
+            catch (Exception) { }
         }
     }
 }

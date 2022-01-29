@@ -48,6 +48,24 @@ namespace vRidance
 
             if (theme.ToLower() == "dark")
             {
+                SetTheme("dark");
+
+            }
+            else if (theme.ToLower() == "light")
+            {
+                SetTheme("light");
+            }
+
+            changeParamsThread = new Thread(changeParams);
+            changeParamsThread.Start();
+
+        }
+
+
+        private void SetTheme(string chosentheme)
+        {
+            if (chosentheme.ToLower() == "dark")
+            {
                 var bc3 = new BrushConverter();
                 Uri resourceUri3 = new Uri("Assets/bg_dark.png", UriKind.Relative);
                 System.Windows.Resources.StreamResourceInfo streamInfo3 = System.Windows.Application.GetResourceStream(resourceUri3);
@@ -61,10 +79,15 @@ namespace vRidance
                 lblPMStart.Foreground = Brushes.White;
                 rectDark.Visibility = Visibility.Hidden;
                 rectMode.Visibility = Visibility.Visible;
+                lblCurrVM.Foreground = Brushes.White;
+                lblDiskSize.Foreground = Brushes.White;
+                lblType.Foreground = Brushes.White;
+                lblVersion.Foreground = Brushes.White;
+                lblSrUuid.Foreground = Brushes.White;
 
 
             }
-            else if (theme.ToLower() == "light")
+            else if (chosentheme.ToLower() == "light")
             {
                 var bc3 = new BrushConverter();
                 Uri resourceUri3 = new Uri("Assets/bg_light.png", UriKind.Relative);
@@ -77,10 +100,12 @@ namespace vRidance
                 lblPMStart.Foreground = Brushes.Black;
                 rectDark.Visibility = Visibility.Visible;
                 rectMode.Visibility = Visibility.Hidden;
+                lblCurrVM.Foreground = Brushes.Black;
+                lblDiskSize.Foreground = Brushes.Black;
+                lblType.Foreground = Brushes.Black;
+                lblVersion.Foreground = Brushes.Black;
+                lblSrUuid.Foreground = Brushes.Black;
             }
-
-            changeParamsThread = new Thread(changeParams);
-            changeParamsThread.Start();
 
         }
 
@@ -88,20 +113,7 @@ namespace vRidance
         {
             try
             {
-                var bc2 = new BrushConverter();
-                Uri resourceUri2 = new Uri("Assets/bg_light.png", UriKind.Relative);
-                System.Windows.Resources.StreamResourceInfo streamInfo2 = System.Windows.Application.GetResourceStream(resourceUri2);
-
-                BitmapFrame temp2 = BitmapFrame.Create(streamInfo2.Stream);
-                var brush2 = new ImageBrush();
-                brush2.ImageSource = temp2;
-
-                grdMain4.Background = brush2;
-
-                lblPMStart.Foreground = Brushes.Black;
-
-                rectDark.Visibility = Visibility.Visible;
-                rectMode.Visibility = Visibility.Hidden;
+                SetTheme("light");
             }
             catch (Exception)
             {
@@ -116,20 +128,7 @@ namespace vRidance
         {
             try
             {
-                var bc = new BrushConverter();
-                Uri resourceUri = new Uri("Assets/bg_dark.png", UriKind.Relative);
-                System.Windows.Resources.StreamResourceInfo streamInfo = System.Windows.Application.GetResourceStream(resourceUri);
-
-                BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
-                var brush = new ImageBrush();
-                brush.ImageSource = temp;
-
-                grdMain4.Background = brush;
-
-                lblPMStart.Foreground = Brushes.White;
-
-                rectDark.Visibility = Visibility.Hidden;
-                rectMode.Visibility = Visibility.Visible;
+                SetTheme("dark");
 
             }
             catch (Exception)
@@ -239,7 +238,6 @@ namespace vRidance
             SrUuid = txtSrUuid.Text;
             DiskSize = txtDiskSize.Text;
             lblCurrVM.Visibility = Visibility.Visible;
-            lblInfo.Visibility = Visibility.Visible;
 
             nextIsClicked = true;
 
@@ -318,6 +316,7 @@ namespace vRidance
                                 txtDiskSize.IsEnabled = false;
                                 txtSrUuid.IsEnabled = false;
                                 lblCurrVM.Content = $"Creating VM {DirectoryName}";
+                                lblInfo.Visibility = Visibility.Visible;
                             });
                             nextIsClicked = false;
                             createTheVMS(var_subdirectory.ToString());
@@ -422,12 +421,12 @@ namespace vRidance
                     Debug.WriteLine(removeTemplateDisk); var removedDisk = client.RunCommand(removeTemplateDisk);
                     string createVdb = $"xe vbd-create vm-uuid={vmUuid} device=0 vdi-uuid={vdiUuid} bootable=true mode=RW type=Disk";
                     this.Dispatcher.Invoke(() => { lblInfo.Content = "Creating VDB"; });
-                    for (int i = (int)pbProgress.Value; i <= pbProgress.Value + 9; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
+                    for (int i = 45; i <= 59; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
                     Debug.WriteLine(createVdb); var createVdbResult = client.RunCommand(createVdb);
                     string vdbUuid = createVdbResult.Result.TrimEnd();
                     Debug.WriteLine(vdbUuid);
                     string startVm = $"xe vm-start uuid={vmUuid}";
-                    for (int i = 54; i <= 63; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
+                    for (int i = 59; i <= 63; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
                     Debug.WriteLine(startVm); var vmStartedResult = client.RunCommand(startVm);
                     string attachDisk = $"xe vbd-plug uuid={vdbUuid} device=0 vdi-uuid={vdiUuid}";
                     this.Dispatcher.Invoke(() => { lblInfo.Content = "Attaching Disk to VM"; });

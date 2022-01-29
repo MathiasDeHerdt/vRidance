@@ -385,12 +385,12 @@ namespace vRidance
                     Debug.WriteLine($"Creating VM {DirectoryName}, Please Wait...");
                     this.Dispatcher.Invoke(() => { lblInfo.Content = "Installing VM from template"; });
                     string createVM = $"xe vm-install template=\"{os_type}\" new-name-label=\"{DirectoryName}\" {SrUuid}";
-                    for (double i = pbProgress.Value; i <= pbProgress.Value + 9.09; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
+                    for (int i = (int)pbProgress.Value; i <= pbProgress.Value + 9; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
                     Debug.WriteLine(createVM); var createVMResult = client.RunCommand(createVM);
                     string vmUuid = createVMResult.Result.TrimEnd();
                     this.Dispatcher.Invoke(() => { lblInfo.Content = "Creating virtual disk"; });
                     string createVdi = $"xe vdi-create sr-uuid=\"{SrUuid}\" name-label=\"{DirectoryName + "_Disk"}\" virtual-size={DiskSize}";
-                    for (double i = pbProgress.Value; i <= pbProgress.Value + 9.09; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
+                    for (int i = (int)pbProgress.Value; i <= pbProgress.Value + 9; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
                     Debug.WriteLine(createVdi); var createVdiResult = client.RunCommand(createVdi);
                     string vdiUuid = createVdiResult.Result.TrimEnd();
                     Debug.WriteLine(vdiUuid);
@@ -399,7 +399,7 @@ namespace vRidance
                     {
                         FileInfo fi = new FileInfo(@"" + file);
                         string fileName = fi.Name;
-                        for (double i = pbProgress.Value; i <= pbProgress.Value + 9.09; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
+                        for (int i = (int)pbProgress.Value; i <= pbProgress.Value + 9; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
                         this.Dispatcher.Invoke(() => { lblInfo.Content = "Importing VMDK, this may take a while"; });
                         string vmdkImport = $"xe vdi-import uuid={vdiUuid} filename=/mnt/VMDKShare/{DirectoryName}/{fileName} format=raw --progress";
                         Debug.WriteLine(vmdkImport); var createImportResult = client.RunCommand(vmdkImport);
@@ -408,7 +408,7 @@ namespace vRidance
 
                     }
                     string getVmVDI = $"xe vm-disk-list vm={vmUuid} | grep 'uuid ( RO)             :' | sed 's/^.*: //' | sed -n 2p";
-                    for (double i = pbProgress.Value; i <= pbProgress.Value + 9.09; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
+                    for (int i = (int)pbProgress.Value; i <= pbProgress.Value + 9; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
                     Debug.WriteLine(getVmVDI); var createExistingVDIResult = client.RunCommand(getVmVDI);
                     List<string> templateVDI = createExistingVDIResult.Result.ToCharArray().Select(c => c.ToString()).ToList();
                     string newLine = "";
@@ -418,23 +418,23 @@ namespace vRidance
                     }
                     string removeTemplateDisk = $"xe vdi-destroy uuid={newLine}";
                     this.Dispatcher.Invoke(() => { lblInfo.Content = "Removing template disk"; });
-                    for (double i = pbProgress.Value; i <= pbProgress.Value + 9.09; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
+                    for (int i = (int)pbProgress.Value; i <= pbProgress.Value + 9; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
                     Debug.WriteLine(removeTemplateDisk); var removedDisk = client.RunCommand(removeTemplateDisk);
                     string createVdb = $"xe vbd-create vm-uuid={vmUuid} device=0 vdi-uuid={vdiUuid} bootable=true mode=RW type=Disk";
                     this.Dispatcher.Invoke(() => { lblInfo.Content = "Creating VDB"; });
-                    for (double i = pbProgress.Value; i <= pbProgress.Value + 9.09; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
+                    for (int i = (int)pbProgress.Value; i <= pbProgress.Value + 9; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
                     Debug.WriteLine(createVdb); var createVdbResult = client.RunCommand(createVdb);
                     string vdbUuid = createVdbResult.Result.TrimEnd();
                     Debug.WriteLine(vdbUuid);
                     string startVm = $"xe vm-start uuid={vmUuid}";
-                    for (double i = pbProgress.Value; i <= pbProgress.Value + 9.09; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
+                    for (int i = (int)pbProgress.Value; i <= pbProgress.Value + 9; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
                     Debug.WriteLine(startVm); var vmStartedResult = client.RunCommand(startVm);
                     string attachDisk = $"xe vbd-plug uuid={vdbUuid} device=0 vdi-uuid={vdiUuid}";
                     this.Dispatcher.Invoke(() => { lblInfo.Content = "Attaching Disk to VM"; });
-                    for (double i = pbProgress.Value; i <= pbProgress.Value + 9.09; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
+                    for (int i = (int)pbProgress.Value; i <= pbProgress.Value + 9; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
                     Debug.WriteLine(attachDisk); var attachDiskResult = client.RunCommand(attachDisk);
                     string stopVm = $"xe vm-shutdown uuid={vmUuid}";
-                    for (double i = pbProgress.Value; i <= pbProgress.Value + 9.09; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
+                    for (int i = (int)pbProgress.Value; i <= pbProgress.Value + 9; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
                     Debug.WriteLine(stopVm); var stopVmResult = client.RunCommand(stopVm);
                     string changeBootOption = $"xe vm-param-set uuid={vmUuid} HVM-boot-params:firmware=uefi";
                     this.Dispatcher.Invoke(() => { lblInfo.Content = "Changing boot parameter to UEFI"; });
@@ -442,7 +442,7 @@ namespace vRidance
                     Debug.WriteLine(changeBootOption); var changeBootOptionResult = client.RunCommand(changeBootOption);
                     string changeSecureBoot = $"xe vm-param-set uuid={vmUuid} platform:secureboot=false ";
                     this.Dispatcher.Invoke(() => { lblInfo.Content = "Disabling secure boot"; });
-                    for (double i = pbProgress.Value; i <= pbProgress.Value + 9.09; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
+                    for (int i = (int)pbProgress.Value; i <= pbProgress.Value + 9; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
                     Debug.WriteLine(changeSecureBoot); var changeSecureBootResult = client.RunCommand(changeSecureBoot);
                     Debug.WriteLine(startVm); client.RunCommand(startVm);
                     this.Dispatcher.Invoke(() => { lblInfo.Content = "Done!"; });
@@ -461,12 +461,12 @@ namespace vRidance
                     Debug.WriteLine($"Creating VM {DirectoryName}, Please Wait...");
                     string createVM = $"xe vm-install template=\"{os_type}\" new-name-label=\"{DirectoryName}\" {SrUuid}";
                     this.Dispatcher.Invoke(() => { lblInfo.Content = "Installing VM from template"; });
-                    for (double i = pbProgress.Value; i <= pbProgress.Value + 12.5; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
+                    for (int i = 0; i <= 27; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
                     Debug.WriteLine(createVM); var createVMResult = client.RunCommand(createVM);
                     string vmUuid = createVMResult.Result.TrimEnd();
                     string createVdi = $"xe vdi-create sr-uuid=\"{SrUuid}\" name-label=\"{DirectoryName + "_Disk"}\" virtual-size={DiskSize}";
                     this.Dispatcher.Invoke(() => { lblInfo.Content = "Creating Virtual Disk"; });
-                    for (double i = pbProgress.Value; i <= pbProgress.Value + 12.5; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
+                    for (int i = 27; i <= 36; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
                     Debug.WriteLine(createVdi); var createVdiResult = client.RunCommand(createVdi);
                     string vdiUuid = createVdiResult.Result.TrimEnd();
                     Debug.WriteLine(vdiUuid);
@@ -475,7 +475,7 @@ namespace vRidance
                     {
                         FileInfo fi = new FileInfo(@"" + file);
                         string fileName = fi.Name;
-                        for (double i = pbProgress.Value; i <= pbProgress.Value + 12.5; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
+                        for (int i = 36; i <= 45; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
                         this.Dispatcher.Invoke(() => { lblInfo.Content = "Importing VMDK, this may take a while"; });
                         string vmdkImport = $"xe vdi-import uuid={vdiUuid} filename=/mnt/VMDKShare/{DirectoryName}/{fileName} format=raw --progress";
                         Debug.WriteLine(vmdkImport); var createImportResult = client.RunCommand(vmdkImport);
@@ -484,7 +484,7 @@ namespace vRidance
 
                     }
                     string getVmVDI = $"xe vm-disk-list vm={vmUuid} | grep 'uuid ( RO)             :' | sed 's/^.*: //' | sed -n 2p";
-                    for (double i = pbProgress.Value; i <= pbProgress.Value + 12.5; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
+                    for (int i = 45; i <= 54; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
                     Debug.WriteLine(getVmVDI); var createExistingVDIResult = client.RunCommand(getVmVDI);
                     List<string> templateVDI = createExistingVDIResult.Result.ToCharArray().Select(c => c.ToString()).ToList();
                     string newLine = "";
@@ -493,11 +493,11 @@ namespace vRidance
                         newLine = newLine.Insert(newLine.Length, character.ToString());
                     }
                     string removeTemplateDisk = $"xe vdi-destroy uuid={newLine}";
-                    for (double i = pbProgress.Value; i <= pbProgress.Value + 12.5; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
+                    for (int i = 54; i <= 63; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
                     Debug.WriteLine(removeTemplateDisk); var removedDisk = client.RunCommand(removeTemplateDisk);
                     string createVdb = $"xe vbd-create vm-uuid={vmUuid} device=0 vdi-uuid={vdiUuid} bootable=true mode=RW type=Disk";
                     this.Dispatcher.Invoke(() => { lblInfo.Content = "Creating VDB"; });
-                    for (double i = pbProgress.Value; i <= pbProgress.Value + 12.5; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
+                    for (int i = 63; i <= 72; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
                     Debug.WriteLine(createVdb); var createVdbResult = client.RunCommand(createVdb);
                     string vdbUuid = createVdbResult.Result.TrimEnd();
                     Debug.WriteLine(vdbUuid);
@@ -505,7 +505,7 @@ namespace vRidance
                     Debug.WriteLine(startVm); var vmStartedResult = client.RunCommand(startVm);
                     string attachDisk = $"xe vbd-plug uuid={vdbUuid} device=0 vdi-uuid={vdiUuid}";
                     this.Dispatcher.Invoke(() => { lblInfo.Content = "Attaching Virtual Disk to VM"; });
-                    for (double i = pbProgress.Value; i <= pbProgress.Value + 12.5; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
+                    for (int i = 72; i <= 100; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
                     Debug.WriteLine(attachDisk); var attachDiskResult = client.RunCommand(attachDisk);
                     this.Dispatcher.Invoke(() => { lblInfo.Content = "Done!"; });
                     client.Disconnect();

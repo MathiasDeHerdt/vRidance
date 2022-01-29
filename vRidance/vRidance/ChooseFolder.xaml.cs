@@ -171,7 +171,7 @@ namespace vRidance
                 {
                     txtPath.Text = fbd.SelectedPath;
                 }
-                else
+                else if (txtPath.Text == "") 
                 {
                     System.Windows.MessageBox.Show("ERROR: Filepath empty!");
                 }

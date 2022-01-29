@@ -23,9 +23,9 @@ namespace vRidance
     public partial class Migrate2Prox : Window
     {
         string prox_host, prox_username, prox_password, folderPath;
-        int start_vmid;
+        int start_vmid, cpu_cores, memory;
 
-        string os_type, cpu_cores, memory;
+        string os_type;
 
         bool nextIsClicked = false, toEndScreen = false, vmCreated = false;
 
@@ -145,11 +145,12 @@ namespace vRidance
 
         private void txtCores_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if(txtCores.Text == "" && txtCores == null)
+            if(txtCores.Text == "" && txtCores.Text == null)
             {
                 rectNext.Opacity = 0.5;
                 rectNext.IsEnabled = false;
-            }else if (txtCores.Text != "" && txtCores != null && txtMemory.Text != "" && txtMemory != null && cbVersion.SelectedIndex >= 0)
+            }
+            else if (txtCores.Text != "" && txtCores != null && txtMemory.Text != "" && txtMemory != null && cbVersion.SelectedIndex >= 0)
             {
                 if (((int.Parse(txtCores.Text) % 2 == 0 || int.Parse(txtCores.Text) == 1) && int.Parse(txtCores.Text) > 0) && (int.Parse(txtMemory.Text) % 256 == 0 && int.Parse(txtMemory.Text) > 0))
                 {
@@ -244,8 +245,10 @@ namespace vRidance
                 else if (cbVersion.SelectedIndex == 6) os_type = "w2k";
             }
 
-            cpu_cores = txtCores.Text;
-            memory = txtMemory.Text;
+            
+
+            cpu_cores = int.Parse(txtCores.Text);
+            memory = int.Parse(txtMemory.Text);
 
 
             nextIsClicked = true;

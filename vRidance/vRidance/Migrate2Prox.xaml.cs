@@ -437,14 +437,10 @@ namespace vRidance
                     this.Dispatcher.Invoke(() => { lblInfo.Content = $"Creating TPM State"; });                    
                     sendCommand = client.RunCommand(setTpm);
                     for (int i = 95; i <= 100; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
-
-                    sendCommand = client.RunCommand(start);;
-                    client.Disconnect();
-                    int y = 100;
-                    lblInfo.Content = "";
-                    sendCommand = client.RunCommand(changeBootOrder);
-                    for (int i = 0; i <= 101; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = y; y--; }); await Task.Delay(1); }
+                    
+                    sendCommand = client.RunCommand(start);
                     vmCreated = true;
+                    client.Disconnect();
 
                 }
                 else if (os_type == "l26" || os_type == "l24")
@@ -474,12 +470,8 @@ namespace vRidance
                     for (int i = 93; i <= 101; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
 
                     sendCommand = client.RunCommand(start);
-                    client.Disconnect();
-                    int y = 100;
-                    lblInfo.Content = "";
-                    sendCommand = client.RunCommand(changeBootOrder);
-                    for (int i = 0; i <= 101; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = y; y--; }); await Task.Delay(1); }
                     vmCreated = true;
+                    client.Disconnect();
 
                 }
             }

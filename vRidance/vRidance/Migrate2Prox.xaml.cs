@@ -392,6 +392,7 @@ namespace vRidance
                     }
                 }
                 upload.Disconnect();
+                Thread.Sleep(100);
             }
 
             if (os_type != null)

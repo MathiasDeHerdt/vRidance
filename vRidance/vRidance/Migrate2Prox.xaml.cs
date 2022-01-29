@@ -27,7 +27,7 @@ namespace vRidance
 
         string os_type;
 
-        bool nextIsClicked = false, toEndScreen = false, vmCreated = false;
+        bool nextIsClicked = false, vmCreated = false;
 
         double progress;
 
@@ -308,6 +308,7 @@ namespace vRidance
                             createTheVMS(var_subdirectory.ToString());
                             //MessageBox.Show($"folderPath: {folderPath}, subdirectoryName: {DirectoryName}, proxHost: {prox_host}, username: {prox_username}, password: {prox_password}, start_vmid: {start_vmid}, os_type: {os_type}, cpu_cores: {cpu_cores}, memory: {memory}");
                             while (true) {
+                                Thread.Sleep(100);
                                 if (vmCreated == true) break;
                             }
                             this.Dispatcher.Invoke(() =>

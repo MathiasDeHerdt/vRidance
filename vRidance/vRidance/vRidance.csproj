@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
 	<UseWindowsForms>true</UseWindowsForms>
+	<ApplicationIcon>vRidance.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -27,6 +28,10 @@
     <None Remove="NextDisabled.png" />
     <None Remove="NextEnabled.png" />
     <None Remove="Upload.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="vRidance.ico" />
   </ItemGroup>
 
   <ItemGroup>

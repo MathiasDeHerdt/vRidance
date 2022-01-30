@@ -175,3 +175,6 @@ D:\Howest\3de\Sem2\ResearchProject\Code\Repo\V2\ResearchProjectCode\vRidance\vRi
 D:\Howest\3de\Sem2\ResearchProject\Code\Repo\V2\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\ref\vRidance.dll
 D:\Howest\3de\Sem2\ResearchProject\Code\Repo\V2\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\vRidance.pdb
 D:\Howest\3de\Sem2\ResearchProject\Code\Repo\V2\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\vRidance.genruntimeconfig.cache
+C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\AzureStackHCI.g.cs
+C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\vRidance_Content.g.cs
+C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\AzureStackHCI.baml

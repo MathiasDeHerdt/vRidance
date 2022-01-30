@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-D:\Howest\3de\Sem2\ResearchProject\Code\Repo\V2\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\
+C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\
 vRidance
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-D:\Howest\3de\Sem2\ResearchProject\Code\Repo\V2\ResearchProjectCode\vRidance\vRidance\App.xaml
+C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\App.xaml
 9-1297468915
-
+1-790522131
 14982369825
-205421718267
+2051955331933
 AzureStackHCI.xaml;ChooseFolder.xaml;CitrixLogin.xaml;EndScreen.xaml;MainWindow.xaml;Migrate2Citrix.xaml;Migrate2Prox.xaml;MigrateSelection.xaml;ProxMoxLogin.xaml;
 
 False

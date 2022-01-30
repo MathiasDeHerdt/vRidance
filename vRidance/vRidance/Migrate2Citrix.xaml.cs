@@ -260,16 +260,6 @@ namespace vRidance
             cbVersion.IsEnabled = false;
         }
 
-        //public void ChangeProgressBarValue(float nextValue) //smooth progressbar?
-        //{
-        //    float currentValue = pbProgress.Value;
-        //    float val = nextValue - currentValue;
-        //    for (int i = val; i <= nextValue; i++)
-        //    {
-        //        pbProgress.Value = val;
-        //    }
-        //}
-
 
         public void changeParams()
         {

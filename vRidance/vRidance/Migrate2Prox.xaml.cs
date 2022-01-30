@@ -27,7 +27,7 @@ namespace vRidance
 
         string os_type;
 
-        bool nextIsClicked = false, toEndScreen = false, vmCreated = false;
+        bool nextIsClicked = false, vmCreated = false;
 
         double progress;
 
@@ -308,6 +308,7 @@ namespace vRidance
                             createTheVMS(var_subdirectory.ToString());
                             //MessageBox.Show($"folderPath: {folderPath}, subdirectoryName: {DirectoryName}, proxHost: {prox_host}, username: {prox_username}, password: {prox_password}, start_vmid: {start_vmid}, os_type: {os_type}, cpu_cores: {cpu_cores}, memory: {memory}");
                             while (true) {
+                                Thread.Sleep(100);
                                 if (vmCreated == true) break;
                             }
                             this.Dispatcher.Invoke(() =>
@@ -391,6 +392,7 @@ namespace vRidance
                     }
                 }
                 upload.Disconnect();
+                Thread.Sleep(100);
             }
 
             if (os_type != null)
@@ -437,14 +439,10 @@ namespace vRidance
                     this.Dispatcher.Invoke(() => { lblInfo.Content = $"Creating TPM State"; });                    
                     sendCommand = client.RunCommand(setTpm);
                     for (int i = 95; i <= 100; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
-
-                    sendCommand = client.RunCommand(start);;
-                    client.Disconnect();
-                    int y = 100;
-                    lblInfo.Content = "";
-                    sendCommand = client.RunCommand(changeBootOrder);
-                    for (int i = 0; i <= 101; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = y; y--; }); await Task.Delay(1); }
+                    
+                    sendCommand = client.RunCommand(start);
                     vmCreated = true;
+                    client.Disconnect();
 
                 }
                 else if (os_type == "l26" || os_type == "l24")
@@ -474,12 +472,8 @@ namespace vRidance
                     for (int i = 93; i <= 101; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = i; }); await Task.Delay(50); }
 
                     sendCommand = client.RunCommand(start);
-                    client.Disconnect();
-                    int y = 100;
-                    lblInfo.Content = "";
-                    sendCommand = client.RunCommand(changeBootOrder);
-                    for (int i = 0; i <= 101; i++) { this.Dispatcher.Invoke(() => { pbProgress.Value = y; y--; }); await Task.Delay(1); }
                     vmCreated = true;
+                    client.Disconnect();
 
                 }
             }

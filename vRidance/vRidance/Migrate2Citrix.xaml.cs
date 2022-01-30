@@ -322,6 +322,7 @@ namespace vRidance
                             createTheVMS(var_subdirectory.ToString());
                             while (true)
                             {
+                                Thread.Sleep(100);
                                 if (vmCreated == true) break;
                             }
                             this.Dispatcher.Invoke(() =>
@@ -372,6 +373,7 @@ namespace vRidance
                 AuthenticationMethod method_citrix = new PasswordAuthenticationMethod(citrix_username, citrix_password);
                 ConnectionInfo connection_citrix = new ConnectionInfo(citrix_host, citrix_username, method_citrix);
                 var client = new SshClient(connection_citrix);
+                Thread.Sleep(100);
 
                 if (os_type.Contains("Windows"))
                 {
@@ -447,6 +449,7 @@ namespace vRidance
                     this.Dispatcher.Invoke(() => { lblInfo.Content = "Done!"; });
                     client.Disconnect();
                     vmCreated = true;
+                    Thread.Sleep(50);
 
                 }
                 else if (os_type.Contains("CentOS") || os_type.Contains("CoreOS") || os_type.Contains("Debian") || os_type.Contains("Linux") || os_type.Contains("Red Hat") || os_type.Contains("Ubuntu") || os_type.Contains("SUSE"))
@@ -509,6 +512,7 @@ namespace vRidance
                     this.Dispatcher.Invoke(() => { lblInfo.Content = "Done!"; });
                     client.Disconnect();
                     vmCreated = true;
+                    Thread.Sleep(50);
 
                 }
             }

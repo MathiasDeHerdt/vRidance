@@ -97,23 +97,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Simon\\.nuget\\packages\\": {},
+    "C:\\Users\\mathi\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Simon\\Desktop\\ResearchProjectCode\\vRidance\\vRidance\\vRidance.csproj",
+      "projectUniqueName": "D:\\Howest\\3de\\Sem2\\ResearchProject\\Code\\Repo\\V2\\ResearchProjectCode\\vRidance\\vRidance\\vRidance.csproj",
       "projectName": "vRidance",
-      "projectPath": "C:\\Users\\Simon\\Desktop\\ResearchProjectCode\\vRidance\\vRidance\\vRidance.csproj",
-      "packagesPath": "C:\\Users\\Simon\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Simon\\Desktop\\ResearchProjectCode\\vRidance\\vRidance\\obj\\",
+      "projectPath": "D:\\Howest\\3de\\Sem2\\ResearchProject\\Code\\Repo\\V2\\ResearchProjectCode\\vRidance\\vRidance\\vRidance.csproj",
+      "packagesPath": "C:\\Users\\mathi\\.nuget\\packages\\",
+      "outputPath": "D:\\Howest\\3de\\Sem2\\ResearchProject\\Code\\Repo\\V2\\ResearchProjectCode\\vRidance\\vRidance\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Simon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\mathi\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

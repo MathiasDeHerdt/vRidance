@@ -9,6 +9,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="AzureStackHCI.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="ChooseFolder.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -35,6 +38,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="AzureStackHCI.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="ChooseFolder.xaml">
       <SubType>Designer</SubType>
     </Page>

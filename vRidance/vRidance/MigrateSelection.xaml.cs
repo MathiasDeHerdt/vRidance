@@ -100,7 +100,10 @@ namespace vRidance
                     chooseFolderWindowCitrix.Owner = ((MainWindow)this.Owner);
                     break;
                 case 2:
-                    MessageBox.Show("AZURESTACKHCI is checked");
+                    AzureStackHCI MigrateToAzureStackHCI = new AzureStackHCI(curTheme);
+                    ((MainWindow)this.Owner).Content = MigrateToAzureStackHCI.Content;
+
+                    MigrateToAzureStackHCI.Owner = ((MainWindow)this.Owner);
                     break;
             }
         }

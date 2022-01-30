@@ -1,0 +1,97 @@
+﻿<Window x:Class="vRidance.AzureStackHCI"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:vRidance"
+        mc:Ignorable="d"
+        Title="vRidance" Height="450" Width="800" ResizeMode="NoResize" WindowStyle="None">
+
+    <Grid LayoutUpdated="Grid_LayoutUpdated">
+        <!-- 
+            Layout
+        -->
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/bg_dark.png"/>
+        </Grid.Background>
+
+        <Rectangle x:Name="rctTop" HorizontalAlignment="Center" Height="44" VerticalAlignment="Top" Width="800" Fill="#7F000000"/>
+
+        <Rectangle x:Name="rectClose" HorizontalAlignment="Left" Height="21" Margin="766,10,0,0" VerticalAlignment="Top" Width="21" Cursor="Hand" Focusable="True" MouseLeftButtonUp="rectClose_MouseLeftButtonUp">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/close.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <Rectangle x:Name="rectDark" HorizontalAlignment="Left" Height="21" Margin="738,10,0,0" VerticalAlignment="Top" Width="22" Cursor="Hand" Focusable="True">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/moon.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <Rectangle x:Name="rectMode" HorizontalAlignment="Left" Height="20" Margin="739,11,0,0" VerticalAlignment="Top" Width="20" Cursor="Hand" Focusable="True">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Assets/sun.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <!-- 
+            Title Text 
+        -->
+        <Label x:Name="lblvRidance" Content="vRidance v1.0" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" FontFamily="Cascadia Mono SemiBold" Foreground="White"/>
+        <Label x:Name="lblPMStart" Content="Migrate VM to Azure Stack HCI" HorizontalAlignment="Center" Margin="0,94,0,0" VerticalAlignment="Top" Height="44" Width="516" Foreground="White" FontFamily="Bahnschrift SemiBold" FontSize="25" HorizontalContentAlignment="Center" RenderTransformOrigin="0.285,0.399"/>
+        <Label x:Name="lblCurrVM" Content="Fill in the VM configurations" HorizontalAlignment="Center" Margin="0,143,0,0" VerticalAlignment="Top" Height="44" Width="577" Foreground="White" FontFamily="Bahnschrift SemiBold" FontSize="20" HorizontalContentAlignment="Center" RenderTransformOrigin="0.285,0.399"/>
+
+        <!-- 
+            Labels with textboxes 
+        -->
+        <Label x:Name="lblHostName" Content="Hostname" HorizontalAlignment="Left" Margin="30,184,0,0" VerticalAlignment="Top" Height="33" Width="120" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White"/>
+        <TextBox x:Name="txtHostName" HorizontalAlignment="Left" Margin="30,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Center" FontFamily="Bahnschrift SemiBold" FontSize="20" Background="#66E1E1E1" BorderBrush="{x:Null}" AutoWordSelection="True" Foreground="White"/>
+
+        <Label x:Name="lblVMName" Content="VM Name" HorizontalAlignment="Left" Margin="30,245,0,0" VerticalAlignment="Top" Height="33" Width="120" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White"/>
+        <TextBox x:Name="txtVMName" HorizontalAlignment="Left" Margin="30,268,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Center" FontFamily="Bahnschrift SemiBold" FontSize="20" Background="#66E1E1E1" BorderBrush="{x:Null}" AutoWordSelection="True" Foreground="White"/>
+
+        <Label x:Name="lblClusterName" Content="Cluster Name" HorizontalAlignment="Left" Margin="183,184,0,0" VerticalAlignment="Top" Height="33" Width="120" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White"/>
+        <TextBox x:Name="txtClusterName" HorizontalAlignment="Left" Margin="183,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Center" FontFamily="Bahnschrift SemiBold" FontSize="20" Background="#66E1E1E1" BorderBrush="{x:Null}" AutoWordSelection="True" Foreground="White"/>
+
+        <Label x:Name="lblStartMemory" Content="Startup Memory" HorizontalAlignment="Left" Margin="183,245,0,0" VerticalAlignment="Top" Height="33" Width="120" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White"/>
+        <TextBox x:Name="txtStartMemory" HorizontalAlignment="Left" Margin="183,268,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Center" FontFamily="Bahnschrift SemiBold" FontSize="20" Background="#66E1E1E1" BorderBrush="{x:Null}" AutoWordSelection="True" Foreground="White"/>
+
+        <Label x:Name="lblMinimumBytes" Content="MinimumBytes" HorizontalAlignment="Center" Margin="0,184,0,0" VerticalAlignment="Top" Height="33" Width="120" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White"/>
+        <TextBox x:Name="txtMinimumBytes" HorizontalAlignment="Center" Margin="0,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Center" FontFamily="Bahnschrift SemiBold" FontSize="20" Background="#66E1E1E1" BorderBrush="{x:Null}" AutoWordSelection="True" Foreground="White"/>
+
+        <Label x:Name="lblMaximumBytes" Content="MaximumBytes" HorizontalAlignment="Center" Margin="0,245,0,0" VerticalAlignment="Top" Height="33" Width="120" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White"/>
+        <TextBox x:Name="txtMaximumBytes" HorizontalAlignment="Center" Margin="0,268,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Center" FontFamily="Bahnschrift SemiBold" FontSize="20" Background="#66E1E1E1" BorderBrush="{x:Null}" AutoWordSelection="True" Foreground="White"/>
+
+        <Label x:Name="lblBootDeviceExtention" Content="Device Extention" HorizontalAlignment="Left" Margin="502,182,0,0" VerticalAlignment="Top" Height="33" Width="98" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White"/>
+        <TextBox x:Name="txtBootDeviceExtention" HorizontalAlignment="Left" Margin="501,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Center" FontFamily="Bahnschrift SemiBold" FontSize="20" Background="#66E1E1E1" BorderBrush="{x:Null}" AutoWordSelection="True" Foreground="White"/>
+
+        <Label x:Name="lblBootDevicePath" Content="Boot Device Path" HorizontalAlignment="Left" Margin="501,245,0,0" VerticalAlignment="Top" Height="33" Width="111" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White"/>
+        <TextBox x:Name="txtBootDevicePath" HorizontalAlignment="Left" Margin="502,268,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Center" FontFamily="Bahnschrift SemiBold" FontSize="20" Background="#66E1E1E1" BorderBrush="{x:Null}" AutoWordSelection="True" Foreground="White"/>
+
+        <Label x:Name="lblNetworkAdapter" Content="Network Adapter" HorizontalAlignment="Left" Margin="656,184,0,0" VerticalAlignment="Top" Height="33" Width="111" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White"/>
+        <TextBox x:Name="txtNetworkAdapter" HorizontalAlignment="Left" Margin="656,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Center" FontFamily="Bahnschrift SemiBold" FontSize="20" Background="#66E1E1E1" BorderBrush="{x:Null}" AutoWordSelection="True" Foreground="White"/>
+
+        <Label x:Name="lblLocationPath" Content="Location Path" HorizontalAlignment="Left" Margin="656,245,0,0" VerticalAlignment="Top" Height="33" Width="110" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White"/>
+        <TextBox x:Name="txtLocationPath" HorizontalAlignment="Left" Margin="656,268,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Center" FontFamily="Bahnschrift SemiBold" FontSize="20" Background="#66E1E1E1" BorderBrush="{x:Null}" AutoWordSelection="True" Foreground="White"/>
+
+        <!-- 
+            Create VM button 
+        -->
+        <Label x:Name="lblCreateVM" Content="Create VM" HorizontalAlignment="Left" Margin="373,314,0,0" VerticalAlignment="Top" Height="28" Width="70" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White"/>
+        <Rectangle x:Name="recCreateVM" HorizontalAlignment="Center" Height="50" Margin="0,342,0,0" VerticalAlignment="Top" Width="150" Cursor="Hand" RenderTransformOrigin="0.5,0.5" MouseLeftButtonUp="recCreateVM_MouseLeftButtonUp">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Assets/NextEnabled.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+
+    </Grid>
+</Window>

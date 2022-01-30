@@ -1,0 +1,83 @@
+﻿<Window x:Name="wdwPMMigrate" x:Class="vRidance.Migrate2Prox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:vRidance"
+        mc:Ignorable="d"
+        Title="vRidance" Height="450" Width="800" ResizeMode="NoResize" WindowStyle="None" Icon="/Assets/vRidance.ico">
+    <Grid x:Name="grdMain4" Initialized="grdMain_Initialized">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/bg_dark.png"/>
+        </Grid.Background>
+        <Rectangle x:Name="rctTop" HorizontalAlignment="Center" Height="44" VerticalAlignment="Top" Width="800" Fill="#7F000000" MouseLeftButtonDown="rctTop_MouseLeftButtonDown"/>
+        <Rectangle x:Name="rectClose" HorizontalAlignment="Left" Height="21" Margin="766,10,0,0" VerticalAlignment="Top" Width="21" Cursor="Hand" Focusable="True" MouseLeftButtonUp="rectClose_MouseLeftButtonDown">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/close.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="rectDark" HorizontalAlignment="Left" Height="21" Margin="738,10,0,0" VerticalAlignment="Top" Width="22" Cursor="Hand" Focusable="True" MouseLeftButtonUp="rectDark_MouseLeftButtonDown">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/moon.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="rectMode" HorizontalAlignment="Left" Height="20" Margin="739,11,0,0" VerticalAlignment="Top" Width="20" MouseLeftButtonUp="rectMode_MouseLeftButtonDown" Cursor="Hand" Focusable="True">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Assets/sun.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Label x:Name="lblvRidance" Content="vRidance v1.0" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" FontFamily="Cascadia Mono SemiBold" Foreground="White"/>
+        <Label x:Name="lblPMStart" Content="Migrating VMs" HorizontalAlignment="Center" Margin="0,94,0,0" VerticalAlignment="Top" Height="44" Width="516" Foreground="White" FontFamily="Bahnschrift SemiBold" FontSize="25" HorizontalContentAlignment="Center" RenderTransformOrigin="0.285,0.399"/>
+        <Rectangle x:Name="rectNext" HorizontalAlignment="Center" Height="50" Margin="0,342,0,0" VerticalAlignment="Top" Width="150" Cursor="Hand" RenderTransformOrigin="0.5,0.5" MouseLeftButtonUp="rectNext_MouseLeftButtonUp">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Assets/NextEnabled.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Label x:Name="lblCurrVM" Content="Settings for" HorizontalAlignment="Center" Margin="0,146,0,0" VerticalAlignment="Top" Height="44" Width="576" Foreground="White" FontFamily="Bahnschrift SemiBold" FontSize="20" HorizontalContentAlignment="Center" RenderTransformOrigin="0.285,0.399"/>
+        <Label x:Name="lblType" Content="Type of VM" HorizontalAlignment="Left" Margin="266,189,0,0" VerticalAlignment="Top" Height="32" Width="120" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White"/>
+        <ComboBox x:Name="cbType" HorizontalAlignment="Left" Margin="266,0,0,0" VerticalAlignment="Center" Width="120" FontFamily="Bahnschrift SemiBold" FontSize="17" BorderBrush="{x:Null}" SelectionChanged="cbType_SelectionChanged">
+            <ComboBox.Background>
+                <LinearGradientBrush EndPoint="0,1">
+                    <GradientStop Color="#FFF0F0F0"/>
+                    <GradientStop Color="#FFE1E1E1" Offset="1"/>
+                </LinearGradientBrush>
+            </ComboBox.Background>
+        </ComboBox>
+        <Label x:Name="lblVersion" Content="Version of VM" HorizontalAlignment="Left" Margin="459,187,0,0" VerticalAlignment="Top" Height="32" Width="79" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White"/>
+        <ComboBox x:Name="cbVersion" HorizontalAlignment="Left" Margin="414,0,0,0" VerticalAlignment="Center" Width="120" FontFamily="Bahnschrift SemiBold" FontSize="17" BorderBrush="{x:Null}">
+            <ComboBox.Background>
+                <LinearGradientBrush EndPoint="0,1">
+                    <GradientStop Color="#FFF0F0F0"/>
+                    <GradientStop Color="#FFE1E1E1" Offset="1"/>
+                </LinearGradientBrush>
+            </ComboBox.Background>
+        </ComboBox>
+        <TextBox x:Name="txtCores" HorizontalAlignment="Left" Margin="266,273,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Center" FontFamily="Bahnschrift SemiBold" FontSize="20" Background="#66E1E1E1" BorderBrush="{x:Null}" AutoWordSelection="True" Foreground="White" TextChanged="txtCores_TextChanged"/>
+        <Label x:Name="lblCores" Content="Number of cores" HorizontalAlignment="Left" Margin="266,249,0,0" VerticalAlignment="Top" Height="34" Width="120" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White"/>
+        <Label x:Name="lblMemory" Content="Amount of RAM (MB)" HorizontalAlignment="Left" Margin="426,249,0,0" VerticalAlignment="Top" Height="34" Width="111" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White"/>
+        <TextBox x:Name="txtMemory" HorizontalAlignment="Left" Margin="414,273,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Center" FontFamily="Bahnschrift SemiBold" FontSize="20" Background="#66E1E1E1" BorderBrush="{x:Null}" AutoWordSelection="True" Foreground="White" TextChanged="txtMemory_TextChanged"/>
+        <Rectangle x:Name="rectFinish" HorizontalAlignment="Center" Height="50" Margin="0,342,0,0" VerticalAlignment="Top" Width="150" Cursor="Hand" RenderTransformOrigin="0.5,0.5" MouseLeftButtonUp="rectNext_MouseLeftButtonUp" Visibility="Hidden">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Assets/NextEnabled.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <ProgressBar x:Name="pbProgress" HorizontalAlignment="Center" Height="11" Margin="0,440,0,0" VerticalAlignment="Top" Width="802" Foreground="#FF34ACAB" Background="#7F000000" BorderBrush="{x:Null}"/>
+        <Label x:Name="lblInfo" Content="" HorizontalAlignment="Left" Margin="0,409,0,0" VerticalAlignment="Top" Width="245" Foreground="White" Background="#7F000000" FontFamily="Bahnschrift SemiBold Condensed" FontSize="17"/>
+    </Grid>
+</Window>

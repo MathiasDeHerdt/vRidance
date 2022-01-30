@@ -1,0 +1,54 @@
+﻿<Window x:Name="wdwPMLogin" x:Class="vRidance.ProxMoxLogin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:vRidance"
+        mc:Ignorable="d"
+        Title="vRidance" Height="450" Width="800" ResizeMode="NoResize" WindowStyle="None" Icon="/Assets/vRidance.ico">
+    <Grid x:Name="grdMain4" Initialized="grdMain_Initialized" LayoutUpdated="grdMain4_LayoutUpdated">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/bg_dark.png"/>
+        </Grid.Background>
+        <Rectangle x:Name="rctTop" HorizontalAlignment="Center" Height="44" VerticalAlignment="Top" Width="800" Fill="#7F000000" MouseLeftButtonDown="rctTop_MouseLeftButtonDown"/>
+        <Rectangle x:Name="rectClose" HorizontalAlignment="Left" Height="21" Margin="766,10,0,0" VerticalAlignment="Top" Width="21" Cursor="Hand" Focusable="True" MouseLeftButtonUp="rectClose_MouseLeftButtonDown">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/close.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="rectDark" HorizontalAlignment="Left" Height="21" Margin="738,10,0,0" VerticalAlignment="Top" Width="22" Cursor="Hand" Focusable="True" MouseLeftButtonUp="rectDark_MouseLeftButtonDown">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/moon.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="rectMode" HorizontalAlignment="Left" Height="20" Margin="739,11,0,0" VerticalAlignment="Top" Width="20" MouseLeftButtonUp="rectMode_MouseLeftButtonDown" Cursor="Hand" Focusable="True">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Assets/sun.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Label x:Name="lblvRidance" Content="vRidance v1.0" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" FontFamily="Cascadia Mono SemiBold" Foreground="White"/>
+        <Label x:Name="lblPMLogin" Content="Proxmox Login Information" HorizontalAlignment="Center" Margin="0,94,0,0" VerticalAlignment="Top" Height="44" Width="350" Foreground="White" FontFamily="Bahnschrift SemiBold" FontSize="25" HorizontalContentAlignment="Center"/>
+        <Image Margin="374,49,374,349" Source="/Assets/proxmox.png" Stretch="Fill"/>
+        <Rectangle x:Name="rectNext" HorizontalAlignment="Center" Height="50" Margin="0,342,0,0" VerticalAlignment="Top" Width="150" Cursor="Hand" RenderTransformOrigin="0.5,0.5" MouseLeftButtonUp="rectNext_MouseLeftButtonUp">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Assets/NextEnabled.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Margin="266,225,0,0" TextWrapping="Wrap" Text="root" VerticalAlignment="Top" Width="120" TextAlignment="Left" FontFamily="Bahnschrift SemiBold" FontSize="20" Background="#66E1E1E1" BorderBrush="{x:Null}" AutoWordSelection="True" Foreground="White"/>
+        <Label x:Name="lblUsername" Content="Username" HorizontalAlignment="Left" Margin="266,202,0,0" VerticalAlignment="Top" Height="33" Width="120" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White"/>
+        <Label x:Name="lblPassword" Content="Password" HorizontalAlignment="Left" Margin="414,202,0,0" VerticalAlignment="Top" Height="33" Width="120" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White" HorizontalContentAlignment="Right"/>
+        <PasswordBox x:Name="pwbPassword" HorizontalAlignment="Left" Margin="414,225,0,0" VerticalAlignment="Top" Width="120" FontFamily="Bahnschrift SemiBold" FontSize="20" Foreground="White" Background="#66E1E1E1" BorderBrush="{x:Null}"/>
+        <Label x:Name="lblvmId" Content="Provide first VM ID" HorizontalAlignment="Center" Margin="0,268,0,0" VerticalAlignment="Top" Height="28" Width="350" Foreground="White" FontFamily="Bahnschrift SemiBold" FontSize="18" HorizontalContentAlignment="Center"/>
+        <TextBox x:Name="txtVMID" HorizontalAlignment="Center" Margin="0,301,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Center" FontFamily="Bahnschrift SemiBold" FontSize="20" Background="#66E1E1E1" BorderBrush="{x:Null}" AutoWordSelection="True" Foreground="White"/>
+        <TextBox x:Name="txtIP" HorizontalAlignment="Center" Margin="0,175,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Left" FontFamily="Bahnschrift SemiBold" FontSize="20" Background="#66E1E1E1" BorderBrush="{x:Null}" AutoWordSelection="True" Foreground="White"/>
+        <Label x:Name="lblIP" Content="Proxmox VE IP" HorizontalAlignment="Center" Margin="0,152,0,0" VerticalAlignment="Top" Height="33" Width="120" FontFamily="Bahnschrift SemiBold Condensed" FontSize="15" Foreground="White" HorizontalContentAlignment="Center"/>
+    </Grid>
+</Window>

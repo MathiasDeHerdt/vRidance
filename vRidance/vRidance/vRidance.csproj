@@ -1,0 +1,69 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+	<UseWindowsForms>true</UseWindowsForms>
+	<ApplicationIcon>vRidance.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\bg_dark.png" />
+    <None Remove="Assets\bg_light.png" />
+    <None Remove="Assets\CitrixLogo.png" />
+    <None Remove="Assets\close.png" />
+    <None Remove="Assets\Download.png" />
+    <None Remove="Assets\mctlogo.png" />
+    <None Remove="Assets\moon.png" />
+    <None Remove="Assets\NextEnabled.png" />
+    <None Remove="Assets\proxmox.png" />
+    <None Remove="Assets\sun.png" />
+    <None Remove="Assets\vRidance.ico" />
+    <None Remove="bg_dark.png" />
+    <None Remove="CitrixLogo.png" />
+    <None Remove="close.png" />
+    <None Remove="mctlogo.png" />
+    <None Remove="moon.png" />
+    <None Remove="NextDisabled.png" />
+    <None Remove="NextEnabled.png" />
+    <None Remove="Upload.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="vRidance.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SSH.NET" Version="2020.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\bg_dark.png" />
+    <Resource Include="Assets\CitrixLogo.png" />
+    <Resource Include="Assets\Download.png" />
+    <Resource Include="Assets\mctlogo.png" />
+    <Resource Include="Assets\NextEnabled.png" />
+    <Resource Include="Assets\proxmox.png" />
+    <Resource Include="Assets\sun.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\bg_light.png" />
+    <Resource Include="Assets\close.png" />
+    <Resource Include="Assets\moon.png" />
+    <Resource Include="Assets\vRidance.ico" />
+    <Resource Include="bg_dark.png" />
+    <Resource Include="CitrixLogo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="close.png" />
+    <Resource Include="mctlogo.png" />
+    <Resource Include="moon.png" />
+    <Resource Include="NextDisabled.png" />
+    <Resource Include="NextEnabled.png" />
+    <Resource Include="Upload.png" />
+  </ItemGroup>
+
+</Project>

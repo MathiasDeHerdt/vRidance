@@ -199,6 +199,18 @@ namespace vRidance
         private void rectNext_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
 
+            try
+            {
+                if (int.Parse(txtDiskSize.Text) > 0 && txtSrUuid.Text != "" || txtSrUuid.Text != null )
+                {
+                    MessageBox.Show("SR UUID or Disk Size was empty. Or the Disk Size value is less or equal to 0");
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Something went wrong");
+            }
+
             if (cbType.SelectedIndex == 0)
             {
                 if (cbVersion.SelectedIndex == 0) os_type = "CentOS 7";
@@ -263,7 +275,7 @@ namespace vRidance
 
         public void changeParams()
         {
-            if (folderPath != "")
+            if (folderPath != "" || folderPath != null)
             {
                 string[] subdirectoryEntries = Directory.GetDirectories(folderPath);
 

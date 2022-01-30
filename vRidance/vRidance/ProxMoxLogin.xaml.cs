@@ -154,20 +154,17 @@ namespace vRidance
             AuthenticationMethod method_checkCon = new PasswordAuthenticationMethod(username, password);
             ConnectionInfo connection_checkCon = new ConnectionInfo(ip, username, method_checkCon);
             var client_checkCon= new SshClient(connection_checkCon);
+            string curTheme = "";
+            if (rectDark.Visibility == Visibility.Hidden) curTheme = "dark";
+            else if (rectDark.Visibility == Visibility.Visible) curTheme = "light";
 
             try
             {
                 client_checkCon.Connect();
-
-                string curTheme = "";
                 string thepath = this.path;
-                if (rectDark.Visibility == Visibility.Hidden) curTheme = "dark";
-                else if (rectDark.Visibility == Visibility.Visible) curTheme = "light";
                 Migrate2Prox migration2proxmox = new Migrate2Prox(curTheme, ip, username, password, thepath, first_vmid); //HIER MOETEN GECONVERTEERDE FILES MEEGEGEVEN WORDEN
                 ((MainWindow)this.Owner).Content = migration2proxmox.Content;
-
                 client_checkCon.Disconnect();
-
                 migration2proxmox.Owner = ((MainWindow)this.Owner);
             }
             catch (Exception)

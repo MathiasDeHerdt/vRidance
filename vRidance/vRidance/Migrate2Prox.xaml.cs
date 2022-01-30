@@ -150,7 +150,7 @@ namespace vRidance
                 rectNext.Opacity = 0.5;
                 rectNext.IsEnabled = false;
             }
-            else if (txtCores.Text != "" && txtCores != null && txtMemory.Text != "" && txtMemory != null && cbVersion.SelectedIndex >= 0)
+            else if (txtCores.Text != "" && txtCores.Text != null && txtMemory.Text != "" && txtMemory.Text != null && cbVersion.SelectedIndex >= 0)
             {
                 if (((int.Parse(txtCores.Text) % 2 == 0 || int.Parse(txtCores.Text) == 1) && int.Parse(txtCores.Text) > 0) && (int.Parse(txtMemory.Text) % 256 == 0 && int.Parse(txtMemory.Text) > 0))
                 {
@@ -169,12 +169,12 @@ namespace vRidance
         {
             try
             {
-                if (txtMemory.Text == "" && txtMemory == null)
+                if (txtMemory.Text == "" && txtMemory.Text == null)
                 {
                     rectNext.Opacity = 0.5;
                     rectNext.IsEnabled = false;
                 }
-                else if (txtMemory.Text != "" && txtMemory != null && txtCores.Text != "" && txtCores != null && cbVersion.SelectedIndex >= 0)
+                else if (txtMemory.Text != "" && txtMemory.Text != null && txtCores.Text != "" && txtCores.Text != null && cbVersion.SelectedIndex >= 0)
                 {
                     if ((int.Parse(txtMemory.Text) % 256 == 0 && int.Parse(txtMemory.Text) > 0) && ((int.Parse(txtCores.Text) % 2 == 0 || int.Parse(txtCores.Text) == 1) && int.Parse(txtCores.Text) > 0))
                     {

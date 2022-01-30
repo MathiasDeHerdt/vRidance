@@ -185,15 +185,14 @@ namespace vRidance
             string path2vmdk = txtPath.Text;
             if (rectDark.Visibility == Visibility.Hidden) curTheme = "dark";
             else if (rectDark.Visibility == Visibility.Visible) curTheme = "light";
-
+            string[] subdirectoryEntries = Directory.GetDirectories(path2vmdk);
             switch (platform)
             {
                 case "proxmox":
-                    string[] subdirectoryEntries = Directory.GetDirectories(path2vmdk);
 
                     if (subdirectoryEntries.Length == 0)
                     {
-                        System.Windows.MessageBox.Show($"{path2vmdk} doesn't contain any subdirectories with VMDKs");
+                        System.Windows.MessageBox.Show($"{path2vmdk} does not contain any subdirectories with VMDKs");
 
                     }
                     else
@@ -203,7 +202,7 @@ namespace vRidance
                             string[] VMDirectory = Directory.GetFiles(@"" + var_subdirectory, "*.vmdk");
                             if(VMDirectory.Length == 0)
                             {
-                                System.Windows.MessageBox.Show($"The folder {var_subdirectory} doesn't have any .vmdk files");
+                                System.Windows.MessageBox.Show($"The folder {var_subdirectory} does not have any .vmdk files");
                                 break;
                             }
                             else
@@ -218,10 +217,30 @@ namespace vRidance
                     break;
 
                 case "citrix":
-                    CitrixLogin citrixLogin = new CitrixLogin(curTheme, path2vmdk);
-                    ((MainWindow)this.Owner).Content = citrixLogin.Content;
+                    if (subdirectoryEntries.Length == 0)
+                    {
+                        System.Windows.MessageBox.Show($"{path2vmdk} does not contain any subdirectories with VMDKs");
 
-                    citrixLogin.Owner = ((MainWindow)this.Owner);
+                    }
+                    else
+                    {
+                        foreach (var var_subdirectory in subdirectoryEntries)
+                        {
+                            string[] VMDirectory = Directory.GetFiles(@"" + var_subdirectory, "*.vmdk");
+                            if (VMDirectory.Length == 0)
+                            {
+                                System.Windows.MessageBox.Show($"The folder {var_subdirectory} does not have any .vmdk files");
+                                break;
+                            }
+                            else
+                            {
+                                CitrixLogin citrixLogin = new CitrixLogin(curTheme, path2vmdk);
+                                ((MainWindow)this.Owner).Content = citrixLogin.Content;
+
+                                citrixLogin.Owner = ((MainWindow)this.Owner);
+                            }
+                        }
+                    }
                     break;
             }
         }

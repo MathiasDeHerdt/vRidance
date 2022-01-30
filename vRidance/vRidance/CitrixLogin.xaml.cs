@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Renci.SshNet;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -195,11 +196,24 @@ namespace vRidance
             if (rectDark.Visibility == Visibility.Hidden) curTheme = "dark";
             else if (rectDark.Visibility == Visibility.Visible) curTheme = "light";
 
+            AuthenticationMethod method_checkCon = new PasswordAuthenticationMethod(username, password);
+            ConnectionInfo connection_checkCon = new ConnectionInfo(ip, username, method_checkCon);
+            var client_checkCon = new SshClient(connection_checkCon);
 
-            Migrate2Citrix migration2citrix = new Migrate2Citrix(curTheme, ip, username, password, thepath);
-            ((MainWindow)this.Owner).Content = migration2citrix.Content;
+            try
+            {
+                client_checkCon.Connect();
+                Migrate2Citrix migration2citrix = new Migrate2Citrix(curTheme, ip, username, password, thepath);
+                ((MainWindow)this.Owner).Content = migration2citrix.Content;
+                migration2citrix.Owner = ((MainWindow)this.Owner);
+                client_checkCon.Disconnect();
+            }
+            catch (Exception)
+            {
 
-            migration2citrix.Owner = ((MainWindow)this.Owner);
+                MessageBox.Show($"Unable to reach {ip}, or username and password is incorrect.");
+            }
+
         }
     }
 }

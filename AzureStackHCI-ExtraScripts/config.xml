@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--creating an XML file-->
+<Configuration>
+  <CreateVM>
+    <HostName>win-newazure2</HostName>
+    <VMName>DemoVideo</VMName>
+    <ClusterName>clusterv2</ClusterName>
+    <MemoryStartup>4GB</MemoryStartup>
+    <MinimumBytes>1GB</MinimumBytes>
+    <MaximumBytes>4GB</MaximumBytes>
+    <BootDeviceExstention>VHD</BootDeviceExstention>
+    <BootDevicePath>\\WIN-NEWAZURE2\c$\ClusterStorage\Volume01\VHD\conv.vhd</BootDevicePath>
+    <NetworkAdapter>ComputeSwitch</NetworkAdapter>
+    <LocationPath>\\WIN-NEWAZURE2\c$\ClusterStorage\Volume01\VMs\</LocationPath>
+  </CreateVM>
+</Configuration>

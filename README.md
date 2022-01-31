@@ -21,6 +21,8 @@ https://www.youtube.com/watch?v=sHmiyZAEvjE&ab_channel=WardVandale
 - Email (personal): mathias.deherdt@outlook.com
 
 - linkedin: https://www.linkedin.com/in/mathias-de-herdt-608134197/
+
+- Discord: Balthazar#3917
 -----
 
 - E-mail (school): ward.vandale@student.howest.be
@@ -28,10 +30,15 @@ https://www.youtube.com/watch?v=sHmiyZAEvjE&ab_channel=WardVandale
 - Email (personal): vandale.ward@gmail.com
 
 - linkedin: https://www.linkedin.com/in/ward-vandale-989393160/
+
+- Discord: WardoLanGelo#2933
+
 -----
 
 - E-mail (school): simon.demuynck2@student.howest.be
 
-- Email (personal): 
+- Email (personal): demuyncks1999@gmail.com
 
 - linkedin: https://www.linkedin.com/in/simon-demuynck-0217aa215/
+
+- Discord: Destiny#6889

@@ -48,12 +48,12 @@ namespace vRidance
 
             if (theme.ToLower() == "dark")
             {
-                SetTheme("dark");
+                this.Dispatcher.Invoke(() => { SetTheme("dark"); });
 
             }
             else if (theme.ToLower() == "light")
             {
-                SetTheme("light");
+                this.Dispatcher.Invoke(() => { SetTheme("light"); });
             }
 
             changeParamsThread = new Thread(changeParams);
@@ -66,45 +66,49 @@ namespace vRidance
         {
             if (chosentheme.ToLower() == "dark")
             {
-                var bc3 = new BrushConverter();
-                Uri resourceUri3 = new Uri("Assets/bg_dark.png", UriKind.Relative);
-                System.Windows.Resources.StreamResourceInfo streamInfo3 = System.Windows.Application.GetResourceStream(resourceUri3);
+                this.Dispatcher.Invoke(() => { 
+                    var bc3 = new BrushConverter();
+                    Uri resourceUri3 = new Uri("Assets/bg_dark.png", UriKind.Relative);
+                    System.Windows.Resources.StreamResourceInfo streamInfo3 = System.Windows.Application.GetResourceStream(resourceUri3);
 
-                BitmapFrame temp3 = BitmapFrame.Create(streamInfo3.Stream);
-                var brush3 = new ImageBrush();
-                brush3.ImageSource = temp3;
+                    BitmapFrame temp3 = BitmapFrame.Create(streamInfo3.Stream);
+                    var brush3 = new ImageBrush();
+                    brush3.ImageSource = temp3;
 
-                grdMain4.Background = brush3;
+                    grdMain4.Background = brush3;
 
-                lblPMStart.Foreground = Brushes.White;
-                rectDark.Visibility = Visibility.Hidden;
-                rectMode.Visibility = Visibility.Visible;
-                lblCurrVM.Foreground = Brushes.White;
-                lblDiskSize.Foreground = Brushes.White;
-                lblType.Foreground = Brushes.White;
-                lblVersion.Foreground = Brushes.White;
-                lblSrUuid.Foreground = Brushes.White;
+                    lblPMStart.Foreground = Brushes.White;
+                    rectDark.Visibility = Visibility.Hidden;
+                    rectMode.Visibility = Visibility.Visible;
+                    lblCurrVM.Foreground = Brushes.White;
+                    lblDiskSize.Foreground = Brushes.White;
+                    lblType.Foreground = Brushes.White;
+                    lblVersion.Foreground = Brushes.White;
+                    lblSrUuid.Foreground = Brushes.White;
+                });
 
 
             }
             else if (chosentheme.ToLower() == "light")
             {
-                var bc3 = new BrushConverter();
-                Uri resourceUri3 = new Uri("Assets/bg_light.png", UriKind.Relative);
-                System.Windows.Resources.StreamResourceInfo streamInfo3 = System.Windows.Application.GetResourceStream(resourceUri3);
+                this.Dispatcher.Invoke(() => {
+                    var bc3 = new BrushConverter();
+                    Uri resourceUri3 = new Uri("Assets/bg_light.png", UriKind.Relative);
+                    System.Windows.Resources.StreamResourceInfo streamInfo3 = System.Windows.Application.GetResourceStream(resourceUri3);
 
-                BitmapFrame temp3 = BitmapFrame.Create(streamInfo3.Stream);
-                var brush3 = new ImageBrush();
-                brush3.ImageSource = temp3;
-                grdMain4.Background = brush3;
-                lblPMStart.Foreground = Brushes.Black;
-                rectDark.Visibility = Visibility.Visible;
-                rectMode.Visibility = Visibility.Hidden;
-                lblCurrVM.Foreground = Brushes.Black;
-                lblDiskSize.Foreground = Brushes.Black;
-                lblType.Foreground = Brushes.Black;
-                lblVersion.Foreground = Brushes.Black;
-                lblSrUuid.Foreground = Brushes.Black;
+                    BitmapFrame temp3 = BitmapFrame.Create(streamInfo3.Stream);
+                    var brush3 = new ImageBrush();
+                    brush3.ImageSource = temp3;
+                    grdMain4.Background = brush3;
+                    lblPMStart.Foreground = Brushes.Black;
+                    rectDark.Visibility = Visibility.Visible;
+                    rectMode.Visibility = Visibility.Hidden;
+                    lblCurrVM.Foreground = Brushes.Black;
+                    lblDiskSize.Foreground = Brushes.Black;
+                    lblType.Foreground = Brushes.Black;
+                    lblVersion.Foreground = Brushes.Black;
+                    lblSrUuid.Foreground = Brushes.Black;
+                });
             }
 
         }
@@ -113,7 +117,8 @@ namespace vRidance
         {
             try
             {
-                SetTheme("light");
+                this.Dispatcher.Invoke(() => { SetTheme("light"); });
+                //SetTheme("light");
             }
             catch (Exception)
             {
@@ -128,7 +133,8 @@ namespace vRidance
         {
             try
             {
-                SetTheme("dark");
+                this.Dispatcher.Invoke(() => { SetTheme("dark"); });
+                //SetTheme("dark");
 
             }
             catch (Exception)
@@ -201,7 +207,7 @@ namespace vRidance
 
             try
             {
-                if (int.Parse(txtDiskSize.Text) > 0 && txtSrUuid.Text != "" || txtSrUuid.Text != null )
+                if (long.Parse(txtDiskSize.Text) > 0 && txtSrUuid.Text != "" || txtSrUuid.Text != null )
                 {
                     MessageBox.Show("SR UUID or Disk Size was empty. Or the Disk Size value is less or equal to 0");
                 }

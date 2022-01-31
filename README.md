@@ -18,7 +18,7 @@ https://www.youtube.com/watch?v=sHmiyZAEvjE&ab_channel=WardVandale
 ### Azure Stack HCI - Mathias De Herdt
 https://www.youtube.com/watch?v=IR8SIANX7sQ&ab_channel=MathiasDeHerdt
 
-### Proxmox - Simon Demuynck
+### Citrix - Simon Demuynck
 https://www.youtube.com/watch?v=XXn4A3hfC9w&ab_channel=SimonDemuynck
 
 ## Contact information

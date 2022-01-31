@@ -207,7 +207,7 @@ namespace vRidance
 
             try
             {
-                if (long.Parse(txtDiskSize.Text) > 0 && txtSrUuid.Text != "" || txtSrUuid.Text != null )
+                if (long.Parse(txtDiskSize.Text) <= 0 && txtSrUuid.Text == "" && txtSrUuid.Text == null )
                 {
                     MessageBox.Show("SR UUID or Disk Size was empty. Or the Disk Size value is less or equal to 0");
                 }

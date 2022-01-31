@@ -33,7 +33,7 @@ https://www.youtube.com/watch?v=XXn4A3hfC9w&ab_channel=SimonDemuynck
 
 - E-mail (school): ward.vandale@student.howest.be
 
-- Email (personal): vandale.ward@gmail.com
+- Email (personal): ward.vandale@debrom.be
 
 - linkedin: https://www.linkedin.com/in/ward-vandale-989393160/
 

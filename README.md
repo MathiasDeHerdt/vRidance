@@ -15,6 +15,9 @@ School: Hogeschool West-Vlaanderen, Howest Kortrijk
 ### Proxmox
 https://www.youtube.com/watch?v=sHmiyZAEvjE&ab_channel=WardVandale
 
+### Azure Stack HCI
+https://www.youtube.com/watch?v=IR8SIANX7sQ&ab_channel=MathiasDeHerdt
+
 ## Contact information
 - E-mail (school): mathias.de.herdt@student.howest.be
 

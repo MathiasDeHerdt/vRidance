@@ -166,7 +166,7 @@ namespace vRidance {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/vRidance;component/citrixlogin.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/vRidance;V1.0.0.0;component/citrixlogin.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\CitrixLogin.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

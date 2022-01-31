@@ -142,6 +142,11 @@ namespace vRidance
                 rectNext.Opacity = 1;
                 rectNext.IsEnabled = true;
             }
+            else
+            {
+                rectNext.Opacity = 0.5;
+                rectNext.IsEnabled = false;
+            }
         }
 
         private void grdMain_Initialized(object sender, EventArgs e)
@@ -150,16 +155,6 @@ namespace vRidance
             rectNext.Opacity = 0.5;
             rectNext.IsEnabled = false;
 
-        }
-
-        private void txtPath_LayoutUpdated(object sender, EventArgs e)
-        {
-            string systemPath = txtPath.Text;
-            if (systemPath == "" || systemPath == null)
-            {
-                rectNext.Opacity = 0.5;
-                rectNext.IsEnabled = false;
-            }
         }
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)

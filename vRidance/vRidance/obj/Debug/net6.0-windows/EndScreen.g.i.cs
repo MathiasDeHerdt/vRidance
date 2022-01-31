@@ -126,7 +126,7 @@ namespace vRidance {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/vRidance;component/endscreen.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/vRidance;V1.0.0.0;component/endscreen.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\EndScreen.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

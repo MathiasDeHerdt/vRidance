@@ -1071,3 +1071,5 @@ C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\obj\Release\net6.0-wind
 C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\obj\Release\net6.0-windows\win-x64\ref\vRidance.dll
 C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\obj\Release\net6.0-windows\win-x64\vRidance.pdb
 C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\obj\Release\net6.0-windows\win-x64\vRidance.genruntimeconfig.cache
+C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Release\net6.0-windows\win-x64\AzureStackHCI.g.cs
+C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Release\net6.0-windows\win-x64\vRidance_Content.g.cs

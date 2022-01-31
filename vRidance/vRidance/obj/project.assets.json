@@ -23,6 +23,29 @@
           "lib/netstandard2.0/SshNet.Security.Cryptography.dll": {}
         }
       }
+    },
+    "net6.0-windows7.0/win-x64": {
+      "SSH.NET/2020.0.1": {
+        "type": "package",
+        "dependencies": {
+          "SshNet.Security.Cryptography": "[1.3.0]"
+        },
+        "compile": {
+          "lib/netstandard2.0/Renci.SshNet.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Renci.SshNet.dll": {}
+        }
+      },
+      "SshNet.Security.Cryptography/1.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/SshNet.Security.Cryptography.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/SshNet.Security.Cryptography.dll": {}
+        }
+      }
     }
   },
   "libraries": {
@@ -98,21 +121,19 @@
   },
   "packageFolders": {
     "C:\\Users\\Ward\\.nuget\\packages\\": {},
-    "A:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Ward\\Desktop\\vRidance\\vRidance\\vRidance\\vRidance.csproj",
+      "projectUniqueName": "C:\\Users\\Ward\\Desktop\\ResearchProjectCode\\vRidance\\vRidance\\vRidance.csproj",
       "projectName": "vRidance",
-      "projectPath": "C:\\Users\\Ward\\Desktop\\vRidance\\vRidance\\vRidance\\vRidance.csproj",
+      "projectPath": "C:\\Users\\Ward\\Desktop\\ResearchProjectCode\\vRidance\\vRidance\\vRidance.csproj",
       "packagesPath": "C:\\Users\\Ward\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Ward\\Desktop\\vRidance\\vRidance\\vRidance\\obj\\",
+      "outputPath": "C:\\Users\\Ward\\Desktop\\ResearchProjectCode\\vRidance\\vRidance\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "A:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
         "C:\\Users\\Ward\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -120,11 +141,10 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net6.0-windows7.0"
+        "net6.0-windows"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Users\\Ward\\Desktop\\MouseBlinkerFluid\\MouseBlinkerFluid\\MouseBlinkerFluid\\bin\\Debug\\net6.0-windows\\IDN": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -158,6 +178,20 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
+            "version": "[6.0.1, 6.0.1]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Runtime.win-x64",
+            "version": "[6.0.1, 6.0.1]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
+            "version": "[6.0.1, 6.0.1]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
@@ -167,6 +201,11 @@
           }
         },
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+      }
+    },
+    "runtimes": {
+      "win-x64": {
+        "#import": []
       }
     }
   }

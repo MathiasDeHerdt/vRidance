@@ -362,12 +362,10 @@ namespace vRidance
                     FileInfo fi = new FileInfo(@"" + file);
                     this.Dispatcher.Invoke(() => { lblInfo.Content = $"Uploading {System.IO.Path.GetFileName(file)}"; });
                     long size = fi.Length;
-                    //MessageBox.Show(size.ToString());
                     using (Stream stream = File.OpenRead(file))
                     {
                         upload.UploadFile(stream, @"/usr/src/" + DirectoryName + "/" + System.IO.Path.GetFileName(file), x =>
                         {
-                            /*Console.WriteLine($"Uploading {System.IO.Path.GetFileName(file)}"); Console.WriteLine($"{x / 1024 / 1024} / {size / 1024 / 1024}");*/
                             long current = long.Parse(x.ToString());
                             progress = ((double)current / size) * 70;
                             this.Dispatcher.Invoke(() => { pbProgress.Value = progress; });
@@ -388,7 +386,6 @@ namespace vRidance
                 if (os_type == "win11" || os_type == "win10" || os_type == "win8" || os_type == "win7" || os_type == "w2k8" || os_type == "w2k3" || os_type == "w2k")
                 {
 
-                    //Console.WriteLine($"Creating VM {DirectoryName}, Please Wait...");
                     string createVM = $"qm create {start_vmid} --balloon 1024 --memory {memory} --sockets 1 --cores {cpu_cores} --onboot yes --name {DirectoryName} --ostype {os_type} --bootdisk ide0 --net0 e1000,bridge=vmbr0,firewall=1 --scsihw virtio-scsi-pci --bios ovmf";
                     string importDisk = $"qm importdisk {start_vmid} /usr/src/{DirectoryName}/{DirectoryName}.vmdk VM-Data --format raw";
                     string useDisk = $"qm set {start_vmid} --ide0 VM-Data:{start_vmid}/vm-{start_vmid}-disk-0.raw";
@@ -426,11 +423,9 @@ namespace vRidance
                     sendCommand = client.RunCommand(start);
                     vmCreated = true;
                     client.Disconnect();
-
                 }
                 else if (os_type == "l26" || os_type == "l24")
                 {
-                    //Console.WriteLine($"Creating VM {DirectoryName}, Please Wait...");
                     string createVM = $"qm create {start_vmid} --balloon 1024 --memory {memory} --sockets 1 --cores {cpu_cores} --onboot yes --name {DirectoryName} -ostype {os_type} --bootdisk scsi0 --net0 virtio,bridge=vmbr0,firewall=1 --scsihw virtio-scsi-pci";
                     string importDisk = $"qm importdisk {start_vmid} /usr/src/{DirectoryName}/{DirectoryName}.vmdk VM-Data --format raw";
                     string useDisk = $"qm set {start_vmid} --scsi0 VM-Data:{start_vmid}/vm-{start_vmid}-disk-0.raw";
@@ -457,7 +452,6 @@ namespace vRidance
                     sendCommand = client.RunCommand(start);
                     vmCreated = true;
                     client.Disconnect();
-
                 }
             }
             lblInfo.Content = "";

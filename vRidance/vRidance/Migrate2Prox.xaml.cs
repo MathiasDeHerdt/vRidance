@@ -145,24 +145,28 @@ namespace vRidance
 
         private void txtCores_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if(txtCores.Text == "" && txtCores.Text == null)
+            try
             {
-                rectNext.Opacity = 0.5;
-                rectNext.IsEnabled = false;
-            }
-            else if (txtCores.Text != "" && txtCores.Text != null && txtMemory.Text != "" && txtMemory.Text != null && cbVersion.SelectedIndex >= 0)
-            {
-                if (((int.Parse(txtCores.Text) % 2 == 0 || int.Parse(txtCores.Text) == 1) && int.Parse(txtCores.Text) > 0) && (int.Parse(txtMemory.Text) % 256 == 0 && int.Parse(txtMemory.Text) > 0))
-                {
-                    rectNext.Opacity = 1;
-                    rectNext.IsEnabled = true;
-                }
-                else
+                if (txtCores.Text == "" && txtCores.Text == null)
                 {
                     rectNext.Opacity = 0.5;
                     rectNext.IsEnabled = false;
                 }
+                else if (txtCores.Text != "" && txtCores.Text != null && txtMemory.Text != "" && txtMemory.Text != null && cbVersion.SelectedIndex >= 0)
+                {
+                    if (((int.Parse(txtCores.Text) % 2 == 0 || int.Parse(txtCores.Text) == 1) && int.Parse(txtCores.Text) > 0) && (int.Parse(txtMemory.Text) % 256 == 0 && int.Parse(txtMemory.Text) > 0))
+                    {
+                        rectNext.Opacity = 1;
+                        rectNext.IsEnabled = true;
+                    }
+                    else
+                    {
+                        rectNext.Opacity = 0.5;
+                        rectNext.IsEnabled = false;
+                    }
+                }
             }
+            catch (Exception) { rectNext.Opacity = 0.5; rectNext.IsEnabled = false; }  
         }
 
         private void txtMemory_TextChanged(object sender, TextChangedEventArgs e)
@@ -188,7 +192,7 @@ namespace vRidance
                     }
                 }
             }
-            catch (Exception) { }
+            catch (Exception) { rectNext.Opacity = 0.5; rectNext.IsEnabled = false; }
         }
 
 
@@ -244,15 +248,9 @@ namespace vRidance
                 else if (cbVersion.SelectedIndex == 5) os_type = "w2k3";
                 else if (cbVersion.SelectedIndex == 6) os_type = "w2k";
             }
-
-            
-
             cpu_cores = int.Parse(txtCores.Text);
             memory = int.Parse(txtMemory.Text);
-
-
             nextIsClicked = true;
-
         }
 
         private void grdMain_Initialized(object sender, EventArgs e)
@@ -293,9 +291,6 @@ namespace vRidance
                         {
                             this.Dispatcher.Invoke(() =>
                             {
-                                //rectDark.IsEnabled = false;
-                                //rectMode.IsEnabled = false;
-                                //rctTop.IsEnabled = false;
                                 cbType.IsEnabled = false;
                                 cbVersion.IsEnabled = false;
                                 txtCores.IsEnabled = false;
@@ -306,7 +301,7 @@ namespace vRidance
                             });
                             nextIsClicked = false;
                             createTheVMS(var_subdirectory.ToString());
-                            //MessageBox.Show($"folderPath: {folderPath}, subdirectoryName: {DirectoryName}, proxHost: {prox_host}, username: {prox_username}, password: {prox_password}, start_vmid: {start_vmid}, os_type: {os_type}, cpu_cores: {cpu_cores}, memory: {memory}");
+                            
                             while (true) {
                                 Thread.Sleep(100);
                                 if (vmCreated == true) break;
@@ -333,19 +328,6 @@ namespace vRidance
             
             this.Dispatcher.Invoke(() =>
             {
-                //rectDark.IsEnabled = true;
-                //rctTop.IsEnabled = true;
-                //rectMode.IsEnabled = true;
-                rectClose.Visibility = Visibility.Visible;
-                lblCurrVM.Content = $"Migration Completed!";
-                cbType.IsEnabled = false;
-                cbVersion.IsEnabled = false;
-                txtCores.IsEnabled = false;
-                txtMemory.IsEnabled = false;
-
-                rectFinish.Visibility = Visibility.Visible;
-                rectNext.Visibility = Visibility.Hidden;
-
                 string curTheme = "";
                 if (rectDark.Visibility == Visibility.Hidden) curTheme = "dark";
                 else if (rectDark.Visibility == Visibility.Visible) curTheme = "light";

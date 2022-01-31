@@ -178,7 +178,7 @@ namespace vRidance
             try
             {
                 System.Net.IPAddress ipAddress;
-                if (txtUsername.Text != "" && txtUsername != null && pwbPassword.Password != "" && txtVMID.Text != "" && txtVMID != null && System.Net.IPAddress.TryParse(txtIP.Text, out ipAddress) && int.Parse(txtVMID.Text) % 1 == 0)
+                if (txtUsername.Text != "" && txtUsername.Text != null && pwbPassword.Password != "" && txtVMID.Text != "" && txtVMID.Text != null && System.Net.IPAddress.TryParse(txtIP.Text, out ipAddress) && int.Parse(txtVMID.Text) % 1 == 0 && int.Parse(txtVMID.Text) > 0)
                 {
                     rectNext.Opacity = 1;
                     rectNext.IsEnabled = true;
@@ -189,7 +189,7 @@ namespace vRidance
                     rectNext.IsEnabled = false;
                 }
             }
-            catch (Exception) { }
+            catch (Exception) { rectNext.Opacity = 0.5; rectNext.IsEnabled = false; }
         }
     }
 }

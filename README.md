@@ -11,21 +11,27 @@ Year: 2021 - 2022
 
 School: Hogeschool West-Vlaanderen, Howest Kortrijk
 
+## Demo video
+### Proxmox
+https://www.youtube.com/watch?v=sHmiyZAEvjE&ab_channel=WardVandale
+
 ## Contact information
-E-mail (school): mathias.de.herdt@student.howest.be
+- E-mail (school): mathias.de.herdt@student.howest.be
 
-Email (personal): mathias.deherdt@outlook.com
+- Email (personal): mathias.deherdt@outlook.com
 
-linkedin: https://www.linkedin.com/in/mathias-de-herdt-608134197/
+- linkedin: https://www.linkedin.com/in/mathias-de-herdt-608134197/
+-----
 
-E-mail (school): ward.vandale@student.howest.be
+- E-mail (school): ward.vandale@student.howest.be
 
-Email (personal): vandale.ward@gmail.com
+- Email (personal): vandale.ward@gmail.com
 
-linkedin: https://www.linkedin.com/in/ward-vandale-989393160/
+- linkedin: https://www.linkedin.com/in/ward-vandale-989393160/
+-----
 
-E-mail (school): simon.demuynck2@student.howest.be
+- E-mail (school): simon.demuynck2@student.howest.be
 
-Email (personal): 
+- Email (personal): 
 
-linkedin: https://www.linkedin.com/in/simon-demuynck-0217aa215/
+- linkedin: https://www.linkedin.com/in/simon-demuynck-0217aa215/

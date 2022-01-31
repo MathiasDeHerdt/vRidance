@@ -352,6 +352,7 @@ namespace vRidance
             client_mkdir.RunCommand($"rm -rf /usr/src/{DirectoryName}");
             client_mkdir.RunCommand($"mkdir /usr/src/{DirectoryName}");
             client_mkdir.Disconnect();
+            Thread.Sleep(100);
 
             using (SftpClient upload = new SftpClient(new PasswordConnectionInfo(prox_host, prox_username, prox_password)))
             {

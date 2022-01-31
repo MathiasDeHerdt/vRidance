@@ -12,11 +12,14 @@ Year: 2021 - 2022
 School: Hogeschool West-Vlaanderen, Howest Kortrijk
 
 ## Demo video
-### Proxmox
+### Proxmox - Ward Vandale
 https://www.youtube.com/watch?v=sHmiyZAEvjE&ab_channel=WardVandale
 
-### Azure Stack HCI
+### Azure Stack HCI - Mathias De Herdt
 https://www.youtube.com/watch?v=IR8SIANX7sQ&ab_channel=MathiasDeHerdt
+
+### Proxmox - Simon Demuynck
+https://www.youtube.com/watch?v=XXn4A3hfC9w&ab_channel=SimonDemuynck
 
 ## Contact information
 - E-mail (school): mathias.de.herdt@student.howest.be

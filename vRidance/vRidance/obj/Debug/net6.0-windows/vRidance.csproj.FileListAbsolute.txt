@@ -127,7 +127,6 @@ C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-window
 C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\EndScreen.baml
 C:\Users\Simon\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\EndScreen.g.cs
 C:\Users\Simon\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\EndScreen.baml
-C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\vRidance.csproj.AssemblyReference.cache
 C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\CitrixLogin.g.cs
 C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\EndScreen.g.cs
 C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\Migrate2Citrix.g.cs
@@ -178,3 +177,6 @@ D:\Howest\3de\Sem2\ResearchProject\Code\Repo\V2\ResearchProjectCode\vRidance\vRi
 C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\AzureStackHCI.g.cs
 C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\vRidance_Content.g.cs
 C:\ResearchProject\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\AzureStackHCI.baml
+C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\AzureStackHCI.g.cs
+C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\vRidance_Content.g.cs
+C:\Users\Ward\Desktop\ResearchProjectCode\vRidance\vRidance\obj\Debug\net6.0-windows\AzureStackHCI.baml

@@ -18,9 +18,6 @@
     <Compile Update="CitrixLogin.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="CustomTools\ToggleSwitch.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Update="EndScreen.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

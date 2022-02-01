@@ -1,7 +1,7 @@
 # ResearchProjectCode
 
 ## Information About our project
-We build a tool that let's users migrate there vSphere enviroment to one of 3 platforms: Proxmox, Azure Stack HCI and Citrix!
+We build a tool that let's users migrate their vSphere enviroment to one of 3 platforms: Proxmox, Azure Stack HCI and Citrix!
 
 Only supported on Windows.
 
